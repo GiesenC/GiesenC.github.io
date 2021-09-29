@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Scoop1.前言Scoop是一个 Windows 包管理工具，类似于 Debian 的 apt、macOS 的 homebrew。它由开源社区驱动，体验可能是是目前所有 Windows 包管理工具中最好的。对开发者来说，包管理器能非常方便的部署开发环境，比如 Python、Node.js。而对于普通的计算机使用者来说，可以方便的安装一些常用软件，尤其是开源软件，免去了手动去官网下载的繁琐步骤，而">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scoop&amp;Chocolatey不完全上手指南">
+<meta property="og:url" content="http://example.com/posts/cd19d6b5.html">
+<meta property="og:site_name" content="Giesen × Blog">
+<meta property="og:description" content="Scoop1.前言Scoop是一个 Windows 包管理工具，类似于 Debian 的 apt、macOS 的 homebrew。它由开源社区驱动，体验可能是是目前所有 Windows 包管理工具中最好的。对开发者来说，包管理器能非常方便的部署开发环境，比如 Python、Node.js。而对于普通的计算机使用者来说，可以方便的安装一些常用软件，尤其是开源软件，免去了手动去官网下载的繁琐步骤，而">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-09-29T13:16:49.000Z">
+<meta property="article:modified_time" content="2021-09-29T13:18:04.301Z">
+<meta property="article:author" content="Giesen">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/logo.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/logo-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-apple-180x180.png">
+        
+      
+    
+    <!-- title -->
+    <title>Scoop&amp;Chocolatey不完全上手指南</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/posts/f729cd9d.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/cd19d6b5.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/cd19d6b5.html&text=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/cd19d6b5.html&title=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/cd19d6b5.html&is_video=false&description=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Scoop&amp;Chocolatey不完全上手指南&body=Check out this article: http://example.com/posts/cd19d6b5.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/cd19d6b5.html&title=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/cd19d6b5.html&title=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/cd19d6b5.html&title=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/cd19d6b5.html&title=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/cd19d6b5.html&name=Scoop&amp;Chocolatey不完全上手指南&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/cd19d6b5.html&t=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Scoop"><span class="toc-number">1.</span> <span class="toc-text">Scoop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">1.前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="toc-number">1.2.</span> <span class="toc-text">2.环境要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Scoop%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.</span> <span class="toc-text">3.Scoop安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-number">1.4.</span> <span class="toc-text">4.基础使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8"><span class="toc-number">1.5.</span> <span class="toc-text">5.进阶使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E6%B7%BB%E5%8A%A0%E5%B8%B8%E7%94%A8%E7%9A%84bucket"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1.添加常用的bucket</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E6%B8%85%E7%90%86%E5%AE%89%E8%A3%85%E5%8C%85%E7%BC%93%E5%AD%98"><span class="toc-number">1.5.2.</span> <span class="toc-text">5.2.清理安装包缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-%E5%88%A0%E9%99%A4%E6%97%A7%E7%89%88%E6%9C%AC%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.5.3.</span> <span class="toc-text">5.3.删除旧版本软件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85-%E4%B8%80%E8%88%AC%E7%94%A8%E4%BA%8E%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="toc-number">1.5.4.</span> <span class="toc-text">5.4.全局安装(一般用于环境安装)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.5.5.</span> <span class="toc-text">5.5.代理设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-6-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.6.</span> <span class="toc-text">5.6.常用命令总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7-%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E5%A6%82%E4%BD%95%E6%81%A2%E5%A4%8D%E4%BD%BF%E7%94%A8Scoop"><span class="toc-number">1.5.7.</span> <span class="toc-text">5.7.重装系统后如何恢复使用Scoop</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%B0%BE%E5%B7%B4"><span class="toc-number">1.6.</span> <span class="toc-text">6.尾巴</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chocolatey"><span class="toc-number">2.</span> <span class="toc-text">Chocolatey</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%85%B3%E4%BA%8EChocolatey"><span class="toc-number">2.1.</span> <span class="toc-text">1.关于Chocolatey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85-%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8PowerShell"><span class="toc-number">2.2.</span> <span class="toc-text">2.Chocolatey的安装(建议使用PowerShell)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">2.3.</span> <span class="toc-text">3.常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%B0%BE%E5%B7%B4"><span class="toc-number">2.4.</span> <span class="toc-text">4.尾巴</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Scoop&amp;Chocolatey不完全上手指南
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Giesen</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-09-29T13:16:49.000Z" itemprop="datePublished">2021-09-29</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Scoop"><a href="#Scoop" class="headerlink" title="Scoop"></a>Scoop</h2><h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h3><p><a target="_blank" rel="noopener" href="https://github.com/lukesampson/scoop">Scoop</a>是一个 Windows 包管理工具，类似于 Debian 的 <code>apt</code>、macOS 的 <code>homebrew</code>。它由开源社区驱动，体验可能是是目前所有 Windows 包管理工具中最好的。对开发者来说，包管理器能非常方便的部署开发环境，比如 Python、Node.js。而对于普通的计算机使用者来说，可以方便的安装一些常用软件，尤其是开源软件，免去了手动去官网下载的繁琐步骤，而且后续对软件进行升级只需要输入一行命令，非常便捷。</p>
+<h3 id="2-环境要求"><a href="#2-环境要求" class="headerlink" title="2.环境要求"></a>2.环境要求</h3><ul>
+<li>  Windows 7 SP1 + / Windows Server 2008 +</li>
+<li>  <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/details.aspx?id=54616">PowerShell 5 + </a>和<a target="_blank" rel="noopener" href="https://dotnet.microsoft.com/download">.NET Framework 4.5 + </a></li>
+<li>  Windows 用户名为英文（Windows 用户环境变量中路径值不支持中文字符）</li>
+<li>  <strong>正常、快速</strong>的访问<a target="_blank" rel="noopener" href="https://github.com/">GitHub</a>并下载资源</li>
+</ul>
+<h3 id="3-Scoop安装"><a href="#3-Scoop安装" class="headerlink" title="3.Scoop安装"></a>3.Scoop安装</h3><ol>
+<li>设置<code>powershell</code></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set-executionpolicy remotesigned -scope currentuser</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>默认安装(安装到<code>C:\Users\&lt;user&gt;\scoop</code>), 在<code>powershell</code>里面运行:</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iex (new-object net.webclient).downloadstring(&#x27;https://get.scoop.sh&#x27;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装到指定目录(<code>D:\tool\scoop</code>)(逐行执行命令)</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[environment]::setEnvironmentVariable(&#x27;SCOOP&#x27;, &#x27;D:\tool\scoop&#x27;, &#x27;User&#x27;)</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash">env:SCOOP=<span class="string">&#x27;D:\tool\scoop&#x27;</span></span></span><br><span class="line"></span><br><span class="line">iex (new-object net.webclient).downloadstring(&#x27;https://get.scoop.sh&#x27;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>全局安装到指定目录(<code>D:\tool\scoop_global</code>)(逐行执行命令)</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[environment]::setEnvironmentVariable(&#x27;SCOOP_GLOBAL&#x27;,&#x27;D:\tool\scoop\scoop_global&#x27;,&#x27;Machine&#x27;)</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash">env:SCOOP_GLOBAL=<span class="string">&#x27;D:\tool\scoop\scoop_global&#x27;</span></span></span><br><span class="line">	</span><br><span class="line">iex (new-object net.webclient).downloadstring(&#x27;https://get.scoop.sh&#x27;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>执行<code>scoop help</code>查看是否安装成功</li>
+</ul>
+<h3 id="4-基础使用"><a href="#4-基础使用" class="headerlink" title="4.基础使用"></a>4.基础使用</h3><ul>
+<li>  <code>scoop search &lt;app&gt;</code> - 搜索软件</li>
+<li>  <code>scoop install &lt;app&gt;</code> - 安装软件</li>
+<li>  <code>scoop info &lt;app&gt;</code> - 查看软件详细信息</li>
+<li>  <code>scoop list</code> - 查看已安装软件</li>
+<li>  <code>scoop uninstall &lt;app&gt;</code> - 卸载软件，<code>-p</code>删除配置文件。</li>
+<li>  <code>scoop update</code> - 更新 scoop 本体和软件列表</li>
+<li>  <code>scoop update &lt;app&gt;</code> - 更新指定软件</li>
+<li>  <code>scoop update *</code> - 更新所有已安装的软件</li>
+<li>  <code>scoop checkup</code> - 检查 scoop 的问题并给出解决问题的建议</li>
+<li>  <code>scoop help</code> - 查看命令列表</li>
+<li>  <code>scoop help &lt;command&gt;</code> - 查看命令帮助说明</li>
+</ul>
+<h3 id="5-进阶使用"><a href="#5-进阶使用" class="headerlink" title="5.进阶使用"></a>5.进阶使用</h3><h4 id="5-1-添加常用的bucket"><a href="#5-1-添加常用的bucket" class="headerlink" title="5.1.添加常用的bucket"></a>5.1.添加常用的bucket</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">scoop bucket add extras</span><br><span class="line">scoop bucket add Java</span><br><span class="line">scoop bucket add versions</span><br><span class="line">scoop bucket add Ash258 &#x27;https://github.com/Ash258/Scoop-Ash258.git&#x27;</span><br><span class="line">scoop bucket add dorado &#x27;https://github.com/h404bi/dorado&#x27;</span><br><span class="line">scoop bucket add iszy &#x27;https://github.com/ZvonimirSun/scoop-iszy&#x27;</span><br><span class="line">scoop bucket add dodorz &#x27;https://github.com/dodorz/scoop-bucket&#x27;</span><br><span class="line">scoop bucket add rasa &#x27;https://github.com/rasa/scoops&#x27;</span><br><span class="line">scoop bucket add scoopet &#x27;https://github.com/integzz/scoopet&#x27;</span><br><span class="line">scoop bucket add raresoft &#x27;https://github.com/L-Trump/scoop-raresoft&#x27;</span><br><span class="line">scoop bucket add main &#x27;https://github.com/ScoopInstaller/Main&#x27;</span><br><span class="line">scoop bucket add games &#x27;https://github.com/Calinou/scoop-games&#x27;</span><br><span class="line">scoop bucket add jetbrains &#x27;https://github.com/Ash258/Scoop-JetBrains&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-2-清理安装包缓存"><a href="#5-2-清理安装包缓存" class="headerlink" title="5.2.清理安装包缓存"></a>5.2.清理安装包缓存</h4><p>Scoop 会保留下载的安装包，对于卸载后又想再安装的情况，不需要重复下载。但长期累积会占用大量的磁盘空间，如果用不到就成了垃圾。这时可以使用 <code>scoop cache</code> 命令来清理。</p>
+<ul>
+<li>  <code>scoop cache show</code> - 显示安装包缓存</li>
+<li>  <code>scoop cache rm &lt;app&gt;</code> - 删除指定应用的安装包缓存</li>
+<li>  <code>scoop cache rm *</code> - 删除所有的安装包缓存</li>
+</ul>
+<p>如果你不希望安装和更新软件时保留安装包缓存，可以加上 <code>-k</code> 或 <code>--no-cache</code> 选项来禁用缓存：(可能会有报错)</p>
+<ul>
+<li>  <code>scoop install -k &lt;app&gt;</code></li>
+<li>  <code>scoop update -k *</code></li>
+</ul>
+<h4 id="5-3-删除旧版本软件"><a href="#5-3-删除旧版本软件" class="headerlink" title="5.3.删除旧版本软件"></a>5.3.删除旧版本软件</h4><p>当软件被更新后 Scoop 还会保留软件的旧版本，更新软件后可以通过 <code>scoop cleanup</code> 命令进行删除。</p>
+<ul>
+<li>  <code>scoop cleanup &lt;app&gt;</code> - 删除指定软件的旧版本</li>
+<li>  <code>scoop cleanup *</code> - 删除所有软件的旧版本</li>
+</ul>
+<p>与安装软件一样，删除旧版本软件的同时也可以清理安装包缓存，同样是加上 <code>-k</code> 选项。</p>
+<ul>
+<li>  <code>scoop cleanup -k &lt;app&gt;</code> - 删除指定软件的旧版本并清除安装包缓存</li>
+<li>  <code>scoop cleanup -k *</code> - 删除所有软件的旧版本并清除安装包缓存</li>
+</ul>
+<h4 id="5-4-全局安装-一般用于环境安装"><a href="#5-4-全局安装-一般用于环境安装" class="headerlink" title="5.4.全局安装(一般用于环境安装)"></a>5.4.全局安装(一般用于环境安装)</h4><p>全局安装就是给系统中的所有用户都安装，且环境变量是系统变量，对于需要设置系统变量的一些软件就需要全局安装，比如 Node.js、Python，否则某些情况会出现无法找到命令的问题。</p>
+<p>使用 <code>scoop install &lt;app&gt;</code> 命令加上 <code>-g</code> 或 <code>--global</code> 选项可对软件进行全局安装，全局安装需要管理员权限，所以需要提前以管理员权限运行的 PowerShell 。更简单的方式是先安装 <code>sudo</code>，然后用 <code>sudo</code> 命令来提权执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scoop install sudo</span><br><span class="line">sudo scoop install -g &lt;app&gt;</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>scoop list</code> 命令查看已装软件时，全局安装的软件末尾会有 <code>*global*</code> 标志。</p>
+<p>此外对于全局软件的更新和卸载等其它操作，都需要加上 <code>-g</code> 选项：</p>
+<ul>
+<li>  <code>sudo scoop update -g *</code> - 更新所有软件（且包含全局软件）</li>
+<li>  <code>sudo scoop uninstall -g &lt;app&gt;</code> - 卸载全局软件</li>
+<li>  <code>sudo scoop uninstall -gp &lt;app&gt;</code> - 卸载全局软件（并删除配置文件）</li>
+<li>  <code>sudo scoop cleanup -g *</code> - 删除所有全局软件的旧版本</li>
+<li>  <code>sudo scoop cleanup -gk *</code> - 删除所有全局软件的旧版本（并清除安装包包缓存）</li>
+</ul>
+<h4 id="5-5-代理设置"><a href="#5-5-代理设置" class="headerlink" title="5.5.代理设置"></a>5.5.代理设置</h4><p>Scoop 默认使用系统代理，手动指定代理，可以输入下面的命令。需要注意的是只支持 http 协议。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scoop config proxy localhost:端口号</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>设置完可以通过<code>scoop config proxy</code>查看。</p>
+</blockquote>
+<p>如果你想取消代理，那么输入下面的命令，这将会恢复使用系统代理。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scoop config rm proxy</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-6-常用命令总结"><a href="#5-6-常用命令总结" class="headerlink" title="5.6.常用命令总结"></a>5.6.常用命令总结</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 安装软件 ##</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 非全局安装（并禁止安装包缓存）</span></span><br><span class="line">scoop install -k &lt;app&gt;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 全局安装（并禁止安装包缓存）</span></span><br><span class="line">sudo scoop install -gk &lt;app&gt;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 卸载软件 ##</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 卸载非全局软件（并删除配置文件）</span></span><br><span class="line">scoop uninstall -p &lt;app&gt;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 卸载全局软件（并删除配置文件）</span></span><br><span class="line">sudo scoop uninstall -gp &lt;app&gt;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 更新软件 ##</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 更新所有非全局软件（并禁止安装包缓存）</span></span><br><span class="line">scoop update -k *</span><br><span class="line"><span class="meta">#</span><span class="bash"> 更新所有软件（并禁止安装包缓存）</span></span><br><span class="line">sudo scoop update -gk *</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 垃圾清理 ##</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除所有旧版本非全局软件（并删除软件包缓存）</span></span><br><span class="line">scoop cleanup -k *</span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除所有旧版本软件（并删除软件包缓存）</span></span><br><span class="line">sudo scoop cleanup -gk *</span><br><span class="line"><span class="meta">#</span><span class="bash"> 清除软件包缓存</span></span><br><span class="line">scoop cache rm *</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-7-重装系统后如何恢复使用Scoop"><a href="#5-7-重装系统后如何恢复使用Scoop" class="headerlink" title="5.7.重装系统后如何恢复使用Scoop"></a>5.7.重装系统后如何恢复使用Scoop</h4><p>重装系统之后, 如果把原有的scoop文件夹粘贴回去user文件夹,然后在<code>powershell</code>中再次输入安装命令,会得到一个<strong>Scoop is already installed</strong>错误,要想正确恢复scoop,根据<a target="_blank" rel="noopener" href="https://github.com/lukesampson/scoop/issues/2894">官方回答</a>,请按照以下步骤:</p>
+<ol>
+<li><p>重装系统之前,先完整复制用户目录下的scoop文件夹到别的地方</p>
+</li>
+<li><p>重装系统之后,将scoop文件夹粘贴回去用户目录</p>
+</li>
+<li><p>在环境变量设置中,新建一个用户变量,名字为SCOOP,值为当前scoop文件夹的地址,即:<br><code>C:\Users\xxxx\scoop</code></p>
+</li>
+<li><p>允许脚本执行:<br><code>set-executionpolicy remotesigned -s currentuser</code></p>
+</li>
+<li><p>双击用户变量中的path,新建一个路径,填入 :<br><code>%SCOOP%\shims</code></p>
+</li>
+<li><p>管理员权限powershell中运行:<br><code>scoop reset *</code></p>
+</li>
+</ol>
+<p>即可恢复所有软件的正常使用.</p>
+<h3 id="6-尾巴"><a href="#6-尾巴" class="headerlink" title="6.尾巴"></a>6.尾巴</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://scoop.netlify.app/">Scoop</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/lukesampson/scoop/wiki">Home · lukesampson/scoop Wiki · GitHub</a></li>
+</ul>
+<hr>
+<h2 id="Chocolatey"><a href="#Chocolatey" class="headerlink" title="Chocolatey"></a>Chocolatey</h2><h3 id="1-关于Chocolatey"><a href="#1-关于Chocolatey" class="headerlink" title="1.关于Chocolatey"></a>1.关于Chocolatey</h3><p><a target="_blank" rel="noopener" href="https://chocolatey.org/">Chocolatey</a>是Windows平台上的包管理器，通过它可以集中安装、管理、更新各种各样的软件。类似<a target="_blank" rel="noopener" href="https://github.com/lukesampson/scoop">Scoop</a>，相比而言Scoop对环境的污染较小（软件都安装在<code>C:\Users\xxx\scoop\apps</code>下），Chocolatey安装的包会在默认路径下，也就是<code>C:\Program Files</code>目录下。故将Chocolatey作为备选项。</p>
+<h3 id="2-Chocolatey的安装-建议使用PowerShell"><a href="#2-Chocolatey的安装-建议使用PowerShell" class="headerlink" title="2.Chocolatey的安装(建议使用PowerShell)"></a>2.Chocolatey的安装(建议使用PowerShell)</h3><p>考虑到这篇文章的信息会过时，安装的详细信息可依照<a target="_blank" rel="noopener" href="https://chocolatey.org/install">官方指示</a>。</p>
+<ul>
+<li>cmd(管理员权限运行)</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@”%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe” -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command “iex ((New-Object System.Net.WebClient).DownloadString(‘https://chocolatey.org/install.ps1’))” &amp;&amp; SET “PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin”</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Windows PowerShell(管理员权限运行)</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(&#x27;https://community.chocolatey.org/install.ps1&#x27;))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>执行<code>choco</code>查看是否安装成功</li>
+</ul>
+<h3 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3.常用命令"></a>3.常用命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#安装包</span></span></span><br><span class="line">choco install &lt;package&gt;</span><br><span class="line"><span class="meta">#</span><span class="bash">如果使用 -version 可以指定版本</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#查看安装的包</span></span></span><br><span class="line">choco list -l</span><br><span class="line">choco list -local-only</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#包的更新，包括chocolatey本身</span></span></span><br><span class="line">choco upgrade &lt;packagename&gt; or all</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#包的卸载</span></span></span><br><span class="line">choco uninstall &lt;packagename&gt;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#包的搜索(可在官网先搜索(https://community.chocolatey.org/packages))</span></span></span><br><span class="line">choco search &lt;packagename&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-尾巴"><a href="#4-尾巴" class="headerlink" title="4.尾巴"></a>4.尾巴</h3><p>  国内建议使用Scoop（限速），Chocolatey已无法访问，若使用黑科技，可两者结合使用。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Scoop"><span class="toc-number">1.</span> <span class="toc-text">Scoop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">1.前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="toc-number">1.2.</span> <span class="toc-text">2.环境要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Scoop%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.</span> <span class="toc-text">3.Scoop安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-number">1.4.</span> <span class="toc-text">4.基础使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8"><span class="toc-number">1.5.</span> <span class="toc-text">5.进阶使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E6%B7%BB%E5%8A%A0%E5%B8%B8%E7%94%A8%E7%9A%84bucket"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1.添加常用的bucket</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E6%B8%85%E7%90%86%E5%AE%89%E8%A3%85%E5%8C%85%E7%BC%93%E5%AD%98"><span class="toc-number">1.5.2.</span> <span class="toc-text">5.2.清理安装包缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-%E5%88%A0%E9%99%A4%E6%97%A7%E7%89%88%E6%9C%AC%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.5.3.</span> <span class="toc-text">5.3.删除旧版本软件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85-%E4%B8%80%E8%88%AC%E7%94%A8%E4%BA%8E%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="toc-number">1.5.4.</span> <span class="toc-text">5.4.全局安装(一般用于环境安装)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.5.5.</span> <span class="toc-text">5.5.代理设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-6-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.6.</span> <span class="toc-text">5.6.常用命令总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7-%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E5%A6%82%E4%BD%95%E6%81%A2%E5%A4%8D%E4%BD%BF%E7%94%A8Scoop"><span class="toc-number">1.5.7.</span> <span class="toc-text">5.7.重装系统后如何恢复使用Scoop</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%B0%BE%E5%B7%B4"><span class="toc-number">1.6.</span> <span class="toc-text">6.尾巴</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chocolatey"><span class="toc-number">2.</span> <span class="toc-text">Chocolatey</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%85%B3%E4%BA%8EChocolatey"><span class="toc-number">2.1.</span> <span class="toc-text">1.关于Chocolatey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Chocolatey%E7%9A%84%E5%AE%89%E8%A3%85-%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8PowerShell"><span class="toc-number">2.2.</span> <span class="toc-text">2.Chocolatey的安装(建议使用PowerShell)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">2.3.</span> <span class="toc-text">3.常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%B0%BE%E5%B7%B4"><span class="toc-number">2.4.</span> <span class="toc-text">4.尾巴</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/cd19d6b5.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/cd19d6b5.html&text=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/cd19d6b5.html&title=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/cd19d6b5.html&is_video=false&description=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Scoop&amp;Chocolatey不完全上手指南&body=Check out this article: http://example.com/posts/cd19d6b5.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/cd19d6b5.html&title=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/cd19d6b5.html&title=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/cd19d6b5.html&title=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/cd19d6b5.html&title=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/cd19d6b5.html&name=Scoop&amp;Chocolatey不完全上手指南&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/cd19d6b5.html&t=Scoop&amp;Chocolatey不完全上手指南"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021
+    Giesen
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?816b9aa62faaa826317c7a6ab717a247";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
