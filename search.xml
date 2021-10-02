@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>解决Github访问、下载慢的问题</title>
+      <link href="/posts/b457641.html"/>
+      <url>/posts/b457641.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-Mac-Win10-无法访问Github"><a href="#1-Mac-Win10-无法访问Github" class="headerlink" title="1.Mac || Win10 无法访问Github"></a>1.Mac || Win10 无法访问Github</h2><p>有时候我们的电脑出现突然上不了网，或者某些网站打不开的情况，这种情况很多是<a href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F/2251573?fromtitle=dns&fromid=427444">DNS</a>缓存延时导致，可以通过执行DNS缓存清理命令来更新DNS缓存来解决。</p><ul><li><a href="https://github.com.ipaddress.com/">▷ GitHub.com : GitHub: Where the world builds software · GitHub</a></li><li><a href="https://fastly.net.ipaddress.com/github.global.ssl.fastly.net#ipinfo">▷ github.global.ssl.Fastly.net Website statistics and traffic analysis | Fastly | fastly.net</a></li></ul><p>从上面两个网站，可查看网站对应的IP地址。</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">140.82</span>.<span class="number">112.3</span> github<span class="selector-class">.com</span> </span><br><span class="line"><span class="number">199.232</span>.<span class="number">69.194</span> github<span class="selector-class">.global</span><span class="selector-class">.ssl</span><span class="selector-class">.fastly</span><span class="selector-class">.net</span></span><br></pre></td></tr></table></figure><ol><li>修改电脑的hosts</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mac: 打开访达 快捷键comand+shift+g 位置/private/etc/hosts  </span><br><span class="line">Win: C:\Windows\System32\drivers\etc\hosts</span><br></pre></td></tr></table></figure><ol start="2"><li>刷新DNS</li></ol><p>Mac: Terminal</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo killall -HUP mDNSResponder;say DNS cache has been flushed</span><br></pre></td></tr></table></figure><p>Win: CMD</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig/flushdns</span><br></pre></td></tr></table></figure><p>此时<a href="https://github.com/">GitHub</a>就可以登陆了</p><hr><h2 id="2-Github下载速度慢"><a href="#2-Github下载速度慢" class="headerlink" title="2.Github下载速度慢"></a>2.Github下载速度慢</h2><h3 id="2-1-Github加速网站"><a href="#2-1-Github加速网站" class="headerlink" title="2.1.Github加速网站"></a>2.1.Github加速网站</h3><p><a href="https://toolwa.com/github/">GitHub 加速下载</a></p><p>使用方法：</p><ol><li> 打开你要下载的 <a href="https://github.com/">GitHub</a> 仓库页面</li><li> 点击右侧的绿色按钮 “Code” &gt; “Download ZIP”</li><li> 等浏览器弹出下载框后复制下载框中的链接地址并粘贴到以上输入框</li><li> 点击加速下载</li></ol><h3 id="2-2-码云-Gitee"><a href="#2-2-码云-Gitee" class="headerlink" title="2.2.码云(Gitee)"></a>2.2.码云(Gitee)</h3><p><a href="https://gitee.com/">Gitee</a></p><p>使用方法：</p><ol><li>首先确保<a href="https://gitee.com/">Gitee</a>上有账户，可以正常使用。</li><li>点击右上角新建仓库的加号 + ，选择“ 从 GitHub/GitLab导入仓库 ”菜单。</li><li>然后填写位于<a href="https://github.com/">GitHub</a>上你想Clone的仓库地址并导入。</li><li>通过导入到码云上的项目地址，将项目Clone到本地。</li></ol>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Scoop&amp;Chocolatey不完全上手指南</title>
       <link href="/posts/cd19d6b5.html"/>
       <url>/posts/cd19d6b5.html</url>
@@ -22,19 +35,6 @@
       <url>/posts/f729cd9d.html</url>
       
         <content type="html"><![CDATA[<blockquote><p>Je pense, donc je suis<br>-René Descartes</p></blockquote><h3 id="1-什么是我思故我在"><a href="#1-什么是我思故我在" class="headerlink" title="1.什么是我思故我在"></a>1.什么是我思故我在</h3><p>著名哲学家笛卡尔提出了一个广为人知的命题：“<a href="https://baike.baidu.com/item/%E6%88%91%E6%80%9D%E6%95%85%E6%88%91%E5%9C%A8/341083">我思故我在</a>”，而他提出这句命题的目的，是在对一切事物（过往、现成的理论体系乃至思维前提）进行普遍怀疑的基础上，探寻那个无法被怀疑的根本依据和基本前提。</p><p>笛卡尔这句话最普遍的解释：“我唯一可以确定的事就是我自己思想的存在,因为当我怀疑其他时，我无法同时怀疑我本身的思想”。比较权威的一种解释是：“我无法否认自己的存在，因为当我否认、怀疑时，我就已经存在。”因为我在思考在怀疑的时候，肯定有一个执行“思考”的“思考者”，这个作为主体的“我”是不容怀疑的，这个我并非广延的肉体的“我”，而是思维者的我。所以，否认自己的存在是自相矛盾的。</p><h3 id="2-理解的局限"><a href="#2-理解的局限" class="headerlink" title="2.理解的局限"></a>2.理解的局限</h3><p>“我思故我在”作为启迪智慧的著名思想命题，在我国高中政治教科书内被视为“主观唯心主义”的观点之一，也被某些唯物论者长期批判。其实有很重要的一点，许多人或许没有意识到，那就是：<strong>学习哲学的过程中，不要先存以马克思主义的见解而去看待评价哲学史上的一切哲学。</strong></p><p>哲学更多的是以理论的方式进行表征的时代精神的精华，以理性批判著称的文明活的灵魂。科学性、革命性、批判性不仅仅是马克思主义哲学的特征，也是作为思想武器和理论工具的一切进步哲学所具备的典型特征。可以通过辩证的眼光，以马克思主义哲学中的合理内核和精华部分作为研究方法，去进行哲学理论的研究和批判。或许只有将其正确地灵活运用于实践活动中，才能使其焕发出该有的生机。</p><h3 id="3-存在"><a href="#3-存在" class="headerlink" title="3.存在"></a>3.存在</h3><p>我思故我在实际上是一个深刻的思想实验得到的结果。这个实验的起源是一个问题：这个世界上哪些东西是客观存在的，哪些东西是虚假的幻境？笛卡尔假设世界上有一个魔鬼，可以欺骗我们的感觉，在我们眼前制造实际不存在的幻境（可参照<a href="https://baike.baidu.com/item/%E9%BB%91%E5%AE%A2%E5%B8%9D%E5%9B%BD/34564">黑客帝国</a>理解）。</p><p>那么我们如何才能辨别这个世界上哪些东西是真实的，哪些东西是魔鬼制造的幻觉？思考的结果是，我们所看到的，听到的，感觉到的一切东西，都有可能是魔鬼制作的幻觉，是不存在的假象。甚至我们的身体，也有可能不是真实的。唯一能确定真实存在的，只有一个：那就是“我”的思想，因为“我的思想”是这个思维实验的实施者，而这个思维实验已经进行了，所以“我的思想”必然是真实存在的。这个思想实验是笛卡尔的认识论的基础，也构成了现代哲学的基石。</p><p>黑客帝国，攻壳机动队，盗梦空间，穆赫兰道等，没有笛卡尔或许也不会有这一类电影。</p><h3 id="4-尾巴"><a href="#4-尾巴" class="headerlink" title="4.尾巴"></a>4.尾巴</h3><p><a href="https://baike.baidu.com/item/%E8%B4%B9%E7%B1%B3%E6%82%96%E8%AE%BA/10937023">费米悖论</a>的一种可能性：</p><blockquote><p>我们对于现实的理解是完全错误的。有很多种可能性导致我们对于所有一切的想法都是错的。宇宙可能只是个投影，或者我们就是外星人，而只是被投放在地球做实验小白鼠的。甚至我们和黑客帝国里面一样，只是活在电脑的模拟现实中，而程序员忘了写其它物种的代码。</p></blockquote><p>个人浅见仅供参考。</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>HELLO WORLD</title>
-      <link href="/posts/d4a1185.html"/>
-      <url>/posts/d4a1185.html</url>
-      
-        <content type="html"><![CDATA[<p>序</p>]]></content>
       
       
       
