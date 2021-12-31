@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="代码实现如下1234#解压图像文件,用Linux命令!unzip data_foodscore.zip -d data&#x2F;datafood  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning美食评分">
+<meta property="og:url" content="http://example.com/posts/3b10e4ba.html">
+<meta property="og:site_name" content="Giesen × Blog">
+<meta property="og:description" content="代码实现如下1234#解压图像文件,用Linux命令!unzip data_foodscore.zip -d data&#x2F;datafood  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-12-31T14:38:28.000Z">
+<meta property="article:modified_time" content="2021-12-31T14:40:30.905Z">
+<meta property="article:author" content="Giesen">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/logo.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/logo-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-apple-180x180.png">
+        
+      
+    
+    <!-- title -->
+    <title>Deep Learning美食评分</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/posts/b5284acc.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/3b10e4ba.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/3b10e4ba.html&text=Deep Learning美食评分"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/3b10e4ba.html&title=Deep Learning美食评分"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/3b10e4ba.html&is_video=false&description=Deep Learning美食评分"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Deep Learning美食评分&body=Check out this article: http://example.com/posts/3b10e4ba.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/3b10e4ba.html&title=Deep Learning美食评分"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/3b10e4ba.html&title=Deep Learning美食评分"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/3b10e4ba.html&title=Deep Learning美食评分"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/3b10e4ba.html&title=Deep Learning美食评分"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/3b10e4ba.html&name=Deep Learning美食评分&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/3b10e4ba.html&t=Deep Learning美食评分"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%A6%82%E4%B8%8B"><span class="toc-number">1.</span> <span class="toc-text">代码实现如下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%BE%E5%B7%B4"><span class="toc-number">2.</span> <span class="toc-text">尾巴</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Deep Learning美食评分
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Giesen</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-12-31T14:38:28.000Z" itemprop="datePublished">2021-12-31</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="代码实现如下"><a href="#代码实现如下" class="headerlink" title="代码实现如下"></a>代码实现如下</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#解压图像文件,用Linux命令</span></span><br><span class="line"></span><br><span class="line">!unzip data_foodscore.<span class="built_in">zip</span> -d data/datafood</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> paddle</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> paddle.io <span class="keyword">import</span> Dataset</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line"><span class="comment">#自定义数据集</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FoodDataset</span>(<span class="params">Dataset</span>):</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">#初始化数据集</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,train=<span class="literal">True</span>,transforms=<span class="literal">None</span></span>):</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">#调用基类构造函数</span></span><br><span class="line"></span><br><span class="line"> <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line"> <span class="comment">#传入数据预处理</span></span><br><span class="line"></span><br><span class="line"> self.transforms=transforms</span><br><span class="line"></span><br><span class="line"> <span class="comment">#导入csv</span></span><br><span class="line"></span><br><span class="line"> df_foodscore=pd.read_csv(<span class="string">&quot;data/datafood/FoodScore.csv&quot;</span>) <span class="comment">#dataframe类型数据</span></span><br><span class="line"></span><br><span class="line"> offset=<span class="built_in">int</span>(<span class="built_in">len</span>(df_foodscore)*<span class="number">0.7</span>)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> train==<span class="literal">True</span>:</span><br><span class="line"></span><br><span class="line"> df_foodscore=df_foodscore[:offset]</span><br><span class="line"></span><br><span class="line"> <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line"> df_foodscore=df_foodscore[offset:]</span><br><span class="line"></span><br><span class="line"> self.score=np.array(df_foodscore[<span class="string">&quot;score&quot;</span>]).astype(<span class="string">&quot;float32&quot;</span>) <span class="comment">#把dataframe转化numpy.array   标签数据集</span></span><br><span class="line"></span><br><span class="line"> picname=df_foodscore[<span class="string">&quot;ID&quot;</span>]</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"> self.data=[] <span class="comment">#图像数据集</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">for</span> name <span class="keyword">in</span> picname:</span><br><span class="line"></span><br><span class="line"> filepath=<span class="string">&quot;data/datafood/data_foodscore/&#123;&#125;.jpg&quot;</span>.<span class="built_in">format</span>(name)</span><br><span class="line"></span><br><span class="line"> photo=Image.<span class="built_in">open</span>(filepath)</span><br><span class="line"></span><br><span class="line"> matrix=np.array(photo).astype(<span class="string">&quot;float32&quot;</span>)</span><br><span class="line"></span><br><span class="line"> self.data.append(matrix)</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"> <span class="comment">#获取单个数据</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self,index</span>):</span></span><br><span class="line"></span><br><span class="line"> data=self.data[index]</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> self.transforms!=<span class="literal">None</span>:</span><br><span class="line"></span><br><span class="line"> data=self.transforms(data) <span class="comment">#把数据预处理应用到每个图像</span></span><br><span class="line"></span><br><span class="line"> label=self.score[index]</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> data,label</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"> <span class="comment">#回去数据集长度</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">__len__</span>(<span class="params">self</span>):</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">len</span>(self.score)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#数据预处理，图像统一尺寸、归一化、张量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> paddle.vision.transforms <span class="keyword">as</span> T</span><br><span class="line"></span><br><span class="line"><span class="comment">#数据预处理组合</span></span><br><span class="line"></span><br><span class="line">trans=T.Compose([T.Resize([<span class="number">128</span>,<span class="number">128</span>]),T.Normalize(mean=[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],std=[<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>],data_format=<span class="string">&quot;HWC&quot;</span>),T.ToTensor()])</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建数据集对象</span></span><br><span class="line"></span><br><span class="line">train_dataset=FoodDataset(train=<span class="literal">True</span>,transforms=trans)</span><br><span class="line"></span><br><span class="line">eval_dataset=FoodDataset(train=<span class="literal">False</span>,transforms=trans)</span><br><span class="line"></span><br><span class="line"><span class="comment">#数据加载，分批</span></span><br><span class="line"></span><br><span class="line">train_loader=paddle.io.DataLoader(dataset=train_dataset,batch_size=<span class="number">20</span>,shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">eval_loader=paddle.io.DataLoader(dataset=eval_dataset,batch_size=<span class="number">20</span>,shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#组建网络</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FoodNet</span>(<span class="params">paddle.nn.Layer</span>):</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">#初始化每层结构对象</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line"></span><br><span class="line"> <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line"> self.flatten=paddle.nn.Flatten()</span><br><span class="line"></span><br><span class="line"> self.linear=paddle.nn.Linear(<span class="number">128</span>*<span class="number">128</span>*<span class="number">3</span>,<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"> <span class="comment">#前向传播</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self,x</span>):</span></span><br><span class="line"></span><br><span class="line"> y=self.flatten(x)</span><br><span class="line"></span><br><span class="line"> y=self.linear(y)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">#实例化网络</span></span><br><span class="line"></span><br><span class="line">foodNet=FoodNet()</span><br><span class="line"></span><br><span class="line">paddle.summary(foodNet,(<span class="number">10</span>,<span class="number">3</span>,<span class="number">128</span>,<span class="number">128</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用高层API</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#封装模型对象</span></span><br><span class="line"></span><br><span class="line">model=paddle.Model(foodNet)</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">#配置训练</span></span><br><span class="line"></span><br><span class="line">model.prepare(optimizer=paddle.optimizer.Adam(parameters=model.parameters(),learning_rate=<span class="number">0.001</span>),</span><br><span class="line"></span><br><span class="line"> loss=paddle.nn.MSELoss())</span><br><span class="line"></span><br><span class="line"><span class="comment">#训练模型</span></span><br><span class="line"></span><br><span class="line">model.fit(train_data=train_loader,batch_size=<span class="number">20</span>,verbose=<span class="number">1</span>,epochs=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#保存模型</span></span><br><span class="line"></span><br><span class="line">model.save(<span class="string">&quot;mymodel/FoodNet&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建模型对象</span></span><br><span class="line"></span><br><span class="line">foodNet=FoodNet()</span><br><span class="line"></span><br><span class="line">model=paddle.Model(foodNet) <span class="comment">#调用高层API对模型对象封装</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#加载模型参数</span></span><br><span class="line"></span><br><span class="line">model.load(<span class="string">&quot;mymodel/FoodNet&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#加载图片</span></span><br><span class="line"></span><br><span class="line">photo=Image.<span class="built_in">open</span>(<span class="string">&quot;myfood/1.jpg&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#把图像显示出来</span></span><br><span class="line"></span><br><span class="line">plt.imshow(photo)</span><br><span class="line"></span><br><span class="line"><span class="comment">#把图片数字化</span></span><br><span class="line"></span><br><span class="line">im=np.array(photo).astype(<span class="string">&quot;float32&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#把新的图像数据进行预处理</span></span><br><span class="line"></span><br><span class="line">im=trans(im)</span><br><span class="line"></span><br><span class="line">im=im.reshape([<span class="number">1</span>,<span class="number">3</span>,<span class="number">128</span>,<span class="number">128</span>])</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">#进行预测</span></span><br><span class="line"></span><br><span class="line">result=model.predict_batch(im)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;分数：&#123;&#125;&quot;</span>.<span class="built_in">format</span>(result[<span class="number">0</span>]))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="尾巴"><a href="#尾巴" class="headerlink" title="尾巴"></a>尾巴</h2><p><a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/index">飞桨AI Studio - 人工智能学习实训社区</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%A6%82%E4%B8%8B"><span class="toc-number">1.</span> <span class="toc-text">代码实现如下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%BE%E5%B7%B4"><span class="toc-number">2.</span> <span class="toc-text">尾巴</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/3b10e4ba.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/3b10e4ba.html&text=Deep Learning美食评分"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/3b10e4ba.html&title=Deep Learning美食评分"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/3b10e4ba.html&is_video=false&description=Deep Learning美食评分"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Deep Learning美食评分&body=Check out this article: http://example.com/posts/3b10e4ba.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/3b10e4ba.html&title=Deep Learning美食评分"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/3b10e4ba.html&title=Deep Learning美食评分"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/3b10e4ba.html&title=Deep Learning美食评分"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/3b10e4ba.html&title=Deep Learning美食评分"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/3b10e4ba.html&name=Deep Learning美食评分&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/3b10e4ba.html&t=Deep Learning美食评分"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021
+    Giesen
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?816b9aa62faaa826317c7a6ab717a247";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

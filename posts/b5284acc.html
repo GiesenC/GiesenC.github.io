@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="代码实现如下12345678910import paddlefrom PIL import Image #用于图像载入import matplotlib.pyplot as plt #用于图像显示import numpy as np import paddle.vision.transforms as T #用于图像预处理  12345678#导入框架自带Mnist数据集transforms&#x3D;T.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning手写数字识别 (LeNet)">
+<meta property="og:url" content="http://example.com/posts/b5284acc.html">
+<meta property="og:site_name" content="Giesen × Blog">
+<meta property="og:description" content="代码实现如下12345678910import paddlefrom PIL import Image #用于图像载入import matplotlib.pyplot as plt #用于图像显示import numpy as np import paddle.vision.transforms as T #用于图像预处理  12345678#导入框架自带Mnist数据集transforms&#x3D;T.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-12-31T14:37:41.000Z">
+<meta property="article:modified_time" content="2021-12-31T14:40:08.042Z">
+<meta property="article:author" content="Giesen">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/logo.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/logo-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-apple-180x180.png">
+        
+      
+    
+    <!-- title -->
+    <title>Deep Learning手写数字识别 (LeNet)</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/posts/3b10e4ba.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/posts/99d6ae05.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/b5284acc.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/b5284acc.html&text=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/b5284acc.html&title=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/b5284acc.html&is_video=false&description=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Deep Learning手写数字识别 (LeNet)&body=Check out this article: http://example.com/posts/b5284acc.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/b5284acc.html&title=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/b5284acc.html&title=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/b5284acc.html&title=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/b5284acc.html&title=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/b5284acc.html&name=Deep Learning手写数字识别 (LeNet)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/b5284acc.html&t=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%A6%82%E4%B8%8B"><span class="toc-number">1.</span> <span class="toc-text">代码实现如下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%BE%E5%B7%B4"><span class="toc-number">2.</span> <span class="toc-text">尾巴</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Deep Learning手写数字识别 (LeNet)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Giesen</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-12-31T14:37:41.000Z" itemprop="datePublished">2021-12-31</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="代码实现如下"><a href="#代码实现如下" class="headerlink" title="代码实现如下"></a>代码实现如下</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> paddle</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image <span class="comment">#用于图像载入</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt <span class="comment">#用于图像显示</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> paddle.vision.transforms <span class="keyword">as</span> T <span class="comment">#用于图像预处理</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入框架自带Mnist数据集</span></span><br><span class="line"></span><br><span class="line">transforms=T.Compose([T.Resize(<span class="number">32</span>),T.ToTensor()]) <span class="comment">#图像预处理组合，把图像转为向量</span></span><br><span class="line"></span><br><span class="line">Train_Dataset=paddle.vision.datasets.MNIST(mode=<span class="string">&quot;train&quot;</span>,transform=transforms) <span class="comment">#加载训练集</span></span><br><span class="line"></span><br><span class="line">Test_Dataset=paddle.vision.datasets.MNIST(mode=<span class="string">&quot;test&quot;</span>,transform=transforms) <span class="comment">#加载测试集</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#模型建立（LeNet）</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mnist_Net</span>(<span class="params">paddle.nn.Layer</span>):</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line"></span><br><span class="line"> <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line"> self.conv1=paddle.nn.Conv2D(in_channels=<span class="number">1</span>,out_channels=<span class="number">6</span>,kernel_size=[<span class="number">5</span>,<span class="number">5</span>])</span><br><span class="line"></span><br><span class="line"> self.maxpool1=paddle.nn.MaxPool2D(kernel_size=[<span class="number">2</span>,<span class="number">2</span>],stride=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"> self.conv2=paddle.nn.Conv2D(in_channels=<span class="number">6</span>,out_channels=<span class="number">16</span>,kernel_size=[<span class="number">5</span>,<span class="number">5</span>])</span><br><span class="line"></span><br><span class="line"> self.maxpool2=paddle.nn.MaxPool2D(kernel_size=[<span class="number">2</span>,<span class="number">2</span>],stride=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"> self.conv3=paddle.nn.Conv2D(in_channels=<span class="number">16</span>,out_channels=<span class="number">120</span>,kernel_size=[<span class="number">5</span>,<span class="number">5</span>])</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"> self.flatten=paddle.nn.Flatten()</span><br><span class="line"></span><br><span class="line"> self.fc2=paddle.nn.Linear(<span class="number">120</span>,<span class="number">84</span>)</span><br><span class="line"></span><br><span class="line"> self.fc3=paddle.nn.Linear(<span class="number">84</span>,<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"> self.softmax=paddle.nn.Softmax()</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"> self.relu=paddle.nn.ReLU()</span><br><span class="line"></span><br><span class="line"> self.sigmoid=paddle.nn.Sigmoid()</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self,x</span>):</span></span><br><span class="line"></span><br><span class="line"> x=self.conv1(x)</span><br><span class="line"></span><br><span class="line"> x=self.relu(x)</span><br><span class="line"></span><br><span class="line"> x=self.maxpool1(x)</span><br><span class="line"></span><br><span class="line"> x=self.conv2(x)</span><br><span class="line"></span><br><span class="line"> x=self.relu(x)</span><br><span class="line"></span><br><span class="line"> x=self.maxpool2(x)</span><br><span class="line"></span><br><span class="line"> x=self.conv3(x)</span><br><span class="line"></span><br><span class="line"> x=self.relu(x)</span><br><span class="line"></span><br><span class="line"> x=self.flatten(x)</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"> x=self.fc2(x)</span><br><span class="line"></span><br><span class="line"> x=self.relu(x)</span><br><span class="line"></span><br><span class="line"> x=self.fc3(x)</span><br><span class="line"></span><br><span class="line"> y=self.softmax(x)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">mnist_net=Mnist_Net()</span><br><span class="line"></span><br><span class="line">paddle.summary(mnist_net,(<span class="number">1</span>,<span class="number">1</span>,<span class="number">32</span>,<span class="number">32</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#高层API模型对象化</span></span><br><span class="line"></span><br><span class="line">model=paddle.Model(mnist_net)</span><br><span class="line"></span><br><span class="line"><span class="comment">#配置模型</span></span><br><span class="line"></span><br><span class="line">model.prepare(optimizer=paddle.optimizer.Adam(learning_rate=<span class="number">0.001</span>,parameters=model.parameters()), <span class="comment">#优化器</span></span><br><span class="line"></span><br><span class="line"> loss=paddle.nn.CrossEntropyLoss(),<span class="comment">#损失函数</span></span><br><span class="line"></span><br><span class="line"> metrics =paddle.metric.Accuracy()) <span class="comment">#准确度</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#训练模型</span></span><br><span class="line"></span><br><span class="line">callback=paddle.callbacks.VisualDL(<span class="string">&quot;log_dir&quot;</span>) <span class="comment">#定义callback对象，保存可视化数据日志</span></span><br><span class="line"></span><br><span class="line">model.fit(train_data=Train_Dataset,epochs=<span class="number">10</span>,batch_size=<span class="number">200</span>,callbacks=callback,verbose=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#评估模型</span></span><br><span class="line"></span><br><span class="line">eval_result=model.evaluate(Test_Dataset,verbose=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">model.save(<span class="string">&quot;mymodel/mnist_net&quot;</span>) <span class="comment">#保存模型</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#载入图像</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">image_load</span>(<span class="params">img_path</span>):</span></span><br><span class="line"></span><br><span class="line"> photo=Image.<span class="built_in">open</span>(img_path).convert(<span class="string">&quot;L&quot;</span>) <span class="comment">#以灰度图方式读入图像</span></span><br><span class="line"></span><br><span class="line"> photo=photo.resize([<span class="number">32</span>,<span class="number">32</span>]) <span class="comment">#图像统一大小32*32</span></span><br><span class="line"></span><br><span class="line"> im=np.array(photo).astype(<span class="string">&quot;float32&quot;</span>) <span class="comment">#图像数字化</span></span><br><span class="line"></span><br><span class="line"> im=np.where(im &gt; <span class="number">150</span>, <span class="number">0</span>, im) <span class="comment">#把像素点大于150的置为0，去掉背景</span></span><br><span class="line"></span><br><span class="line"> im=im/<span class="number">255</span> <span class="comment">#归一化</span></span><br><span class="line"></span><br><span class="line"> im=paddle.to_tensor(im) <span class="comment">#张量</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> im</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">model.load(<span class="string">&quot;mymodel/mnist_net&quot;</span>) <span class="comment">#加载模型参数</span></span><br><span class="line"></span><br><span class="line">im=image_load(<span class="string">&quot;mydata/5.JPG&quot;</span>) <span class="comment">#载入图像</span></span><br><span class="line"></span><br><span class="line">plt.imshow(im) <span class="comment">#显示图像</span></span><br><span class="line"></span><br><span class="line">im=im.reshape([<span class="number">1</span>,<span class="number">1</span>,<span class="number">32</span>,<span class="number">32</span>]) <span class="comment">#图像变形为1张1通道28*28大小</span></span><br><span class="line"></span><br><span class="line">result=model.predict_batch(im) <span class="comment">#使用model.predict_batch对图像进行预测</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(np.argmax(result))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="尾巴"><a href="#尾巴" class="headerlink" title="尾巴"></a>尾巴</h2><p><a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/index">飞桨AI Studio - 人工智能学习实训社区</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%A6%82%E4%B8%8B"><span class="toc-number">1.</span> <span class="toc-text">代码实现如下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%BE%E5%B7%B4"><span class="toc-number">2.</span> <span class="toc-text">尾巴</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/b5284acc.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/b5284acc.html&text=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/b5284acc.html&title=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/b5284acc.html&is_video=false&description=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Deep Learning手写数字识别 (LeNet)&body=Check out this article: http://example.com/posts/b5284acc.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/b5284acc.html&title=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/b5284acc.html&title=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/b5284acc.html&title=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/b5284acc.html&title=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/b5284acc.html&name=Deep Learning手写数字识别 (LeNet)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/b5284acc.html&t=Deep Learning手写数字识别 (LeNet)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021
+    Giesen
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?816b9aa62faaa826317c7a6ab717a247";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
