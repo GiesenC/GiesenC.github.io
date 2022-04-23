@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="代码实现如下12345678910111213141516171819202122import numpy as npimport pandas as pdimport matplotlib.pyplot as pltfrom sklearn.model_selection import train_test_split,cross_val_scorefrom sklearn.neighbors">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning商户续约预测（KNN模型）">
+<meta property="og:url" content="http://example.com/posts/c3cf44be.html">
+<meta property="og:site_name" content="Giesen × Blog">
+<meta property="og:description" content="代码实现如下12345678910111213141516171819202122import numpy as npimport pandas as pdimport matplotlib.pyplot as pltfrom sklearn.model_selection import train_test_split,cross_val_scorefrom sklearn.neighbors">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-23T08:14:36.000Z">
+<meta property="article:modified_time" content="2022-04-23T08:21:10.000Z">
+<meta property="article:author" content="Giesen">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/logo.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/logo-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-apple-180x180.png">
+        
+      
+    
+    <!-- title -->
+    <title>Deep Learning商户续约预测（KNN模型）</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/posts/75e3a0d6.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/c3cf44be.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/c3cf44be.html&text=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/c3cf44be.html&title=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/c3cf44be.html&is_video=false&description=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Deep Learning商户续约预测（KNN模型）&body=Check out this article: http://example.com/posts/c3cf44be.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/c3cf44be.html&title=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/c3cf44be.html&title=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/c3cf44be.html&title=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/c3cf44be.html&title=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/c3cf44be.html&name=Deep Learning商户续约预测（KNN模型）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/c3cf44be.html&t=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%A6%82%E4%B8%8B"><span class="toc-number">1.</span> <span class="toc-text">代码实现如下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%BE%E5%B7%B4"><span class="toc-number">2.</span> <span class="toc-text">尾巴</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Deep Learning商户续约预测（KNN模型）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Giesen</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-04-23T08:14:36.000Z" itemprop="datePublished">2022-04-23</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="代码实现如下"><a href="#代码实现如下" class="headerlink" title="代码实现如下"></a>代码实现如下</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split,cross_val_score</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix,accuracy_score,precision_score,recall_score,f1_score,make_scorer</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line"><span class="comment">#解决中文乱码问题</span></span><br><span class="line"></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;FZSongYi-Z13S&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#解决负号无法正常显示的问题</span></span><br><span class="line"></span><br><span class="line">plt.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>]=<span class="literal">False</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data=pd.read_csv(<span class="string">&quot;华南地区.csv&quot;</span>)</span><br><span class="line"></span><br><span class="line">data</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#划分训练集与测试集</span></span><br><span class="line"></span><br><span class="line">x=data[[<span class="string">&quot;注册时长&quot;</span>,<span class="string">&quot;营收收入&quot;</span>,<span class="string">&quot;成本&quot;</span>]]</span><br><span class="line"></span><br><span class="line">y=data[[<span class="string">&quot;是否续约&quot;</span>]]</span><br><span class="line"></span><br><span class="line">x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=<span class="number">0.3</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(x_train))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(x_test))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建KNN模型</span></span><br><span class="line"></span><br><span class="line">knnModel=KNeighborsClassifier(n_neighbors=<span class="number">3</span>) <span class="comment">#把K设置为3</span></span><br><span class="line"></span><br><span class="line">knnModel.fit(x_train,y_train)</span><br><span class="line"></span><br><span class="line">score=knnModel.score(x_test,y_test) <span class="comment">#模型得分</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;模型得分：&#123;&#125;&quot;</span>.<span class="built_in">format</span>(score))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#模型评估</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#使用测试集预测结果</span></span><br><span class="line"></span><br><span class="line">y_test_predict=knnModel.predict(x_test)</span><br><span class="line"></span><br><span class="line">y_test_predict</span><br><span class="line"></span><br><span class="line"><span class="comment">#混淆矩阵</span></span><br><span class="line"></span><br><span class="line">c_matrix=confusion_matrix(y_true=y_test,y_pred=y_test_predict,labels=[<span class="string">&quot;续约&quot;</span>,<span class="string">&quot;不续约&quot;</span>])</span><br><span class="line"></span><br><span class="line">sns.heatmap(c_matrix,annot=<span class="literal">True</span>) <span class="comment">#用热力图展示混淆矩阵</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#计算准确率</span></span><br><span class="line"></span><br><span class="line">acc=accuracy_score(y_true=y_test,y_pred=y_test_predict)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算精确率</span></span><br><span class="line"></span><br><span class="line">precision=precision_score(y_true=y_test,y_pred=y_test_predict,pos_label=<span class="string">&quot;续约&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算召回率</span></span><br><span class="line"></span><br><span class="line">recall=recall_score(y_true=y_test,y_pred=y_test_predict,pos_label=<span class="string">&quot;续约&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算f1</span></span><br><span class="line"></span><br><span class="line">F1=f1_score(y_true=y_test,y_pred=y_test_predict,pos_label=<span class="string">&quot;续约&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;准确率：&#123;&#125;，精确率：&#123;&#125;，召回率：&#123;&#125;，F1：&#123;&#125;&quot;</span>.<span class="built_in">format</span>(acc,precision,recall,F1))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#K折交叉验证</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#10次的得分，默认得分是计算准确度</span></span><br><span class="line"></span><br><span class="line">kcvs=cross_val_score(knnModel,x,y,cv=<span class="number">10</span>) <span class="comment">#默认得分是计算准确度</span></span><br><span class="line"></span><br><span class="line">kcvs</span><br><span class="line"></span><br><span class="line">kcvs_mean=kcvs.mean() <span class="comment">#求出10次得分的平均值</span></span><br><span class="line"></span><br><span class="line">kcvs_mean</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#保存K</span></span><br><span class="line"></span><br><span class="line">ks=[]</span><br><span class="line"></span><br><span class="line"><span class="comment">#保存准确率</span></span><br><span class="line"></span><br><span class="line">acc_means=[]</span><br><span class="line"></span><br><span class="line"><span class="comment">#精确率</span></span><br><span class="line"></span><br><span class="line">precision_means=[]</span><br><span class="line"></span><br><span class="line"><span class="comment">#召回率</span></span><br><span class="line"></span><br><span class="line">recall_means=[]</span><br><span class="line"></span><br><span class="line"><span class="comment">#F1</span></span><br><span class="line"></span><br><span class="line">f1_means=[]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>,<span class="number">30</span>):</span><br><span class="line"></span><br><span class="line">ks.append(k) <span class="comment">#把当前k值加入数组ks</span></span><br><span class="line"></span><br><span class="line">knnModel=KNeighborsClassifier(n_neighbors=k) <span class="comment">#以当前k值生成KNN模型</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#计算10折交叉验证的准确率</span></span><br><span class="line"></span><br><span class="line">acc_kcvs=cross_val_score(</span><br><span class="line"></span><br><span class="line">knnModel,x,y,cv=<span class="number">10</span>,scoring=make_scorer(accuracy_score)</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">#将10折交叉验证的准确率的均值保存起来</span></span><br><span class="line"></span><br><span class="line">acc_means.append(acc_kcvs.mean())</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">#计算10折交叉验证的精确率</span></span><br><span class="line"></span><br><span class="line">precision_kcvs=cross_val_score(</span><br><span class="line"></span><br><span class="line">knnModel,x,y,cv=<span class="number">10</span>,scoring=make_scorer(precision_score,pos_label=<span class="string">&quot;续约&quot;</span>)</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">#将10折交叉验证的精确率的均值保存起来</span></span><br><span class="line"></span><br><span class="line">precision_means.append(precision_kcvs.mean())</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">#计算10折交叉验证的召回率</span></span><br><span class="line"></span><br><span class="line">recall_kcvs=cross_val_score(</span><br><span class="line"></span><br><span class="line">knnModel,x,y,cv=<span class="number">10</span>,scoring=make_scorer(recall_score,pos_label=<span class="string">&quot;续约&quot;</span>)</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">#将10折交叉验证的召回率的均值保存起来</span></span><br><span class="line"></span><br><span class="line">recall_means.append(recall_kcvs.mean())</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment">#计算10折交叉验证的F1</span></span><br><span class="line"></span><br><span class="line">f1_kcvs=cross_val_score(</span><br><span class="line"></span><br><span class="line">knnModel,x,y,cv=<span class="number">10</span>,scoring=make_scorer(f1_score,pos_label=<span class="string">&quot;续约&quot;</span>)</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">#将10折交叉验证的F1的均值保存起来</span></span><br><span class="line"></span><br><span class="line">f1_means.append(f1_kcvs.mean())</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成对应的评分模型</span></span><br><span class="line"></span><br><span class="line">score=pd.DataFrame(&#123;</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;k&quot;</span>:ks,</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;precision&quot;</span>:precision_means,</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;acc&quot;</span>:acc_means,</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;recall&quot;</span>:recall_means,</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;f1&quot;</span>:f1_means</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">#figsize=(10,5)设定画布大小</span></span><br><span class="line"></span><br><span class="line">score.plot(x=<span class="string">&quot;k&quot;</span>,y=[<span class="string">&quot;precision&quot;</span>,<span class="string">&#x27;acc&#x27;</span>,<span class="string">&quot;recall&quot;</span>,<span class="string">&quot;f1&quot;</span>],figsize=(<span class="number">10</span>,<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#设定x轴刻度</span></span><br><span class="line"></span><br><span class="line">plt.xticks(<span class="built_in">range</span>(<span class="number">2</span>,<span class="number">30</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#预测未知数据</span></span><br><span class="line"></span><br><span class="line">knnModel=KNeighborsClassifier(n_neighbors=<span class="number">17</span>)<span class="comment">#使用K=17创建KNN模型</span></span><br><span class="line"></span><br><span class="line">knnModel.fit(x,y)<span class="comment">#使用华南数据进行训练</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#使用华北数据进行预测</span></span><br><span class="line"></span><br><span class="line">data_north=pd.read_csv(<span class="string">&quot;华北地区.csv&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(data_north.describe())</span><br><span class="line"></span><br><span class="line">data_north[<span class="string">&quot;预测预约&quot;</span>]=knnModel.predict(data_north[[<span class="string">&quot;注册时长&quot;</span>,<span class="string">&quot;营收收入&quot;</span>,<span class="string">&quot;成本&quot;</span>]]) <span class="comment">#预测是否续约</span></span><br><span class="line"></span><br><span class="line">data_north</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="尾巴"><a href="#尾巴" class="headerlink" title="尾巴"></a>尾巴</h2><p><a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/index">飞桨AI Studio - 人工智能学习实训社区</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%A6%82%E4%B8%8B"><span class="toc-number">1.</span> <span class="toc-text">代码实现如下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%BE%E5%B7%B4"><span class="toc-number">2.</span> <span class="toc-text">尾巴</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/c3cf44be.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/c3cf44be.html&text=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/c3cf44be.html&title=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/c3cf44be.html&is_video=false&description=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Deep Learning商户续约预测（KNN模型）&body=Check out this article: http://example.com/posts/c3cf44be.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/c3cf44be.html&title=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/c3cf44be.html&title=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/c3cf44be.html&title=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/c3cf44be.html&title=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/c3cf44be.html&name=Deep Learning商户续约预测（KNN模型）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/c3cf44be.html&t=Deep Learning商户续约预测（KNN模型）"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2022
+    Giesen
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?816b9aa62faaa826317c7a6ab717a247";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
