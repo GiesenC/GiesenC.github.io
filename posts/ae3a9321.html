@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="一、MongoDB概述1.NoSQL简介 概念：NoSQL（Not Only SQL的缩写），指的是非关系型数据库，是对不同于传统的关系型数据库的数据库管理系统的统称。用于超大规模数据的存储，数据存储不需要固定的模式，无需多余操作就可以横向扩展。  特点  优点：具有高可扩展性、分布式计算、低成本、架构灵活且是半结构化数据，没有复杂的关系等。 缺点：没有标准化、有限的查询功能、最终一致是不直观的程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Not Only SQL">
+<meta property="og:url" content="http://example.com/posts/ae3a9321.html">
+<meta property="og:site_name" content="Giesen × Blog">
+<meta property="og:description" content="一、MongoDB概述1.NoSQL简介 概念：NoSQL（Not Only SQL的缩写），指的是非关系型数据库，是对不同于传统的关系型数据库的数据库管理系统的统称。用于超大规模数据的存储，数据存储不需要固定的模式，无需多余操作就可以横向扩展。  特点  优点：具有高可扩展性、分布式计算、低成本、架构灵活且是半结构化数据，没有复杂的关系等。 缺点：没有标准化、有限的查询功能、最终一致是不直观的程">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/07/24/BECweDurI6S7Vfn.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/24/Wq4Q1zTyHvwrKlN.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/24/c6mknpuNZsKzFJ1.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/24/XMagiOjQmKebGyL.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/24/lDM2YmtNHqzTPcQ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/24/rcY4el9HbG7mTg3.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/24/uViLNW4cGehkKdw.png">
+<meta property="article:published_time" content="2022-07-20T15:33:13.000Z">
+<meta property="article:modified_time" content="2022-07-24T15:38:14.987Z">
+<meta property="article:author" content="Giesen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/07/24/BECweDurI6S7Vfn.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/logo.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/logo-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-apple-180x180.png">
+        
+      
+    
+    <!-- title -->
+    <title>Not Only SQL</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/posts/708cfbf3.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/ae3a9321.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/ae3a9321.html&text=Not Only SQL"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/ae3a9321.html&title=Not Only SQL"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/ae3a9321.html&is_video=false&description=Not Only SQL"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Not Only SQL&body=Check out this article: http://example.com/posts/ae3a9321.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/ae3a9321.html&title=Not Only SQL"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/ae3a9321.html&title=Not Only SQL"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/ae3a9321.html&title=Not Only SQL"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/ae3a9321.html&title=Not Only SQL"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/ae3a9321.html&name=Not Only SQL&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/ae3a9321.html&t=Not Only SQL"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81MongoDB%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">一、MongoDB概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-NoSQL%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1.NoSQL简介</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81MongoDB%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">二、MongoDB简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A6%82%E5%BF%B5%E8%AF%A6%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">三、概念详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81MongoDB-CLI"><span class="toc-number">4.</span> <span class="toc-text">四、MongoDB CLI</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E5%A2%9E%E5%88%A0%E6%94%B9"><span class="toc-number">4.1.</span> <span class="toc-text">4.1.增删改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">4.2.</span> <span class="toc-text">4.2.操作符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E6%9F%A5%E8%AF%A2"><span class="toc-number">4.3.</span> <span class="toc-text">4.3.查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%B4%A2%E5%BC%95%E5%92%8C%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">五、索引和高可用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E7%B4%A2%E5%BC%95"><span class="toc-number">5.1.</span> <span class="toc-text">5.1.索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="toc-number">5.2.</span> <span class="toc-text">5.2.高可用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%B0%BE%E5%B7%B4"><span class="toc-number">6.</span> <span class="toc-text">六、尾巴</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Not Only SQL
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Giesen</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-07-20T15:33:13.000Z" itemprop="datePublished">2022-07-20</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="一、MongoDB概述"><a href="#一、MongoDB概述" class="headerlink" title="一、MongoDB概述"></a>一、MongoDB概述</h3><h4 id="1-NoSQL简介"><a href="#1-NoSQL简介" class="headerlink" title="1.NoSQL简介"></a>1.NoSQL简介</h4><ol>
+<li><p>概念：NoSQL（Not Only SQL的缩写），指的是非关系型数据库，是对不同于传统的关系型数据库的数据库管理系统的统称。用于超大规模数据的存储，数据存储不需要固定的模式，无需多余操作就可以横向扩展。</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li>优点：具有高可扩展性、分布式计算、低成本、架构灵活且是半结构化数据，没有复杂的关系等。</li>
+<li>缺点：没有标准化、有限的查询功能、最终一致是不直观的程序等。</li>
+</ul>
+</li>
+<li><p>分类<br><img src="https://s2.loli.net/2022/07/24/BECweDurI6S7Vfn.png"></p>
+</li>
+</ol>
+<h3 id="二、MongoDB简介"><a href="#二、MongoDB简介" class="headerlink" title="二、MongoDB简介"></a>二、MongoDB简介</h3><ol>
+<li><p>概念：MongoDB 是由C++语言编写的一个基于分布式文件存储的开源文档型数据库系统。</p>
+</li>
+<li><p>功能：JSON 文档模型、动态的数据模式、二级索引强大、查询功能、自动分片、水平扩展、自动复制、高可用、文本搜索、企业级安全、聚合框架MapReduce、大文件存储GridFS。</p>
+<ul>
+<li>面向集合文档的存储：适合存储Bson（json的扩展）形式的数据；</li>
+<li>格式自由，数据格式不固定，生产环境下修改结构都可以不影响程序运行；</li>
+<li>强大的查询语句，面向对象的查询语言，基本覆盖sql语言所有能力；</li>
+<li>完整的索引支持，支持查询计划；</li>
+<li>使用分片集群提升系统扩展性；</li>
+</ul>
+</li>
+<li><p>数据类型<br><img src="https://s2.loli.net/2022/07/24/Wq4Q1zTyHvwrKlN.png"></p>
+</li>
+</ol>
+<h3 id="三、概念详解"><a href="#三、概念详解" class="headerlink" title="三、概念详解"></a>三、概念详解</h3><ol>
+<li><p>数据库：MongoDB 默认的数据库为”db”，该数据库存储在data目录中。单个实例可以容纳多个独立的数据库，每一个都有自己的集合和权限，不同的数据库也放置在不同的文件中。</p>
+</li>
+<li><p>集合：集合就是 MongoDB 文档组，类似于 RDBMS 的表格。集合存在于数据库中，集合没有固定的结构，这意味着你在对集合可以插入不同格式和类型的数据，但通常情况下我们插入集合的数据都会有一定的关联性。</p>
+</li>
+<li><p>文档：一个键值(key-value)对(即BSON)。MongoDB 的文档不需要设置相同的字段，并且相同的字段不需要相同的数据类型，这与关系型数据库有很大的区别，也是 MongoDB 非常突出的特点。</p>
+</li>
+</ol>
+<h3 id="四、MongoDB-CLI"><a href="#四、MongoDB-CLI" class="headerlink" title="四、MongoDB CLI"></a>四、MongoDB CLI</h3><h4 id="4-1-增删改"><a href="#4-1-增删改" class="headerlink" title="4.1.增删改"></a>4.1.增删改</h4><p><img src="https://s2.loli.net/2022/07/24/c6mknpuNZsKzFJ1.png"></p>
+<h4 id="4-2-操作符"><a href="#4-2-操作符" class="headerlink" title="4.2.操作符"></a>4.2.操作符</h4><p><img src="https://s2.loli.net/2022/07/24/XMagiOjQmKebGyL.png"></p>
+<h4 id="4-3-查询"><a href="#4-3-查询" class="headerlink" title="4.3.查询"></a>4.3.查询</h4><ol>
+<li><p>基本操作<br><img src="https://s2.loli.net/2022/07/24/lDM2YmtNHqzTPcQ.png"></p>
+</li>
+<li><p>聚合查询<br><img src="https://s2.loli.net/2022/07/24/rcY4el9HbG7mTg3.png"></p>
+</li>
+<li><p>管道操作：MongoDB的聚合管道将MongoDB文档在一个管道处理完毕后将结果传递给下一个管道处理<br><img src="https://s2.loli.net/2022/07/24/uViLNW4cGehkKdw.png"></p>
+</li>
+</ol>
+<h3 id="五、索引和高可用"><a href="#五、索引和高可用" class="headerlink" title="五、索引和高可用"></a>五、索引和高可用</h3><h4 id="5-1-索引"><a href="#5-1-索引" class="headerlink" title="5.1.索引"></a>5.1.索引</h4><ol>
+<li><p>作用：索引通常能够极大的提高查询的效率,如果没有索引,MongoDB在读取数据时必须扫描集合中的每个文件并选取那些符合查询条件的记录。索引主要用于排序和检索。<br>MongoDB使用 ensureIndex() 方法来创建索引，ensureIndex()方法基本语法格式如下所示：</p>
+<ul>
+<li><code>db.collection.createIndex(keys, options)</code><br>语法中 Key 值为要创建的索引字段,1为指定按升序创建索引,如果你想按降序来创建索引指定为-1,也可以指定为hashed（哈希索引）。</li>
+</ul>
+</li>
+<li><p>索引属性</p>
+<ul>
+<li>background：是否后台构建索引,在生产环境中,如果数据量太大,构建索引可能会消耗很长时间,为了不影响业务,可以加上此参数,后台运行同时还会为其他读写操作让路，这个建议配置为true开启，这样来提高效率。</li>
+<li>unique：是否为唯一索引</li>
+</ul>
+</li>
+<li><p>索引类型</p>
+<ul>
+<li>单键索引：<br>在某一个特定的属性上建立索引,例如:db.users. createIndex({age:-1});<ol>
+<li>mongoDB在ID上建立了唯一的单键索引,所以经常会使用id来进行查询；</li>
+<li>在索引字段上进行精确匹配、排序以及范围查找都会使用此索引；</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>复合索引：<br>  在多个特定的属性上建立索引,例如:db.users. createIndex({username:1,age:-1,country:1});</p>
+<pre><code>  1. 复合索引键的排序顺序,可以确定该索引是否可以支持排序操作；
+  2. 在索引字段上进行精确匹配、排序以及范围查找都会使用此索引,但与索引的顺序有关；
+  3. 为了性能考虑,应删除存在与第一个键相同的单键索引
+</code></pre>
+</li>
+<li><p>多键索引：<br>  在数组的属性上建立索引,例如:db.users. createIndex({favorites.city:1});</p>
+</li>
+<li><p>哈希索引：<br>  不同于传统的B-树索引,哈希索引使用hash函数来创建索引。</p>
+<pre><code>  1. 在索引字段上进行精确匹配,但不支持范围查询,不支持多键hash；
+  2. Hash索引上的入口是均匀分布的,在分片集合中非常有用；
+</code></pre>
+</li>
+</ul>
+<ol start="4">
+<li>优化目标<ul>
+<li>根据需求建立索引</li>
+<li>每个查询都要使用索引以提高查询效率, winningPlan. stage 必须为IXSCAN ；</li>
+<li>追求totalDocsExamined = nReturned</li>
+</ul>
+</li>
+</ol>
+<h4 id="5-2-高可用"><a href="#5-2-高可用" class="headerlink" title="5.2.高可用"></a>5.2.高可用</h4><ol>
+<li>可复制集<br> 可复制集是跨多个MongDB服务器（节点）分布和维护数据的方法。mongoDB可以把数据从一个节点复制到其他节点并在修改时进行同步,集群中的节点配置为自动同步数据；旧方法叫做主从复制,mongoDB 3.0以后推荐使用可复制集； 作用：<pre><code> 1. 避免数据丢失,保障数据安全,提高系统安全性；
+     （最少3节点,最大50节点）
+ 2. 自动化灾备机制,主节点宕机后通过选举产生新主机；提高系统健壮性；
+     （7个选举节点上限）
+ 3. 读写分离,负载均衡,提高系统性能；
+ 4. 生产环境推荐的部署模式；
+ 
+</code></pre>
+ 原理：<pre><code> 1. 数据同步：从节点与主节点保持长轮询；1.从节点查询本机oplog最新时间戳；2.查询主节点oplog晚于此时间戳的所有文档；3.加载这些文档，并根据log执行写操作；
+ 2. 阻塞复制：与writeconcern相关，不需要同步到从节点的策略（如： acknowledged Unacknowledged 、w1），数据同步都是异步的，其他情况都是同步；
+ 3. 心跳机制：成员之间会每2s 进行一次心跳检测（ping操作），发现故障后进行选举和故障转移；
+ 4. 选举制度：主节点故障后，其余节点根据优先级和bully算法选举出新的主节点，在选出主节点之前，集群服务是只读的；
+ 
+</code></pre>
+ 注意：<pre><code> MongoDB复制集里Primary节点是不固定的,所以生产环境千万不要直连Primary。
+</code></pre>
+</li>
+</ol>
+<ol start="2">
+<li>分片集群<br> 分片是把大型数据集进行分区成更小的可管理的片,这些数据片分散到不同的mongoDB节点,这些节点组成了分片集群。 作用：<pre><code> 1. 数据海量增长,需要更大的读写吞吐量：存储分布式
+ 2. 单台服务器内存、cpu等资源是有瓶颈的：负载分布式
+ 
+</code></pre>
+ 注意：分片集群是个双刃剑,在提高系统可扩展性和性能的同时,增大了系统的复杂性,所以在实施之前请确定是必须的。 分片注意点：<pre><code> 1. 热点 :某些分片键会导致所有的读或者写请求都操作在单个数据块或者分片上,导致单个分片服务器严重不堪重负。自增长的分片键容易导致写热点问题；
+ 2. 不可分割数据块:过于粗粒度的分片键可能导致许多文档使用相同的分片键,这意味着这些文档不能被分割为多个数据块,限制了mongoDB均匀分布数据的能力；
+ 3. 查询障碍:分片键与查询没有关联,造成糟糕的查询性能。 
+ 
+</code></pre>
+ 建议：<pre><code> 1. 不要使用自增长的字段作为分片键,避免热点问题；
+ 2. 不能使用粗粒度的分片键,避免数据块无法分割；
+ 3. 不能使用完全随机的分片键值,造成查询性能低下；
+ 4. 使用与常用查询相关的字段作为分片键,而且包含唯一字段（如业务主键,id等）；
+ 5. 索引对于分区同样重要,每个分片集合上要有同样的索引,分片键默认成为索引；分片集合只允许在id和分片键上创建唯一索引；
+</code></pre>
+</li>
+</ol>
+<h3 id="六、尾巴"><a href="#六、尾巴" class="headerlink" title="六、尾巴"></a>六、尾巴</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.mongoing.com/">MongoDB中文手册|官方文档中文版 - MongoDB-CN-Manual</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81MongoDB%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">一、MongoDB概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-NoSQL%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1.NoSQL简介</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81MongoDB%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">二、MongoDB简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A6%82%E5%BF%B5%E8%AF%A6%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">三、概念详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81MongoDB-CLI"><span class="toc-number">4.</span> <span class="toc-text">四、MongoDB CLI</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E5%A2%9E%E5%88%A0%E6%94%B9"><span class="toc-number">4.1.</span> <span class="toc-text">4.1.增删改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">4.2.</span> <span class="toc-text">4.2.操作符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E6%9F%A5%E8%AF%A2"><span class="toc-number">4.3.</span> <span class="toc-text">4.3.查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%B4%A2%E5%BC%95%E5%92%8C%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">五、索引和高可用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E7%B4%A2%E5%BC%95"><span class="toc-number">5.1.</span> <span class="toc-text">5.1.索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="toc-number">5.2.</span> <span class="toc-text">5.2.高可用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%B0%BE%E5%B7%B4"><span class="toc-number">6.</span> <span class="toc-text">六、尾巴</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/ae3a9321.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/ae3a9321.html&text=Not Only SQL"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/ae3a9321.html&title=Not Only SQL"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/ae3a9321.html&is_video=false&description=Not Only SQL"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Not Only SQL&body=Check out this article: http://example.com/posts/ae3a9321.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/ae3a9321.html&title=Not Only SQL"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/ae3a9321.html&title=Not Only SQL"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/ae3a9321.html&title=Not Only SQL"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/ae3a9321.html&title=Not Only SQL"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/ae3a9321.html&name=Not Only SQL&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/ae3a9321.html&t=Not Only SQL"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2022
+    Giesen
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?816b9aa62faaa826317c7a6ab717a247";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
