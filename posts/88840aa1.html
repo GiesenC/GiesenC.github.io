@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="一、架构 二、技术选项2.1.前端技术 基础的HTML、CSS、JavaScript（基于ES6标准） JQuery Vue.js 2.0以及基于Vue的UI框架：Vuetify 前端构建工具：WebPack 前端安装包工具：NPM Vue脚手架：Vue-cli Vue路由：vue-router ajax框架：axios 基于Vue的富文本框架：quill-editor  2.2.后端技术 基础的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="B2CMall笔记归档">
+<meta property="og:url" content="http://example.com/posts/88840aa1.html">
+<meta property="og:site_name" content="Giesen × Blog">
+<meta property="og:description" content="一、架构 二、技术选项2.1.前端技术 基础的HTML、CSS、JavaScript（基于ES6标准） JQuery Vue.js 2.0以及基于Vue的UI框架：Vuetify 前端构建工具：WebPack 前端安装包工具：NPM Vue脚手架：Vue-cli Vue路由：vue-router ajax框架：axios 基于Vue的富文本框架：quill-editor  2.2.后端技术 基础的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/08/05/dPNOxU849oeYsFB.png">
+<meta property="article:published_time" content="2022-08-05T09:31:29.000Z">
+<meta property="article:modified_time" content="2022-08-05T09:32:34.187Z">
+<meta property="article:author" content="Giesen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/08/05/dPNOxU849oeYsFB.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/logo.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/logo-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-apple-180x180.png">
+        
+      
+    
+    <!-- title -->
+    <title>B2CMall笔记归档</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/posts/ae3a9321.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/88840aa1.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/88840aa1.html&text=B2CMall笔记归档"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/88840aa1.html&title=B2CMall笔记归档"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/88840aa1.html&is_video=false&description=B2CMall笔记归档"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=B2CMall笔记归档&body=Check out this article: http://example.com/posts/88840aa1.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/88840aa1.html&title=B2CMall笔记归档"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/88840aa1.html&title=B2CMall笔记归档"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/88840aa1.html&title=B2CMall笔记归档"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/88840aa1.html&title=B2CMall笔记归档"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/88840aa1.html&name=B2CMall笔记归档&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/88840aa1.html&t=B2CMall笔记归档"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9E%B6%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">一、架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8A%80%E6%9C%AF%E9%80%89%E9%A1%B9"><span class="toc-number">2.</span> <span class="toc-text">二、技术选项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF"><span class="toc-number">2.1.</span> <span class="toc-text">2.1.前端技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF"><span class="toc-number">2.2.</span> <span class="toc-text">2.2.后端技术</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">三、项目总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="toc-number">3.1.</span> <span class="toc-text">3.1.项目介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E5%89%8D%E5%8F%B0%E5%92%8C%E5%90%8E%E5%8F%B0%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E7%9B%B8%E5%90%8C%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9B%86%E7%BE%A4"><span class="toc-number">3.2.</span> <span class="toc-text">3.2.前台和后台系统共享相同的微服务集群</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-1-%E5%95%86%E5%93%81%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.1.</span> <span class="toc-text">3.2.1.商品微服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-2-%E6%90%9C%E7%B4%A2%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.2.</span> <span class="toc-text">3.2.2.搜索微服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-3-%E8%AE%A2%E5%8D%95%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.3.</span> <span class="toc-text">3.2.3.订单微服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-4-%E8%B4%AD%E7%89%A9%E8%BD%A6%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.4.</span> <span class="toc-text">3.2.4.购物车微服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-5-%E7%94%A8%E6%88%B7%E4%B8%AD%E5%BF%83"><span class="toc-number">3.2.5.</span> <span class="toc-text">3.2.5.用户中心</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-6-%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83"><span class="toc-number">3.2.6.</span> <span class="toc-text">3.2.6.认证中心</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-7-%E7%9F%AD%E4%BF%A1%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.7.</span> <span class="toc-text">3.2.7.短信服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-8-%E6%94%AF%E4%BB%98%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.8.</span> <span class="toc-text">3.2.8.支付服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-9-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">3.2.9.</span> <span class="toc-text">3.2.9.Eureka注册中心</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-10-Zuul%E7%BD%91%E5%85%B3%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.10.</span> <span class="toc-text">3.2.10.Zuul网关服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-11-Spring-Cloud-Config%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">3.2.11.</span> <span class="toc-text">3.2.11.Spring Cloud Config配置中心</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%B0%BE%E5%B7%B4"><span class="toc-number">4.</span> <span class="toc-text">四、尾巴</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        B2CMall笔记归档
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Giesen</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-08-05T09:31:29.000Z" itemprop="datePublished">2022-08-05</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="一、架构"><a href="#一、架构" class="headerlink" title="一、架构"></a>一、架构</h3><p><img src="https://s2.loli.net/2022/08/05/dPNOxU849oeYsFB.png"></p>
+<h3 id="二、技术选项"><a href="#二、技术选项" class="headerlink" title="二、技术选项"></a>二、技术选项</h3><h4 id="2-1-前端技术"><a href="#2-1-前端技术" class="headerlink" title="2.1.前端技术"></a>2.1.前端技术</h4><ul>
+<li>基础的HTML、CSS、JavaScript（基于ES6标准）</li>
+<li>JQuery</li>
+<li>Vue.js 2.0以及基于Vue的UI框架：Vuetify</li>
+<li>前端构建工具：WebPack</li>
+<li>前端安装包工具：NPM</li>
+<li>Vue脚手架：Vue-cli</li>
+<li>Vue路由：vue-router</li>
+<li>ajax框架：axios</li>
+<li>基于Vue的富文本框架：quill-editor</li>
+</ul>
+<h4 id="2-2-后端技术"><a href="#2-2-后端技术" class="headerlink" title="2.2.后端技术"></a>2.2.后端技术</h4><ul>
+<li>基础的SpringMVC、Spring 5.0和MyBatis3</li>
+<li>Spring Boot 2.0.1版本</li>
+<li>Spring Cloud 最新版 Finchley.RC1</li>
+<li>Redis-4.0</li>
+<li>RabbitMQ-3.4</li>
+<li>Elasticsearch-5.6.8</li>
+<li>nginx-1.10.2</li>
+<li>FastDFS - 5.0.8</li>
+<li>MyCat</li>
+<li>Thymeleaf</li>
+<li>JWT</li>
+</ul>
+<h3 id="三、项目总结"><a href="#三、项目总结" class="headerlink" title="三、项目总结"></a>三、项目总结</h3><h4 id="3-1-项目介绍"><a href="#3-1-项目介绍" class="headerlink" title="3.1.项目介绍"></a>3.1.项目介绍</h4><ul>
+<li>乐优商城是一个全品类的电商购物网站（B2C）</li>
+<li>用户可以在线购买商品、加入购物车、下单、秒杀商品</li>
+<li>可以评论已购买商品</li>
+<li>管理员可以在后台管理商品的上下架、促销活动</li>
+<li>管理员可以监控商品销售状况</li>
+<li>客服可以在后台处理退款操作</li>
+</ul>
+<h4 id="3-2-前台和后台系统共享相同的微服务集群"><a href="#3-2-前台和后台系统共享相同的微服务集群" class="headerlink" title="3.2.前台和后台系统共享相同的微服务集群"></a>3.2.前台和后台系统共享相同的微服务集群</h4><h5 id="3-2-1-商品微服务"><a href="#3-2-1-商品微服务" class="headerlink" title="3.2.1.商品微服务"></a>3.2.1.商品微服务</h5><p>商品及商品分类、品牌、库存等的服务</p>
+<ul>
+<li>商品分类管理</li>
+<li>商品品牌管理</li>
+<li>商品规格参数管理：因为规格的可变性，采用竖表设计，分为规格和规格组表</li>
+<li>商品管理：SPU和SKU的设计，以及SKU的动态属性。</li>
+<li>库存管理：库存加减采用乐观锁方案，另外定时对库存判断，库存不足可通知管理员。</li>
+</ul>
+<h5 id="3-2-2-搜索微服务"><a href="#3-2-2-搜索微服务" class="headerlink" title="3.2.2.搜索微服务"></a>3.2.2.搜索微服务</h5><p>实现搜索功能</p>
+<ul>
+<li>采用Elasticsearch完成商品的全文检索功能</li>
+<li>搜索过滤</li>
+<li>集群</li>
+</ul>
+<h5 id="3-2-3-订单微服务"><a href="#3-2-3-订单微服务" class="headerlink" title="3.2.3.订单微服务"></a>3.2.3.订单微服务</h5><p>实现订单相关</p>
+<ul>
+<li>订单表设计，状态记录</li>
+<li>创建订单需要同时减库存、跨服务业务、需要注意事务处理，流程。</li>
+</ul>
+<h5 id="3-2-4-购物车微服务"><a href="#3-2-4-购物车微服务" class="headerlink" title="3.2.4.购物车微服务"></a>3.2.4.购物车微服务</h5><p>实现购物车相关功能</p>
+<ul>
+<li>离线购物车：主要使用了localStorage保存到客户端，几乎不与服务器交互</li>
+<li>在线购物车：使用了redis实现。</li>
+</ul>
+<h5 id="3-2-5-用户中心"><a href="#3-2-5-用户中心" class="headerlink" title="3.2.5.用户中心"></a>3.2.5.用户中心</h5><p>用户的登录注册等功能</p>
+<ul>
+<li>用户注册</li>
+<li>注册数据校验</li>
+<li>查询用户信息</li>
+</ul>
+<h5 id="3-2-6-认证中心"><a href="#3-2-6-认证中心" class="headerlink" title="3.2.6.认证中心"></a>3.2.6.认证中心</h5><p>用户权限及服务权限认证</p>
+<ul>
+<li>权限管理CRUD</li>
+<li>登录token生成</li>
+<li>登录token认证</li>
+<li>务间token生成</li>
+<li>服务间token认证</li>
+<li>解决cookie被禁用（跨域问题） 首先提示用户cookie不可以被禁用；把cookie放入头中返回，JS获取头信息，存入web存储（localstorage，SessionStorage），每次请求都需要手动携带token，写入头中。</li>
+<li>解决cookie被盗用（授权）我们的cookie无法被篡改 ；使用HTTPS协议，防止数据泄露 ；加入ip地址识别身份到payload中。</li>
+<li>微服务地址被暴露 首先地址不会被暴露，因为所有的微服务都通过Zuul进行访问，对外暴露的只有Zuul；万一暴露了，我们可以加入服务间鉴权。</li>
+</ul>
+<h5 id="3-2-7-短信服务"><a href="#3-2-7-短信服务" class="headerlink" title="3.2.7.短信服务"></a>3.2.7.短信服务</h5><p>完成短信发送</p>
+<ul>
+<li>对接阿里云 平台，通过MQ（MQ消息队列）实现异步短信发送</li>
+</ul>
+<h5 id="3-2-8-支付服务"><a href="#3-2-8-支付服务" class="headerlink" title="3.2.8.支付服务"></a>3.2.8.支付服务</h5><p>完成支付平台对接</p>
+<ul>
+<li>对接微信支付</li>
+</ul>
+<h5 id="3-2-9-Eureka注册中心"><a href="#3-2-9-Eureka注册中心" class="headerlink" title="3.2.9.Eureka注册中心"></a>3.2.9.Eureka注册中心</h5><h5 id="3-2-10-Zuul网关服务"><a href="#3-2-10-Zuul网关服务" class="headerlink" title="3.2.10.Zuul网关服务"></a>3.2.10.Zuul网关服务</h5><h5 id="3-2-11-Spring-Cloud-Config配置中心"><a href="#3-2-11-Spring-Cloud-Config配置中心" class="headerlink" title="3.2.11.Spring Cloud Config配置中心"></a>3.2.11.Spring Cloud Config配置中心</h5><h3 id="四、尾巴"><a href="#四、尾巴" class="headerlink" title="四、尾巴"></a>四、尾巴</h3><p><a target="_blank" rel="noopener" href="https://github.com/GiesenC/B2CMall">GiesenC/B2CMall: leyou</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9E%B6%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">一、架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8A%80%E6%9C%AF%E9%80%89%E9%A1%B9"><span class="toc-number">2.</span> <span class="toc-text">二、技术选项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF"><span class="toc-number">2.1.</span> <span class="toc-text">2.1.前端技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF"><span class="toc-number">2.2.</span> <span class="toc-text">2.2.后端技术</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">三、项目总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="toc-number">3.1.</span> <span class="toc-text">3.1.项目介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E5%89%8D%E5%8F%B0%E5%92%8C%E5%90%8E%E5%8F%B0%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E7%9B%B8%E5%90%8C%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9B%86%E7%BE%A4"><span class="toc-number">3.2.</span> <span class="toc-text">3.2.前台和后台系统共享相同的微服务集群</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-1-%E5%95%86%E5%93%81%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.1.</span> <span class="toc-text">3.2.1.商品微服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-2-%E6%90%9C%E7%B4%A2%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.2.</span> <span class="toc-text">3.2.2.搜索微服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-3-%E8%AE%A2%E5%8D%95%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.3.</span> <span class="toc-text">3.2.3.订单微服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-4-%E8%B4%AD%E7%89%A9%E8%BD%A6%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.4.</span> <span class="toc-text">3.2.4.购物车微服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-5-%E7%94%A8%E6%88%B7%E4%B8%AD%E5%BF%83"><span class="toc-number">3.2.5.</span> <span class="toc-text">3.2.5.用户中心</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-6-%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83"><span class="toc-number">3.2.6.</span> <span class="toc-text">3.2.6.认证中心</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-7-%E7%9F%AD%E4%BF%A1%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.7.</span> <span class="toc-text">3.2.7.短信服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-8-%E6%94%AF%E4%BB%98%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.8.</span> <span class="toc-text">3.2.8.支付服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-9-Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">3.2.9.</span> <span class="toc-text">3.2.9.Eureka注册中心</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-10-Zuul%E7%BD%91%E5%85%B3%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.10.</span> <span class="toc-text">3.2.10.Zuul网关服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-11-Spring-Cloud-Config%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">3.2.11.</span> <span class="toc-text">3.2.11.Spring Cloud Config配置中心</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%B0%BE%E5%B7%B4"><span class="toc-number">4.</span> <span class="toc-text">四、尾巴</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/88840aa1.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/88840aa1.html&text=B2CMall笔记归档"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/88840aa1.html&title=B2CMall笔记归档"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/88840aa1.html&is_video=false&description=B2CMall笔记归档"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=B2CMall笔记归档&body=Check out this article: http://example.com/posts/88840aa1.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/88840aa1.html&title=B2CMall笔记归档"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/88840aa1.html&title=B2CMall笔记归档"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/88840aa1.html&title=B2CMall笔记归档"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/88840aa1.html&title=B2CMall笔记归档"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/88840aa1.html&name=B2CMall笔记归档&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/88840aa1.html&t=B2CMall笔记归档"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2022
+    Giesen
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?816b9aa62faaa826317c7a6ab717a247";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
