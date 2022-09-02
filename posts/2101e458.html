@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="一、Go语言基本语法1.包 package  import  从main包的main方法开始  没有public、protected、private等访问控制修饰符，它是通过字母大小写来控制可见性的，如果定义的常量、变量、类型、接口、结构、函数等的名称是大写字母开头表示能被其它包访问或调用（相当于public），非大写开头就只能在包内使用（相当于private，变量或常量也可以下划线开头）  根据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go笔记归档">
+<meta property="og:url" content="http://example.com/posts/2101e458.html">
+<meta property="og:site_name" content="Giesen × Blog">
+<meta property="og:description" content="一、Go语言基本语法1.包 package  import  从main包的main方法开始  没有public、protected、private等访问控制修饰符，它是通过字母大小写来控制可见性的，如果定义的常量、变量、类型、接口、结构、函数等的名称是大写字母开头表示能被其它包访问或调用（相当于public），非大写开头就只能在包内使用（相当于private，变量或常量也可以下划线开头）  根据">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-09-02T16:36:12.000Z">
+<meta property="article:modified_time" content="2022-09-02T16:37:00.391Z">
+<meta property="article:author" content="Giesen">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/logo.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/logo-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-apple-180x180.png">
+        
+      
+    
+    <!-- title -->
+    <title>Go笔记归档</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/posts/40edf1cf.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/2101e458.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/2101e458.html&text=Go笔记归档"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/2101e458.html&title=Go笔记归档"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/2101e458.html&is_video=false&description=Go笔记归档"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Go笔记归档&body=Check out this article: http://example.com/posts/2101e458.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/2101e458.html&title=Go笔记归档"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/2101e458.html&title=Go笔记归档"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/2101e458.html&title=Go笔记归档"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/2101e458.html&title=Go笔记归档"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/2101e458.html&name=Go笔记归档&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/2101e458.html&t=Go笔记归档"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">一、Go语言基本语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8C%85"><span class="toc-number">1.1.</span> <span class="toc-text">1.包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">2.函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-var%E5%8F%98%E9%87%8F"><span class="toc-number">1.3.</span> <span class="toc-text">3.var变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-const%E5%B8%B8%E9%87%8F"><span class="toc-number">1.4.</span> <span class="toc-text">4.const常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.</span> <span class="toc-text">5.类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">1.6.</span> <span class="toc-text">6.流程控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%9B%B4%E5%A4%9A%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.7.</span> <span class="toc-text">7.更多类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8D%8F%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91"><span class="toc-number">2.</span> <span class="toc-text">二、协程与并发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Go%E8%AF%AD%E8%A8%80%E5%85%B3%E9%94%AE%E7%89%B9%E6%80%A7"><span class="toc-number">3.</span> <span class="toc-text">三、Go语言关键特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Go%E8%AF%AD%E8%A8%80%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text">四、Go语言的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%85%B6%E4%BB%96%E4%BF%A1%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">五、其他信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%B0%BE%E5%B7%B4"><span class="toc-number">6.</span> <span class="toc-text">六、尾巴</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Go笔记归档
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Giesen</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-09-02T16:36:12.000Z" itemprop="datePublished">2022-09-03</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="一、Go语言基本语法"><a href="#一、Go语言基本语法" class="headerlink" title="一、Go语言基本语法"></a>一、Go语言基本语法</h2><h3 id="1-包"><a href="#1-包" class="headerlink" title="1.包"></a>1.包</h3><ol>
+<li><p>package</p>
+</li>
+<li><p>import</p>
+</li>
+<li><p>从main包的main方法开始</p>
+</li>
+<li><p>没有public、protected、private等访问控制修饰符，它是通过字母大小写来控制可见性的，如果定义的常量、变量、类型、接口、结构、函数等的名称是大写字母开头表示能被其它包访问或调用（相当于public），非大写开头就只能在包内使用（相当于private，变量或常量也可以下划线开头）</p>
+</li>
+<li><p>根据文件路径来判断包</p>
+</li>
+</ol>
+<h3 id="2-函数"><a href="#2-函数" class="headerlink" title="2.函数"></a>2.函数</h3><ol>
+<li><p>当连续两个或多个函数的已命名形参类型相同时，除最后一个类型以外，其它都可以省略。 x, y int</p>
+</li>
+<li><p>多值返回</p>
+<ul>
+<li>a,b := 4,5</li>
+</ul>
+</li>
+<li><p>命名返回值</p>
+<ul>
+<li>func split(sum int) (x, y int)</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-var变量"><a href="#3-var变量" class="headerlink" title="3.var变量"></a>3.var变量</h3><ol>
+<li><p>可以出现在包的级别，也可以出现在func里</p>
+</li>
+<li><p>可以一起初始化，可以不指定类型</p>
+<ul>
+<li>var java, c, test = 1, “dfer”, true</li>
+</ul>
+</li>
+<li><p>简洁赋值语句 := 可在类型明确的地方代替 var 声明。但不能出现在函数外</p>
+</li>
+</ol>
+<h3 id="4-const常量"><a href="#4-const常量" class="headerlink" title="4.const常量"></a>4.const常量</h3><h3 id="5-类型"><a href="#5-类型" class="headerlink" title="5.类型"></a>5.类型</h3><ol>
+<li><p>基本类型</p>
+<ul>
+<li>bool</li>
+<li>string</li>
+<li>int int8 int16 int 32 int64</li>
+<li>uint uint8 uint16 uint32 uint64 uintptr</li>
+<li>byte == uint8</li>
+<li>rune == int32表示一个unicode码点</li>
+<li>float32 float64</li>
+<li>complex64 complex128</li>
+</ul>
+</li>
+<li><p>类型自动推导</p>
+</li>
+<li><p>类型转换</p>
+<ul>
+<li>Go 在不同类型的项之间赋值时需要显式转换。</li>
+<li>string转成int int, err := strconv.Atoi(str)</li>
+<li>int -&gt; string string := strconv.Itoa(int)</li>
+<li>string -&gt; []byte var data []byte = []byte(str)</li>
+<li>[]byte -&gt; string var str string = string(data[:])</li>
+<li>float64 &lt;-&gt; string float,err := strconv.ParseFloat(string,64) string := strconv.FormatFloat(float64,’E’,-1,64)</li>
+</ul>
+</li>
+</ol>
+<h3 id="6-流程控制"><a href="#6-流程控制" class="headerlink" title="6.流程控制"></a>6.流程控制</h3><ol>
+<li><p>只有一种循环模式 for</p>
+<ul>
+<li>for ; sum &lt; 1000; {}</li>
+<li>for sum &lt; 1000 跟其他语言的while一模一样</li>
+<li>for {} 死循环</li>
+<li>for index, value := range arrOrMap {<br>}<ul>
+<li>for _,value := rang arrOrMap{} 用_忽略index或者值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>if else</p>
+<ul>
+<li>if 也可以在执行判断前，先执行一个语句<ul>
+<li>if z:=x+y; z&lt;a {<br>}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>switch</p>
+<ul>
+<li>相当于自带break, 除非指定fallthrough，否则不会继续执行</li>
+<li>也可以在执行前，先执行一个语句<ul>
+<li>switch v:=x+y; v {}</li>
+</ul>
+</li>
+<li>没有条件的switch == switch true 可以将一长串if else写得很清晰<ul>
+<li>switch{ case t.Hour() &lt; 12: …}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>defer</p>
+</li>
+</ol>
+<ul>
+<li>defer 语句会推迟到外层函数返回之后执行。但其参数会立即求值，只是返回前不会调用</li>
+<li>defer的调用是被压入了栈中，会按后进先出的顺序调用</li>
+</ul>
+<h3 id="7-更多类型"><a href="#7-更多类型" class="headerlink" title="7.更多类型"></a>7.更多类型</h3><ol>
+<li><p>指针</p>
+<ul>
+<li>*int 指向int类型的值的指针</li>
+<li>*p 读取p指针指向的位置</li>
+<li>&amp;i 获取变量i的指针</li>
+<li>跟C不同 没有指针运算</li>
+</ul>
+</li>
+<li><p>struct</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> duck <span class="keyword">struct</span> &#123;</span><br><span class="line">  X <span class="keyword">int</span></span><br><span class="line">  Y <span class="keyword">int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>d := duck{1,2}</li>
+<li>d.X</li>
+<li>如果我们有一个指向结构体的指针 p，那么可以通过 (*p).X 来访问其字段 X。直接写 p.X 就可以。</li>
+<li>可以按名字赋值 duck{X:1}</li>
+</ul>
+<ol start="3">
+<li><p>数组</p>
+<ul>
+<li>var a [10]int</li>
+<li>v := [5]int{1,2,3,4,5}</li>
+</ul>
+</li>
+<li><p>切片类型 slice</p>
+<ul>
+<li>v := arr[1:4], 闭开区间，从下标1到4，不包括4</li>
+<li>var s []int 切片的语法跟数组的区别就在于没有指定长度</li>
+<li>切片是原来数组的引用，对切片操作会反应在原来数组上。</li>
+<li>默认切片 a[0:10] a[:10] a[0:] a[:] 对于长度为10的数组是等价的</li>
+<li>slice s len(s) 切片长度 cap(s) 切片的第一个到最后一个的长度</li>
+<li>var s []int 默认值为nil</li>
+<li>make([]int, 0, 5) make([]int, 5)<ul>
+<li>make只用于slice, map, channel的创建</li>
+<li>和new不同的是，make的返回值是一个类型，而不是指向它的指针</li>
+</ul>
+</li>
+<li>向切片追加元素 append ([]T, ….T)<ul>
+<li>当 s 的底层数组太小，不足以容纳所有给定的值时，它就会分配一个更大的数组。返回的切片会指向这个新分配的数组</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>map</p>
+<ul>
+<li>var m map[keyType]ValueType</li>
+<li>make(map[int]string)</li>
+<li>m[1] = “test”</li>
+<li>m := map[int]duck{ 1:duck{1,2}, 2:duck{4,5}, }</li>
+<li>delete(m, key)</li>
+<li>elem, ok = m[key]<ul>
+<li>若 key 在 m 中，ok 为 true ；否则，ok 为 false。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>func函数也可以当参数传递</p>
+</li>
+</ol>
+<ul>
+<li>闭包（closure）就像是对作用域的一种闭合（closing），在函数定义的时候，其作用域已经决定了，并且后续使用不会再改变，即作用域已经闭合了。<ul>
+<li>每个闭包都被绑定在其各自的变量上。闭的意思是封闭外部状态，当外部状态的scope失效的嘶吼，留了一份留在内部</li>
+<li>可以理解成在闭包创建时，把引用的变量的值拷贝了一份。以此实现内外环境的隔离。</li>
+<li>func adder() func(int) int { sum := 0 return func(x int) int { sum += x return sum } } func main() { pos, neg := adder(), adder() for i := 0; i &lt; 10; i++ { fmt.Println( pos(i), neg(-2*i), ) } }</li>
+<li>闭包是函数式的基本配备。<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/92634505">https://zhuanlan.zhihu.com/p/92634505</a></li>
+</ul>
+</li>
+<li>Go Routine的延迟绑定</li>
+</ul>
+</li>
+</ul>
+<ol start="7">
+<li>OOP：方法与接口</li>
+</ol>
+<ul>
+<li><p>方法就是一类带特殊的 接收者 参数的函数。</p>
+<ul>
+<li>func (v Vertex) Abs() float64 {} v.Abs()</li>
+<li>方法只是个带接收者参数的函数。</li>
+<li>可以为非结构体类型声明方法。 type Myfloat float64</li>
+<li>用指针来接收 会更常用 可以改变对象的值<ul>
+<li>func (v *Vertex) Scale(f float64) { v.X = v.X * f v.Y = v.Y * f }<ul>
+<li>用指针定义好处一：方法能够修改其接收者指向的值。</li>
+<li>这样可以避免在每次调用方法时复制该值。若值的类型为大型结构体时，这样做会更加高效。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>作为方法调用时，可以用指针也可以用对象来调用 v.Scale(2) or (&amp;v).Scale(2) 不管定义的时候是用指针还是值</li>
+</ul>
+</li>
+<li><p>接口</p>
+<ul>
+<li>type Abser interface { Abs() float64 }</li>
+<li>类型通过实现一个接口的所有方法来实现该接口。无需专门显式声明</li>
+<li>指定了零个方法的接口值被称为 <em>空接口</em> interface{}<ul>
+<li>空接口可保存任何类型的值。（因为每个类型都至少实现了零个方法。）</li>
+<li>空接口被用来处理未知类型的值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>类型判断和转换  scala里的isInstanceOf 和asInstanceOf</p>
+<ul>
+<li>t, ok := i.(T) 相当于同时做isInstanceOf和asInstanceOf的操作，失败了也不会panic</li>
+<li>t := i.(T) 相当于asInstanceOf,失败了会panic</li>
+<li>switch + type来选择类型 相当于一连串的if else 判断isInstanceOf + asInstanceOf<ul>
+<li>switch v := i.(type) { case int: … case string: len(v) // v已经可当string用了 default: }</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>error 类型是一个内建接口 Error() string</p>
+<ul>
+<li>自定义的error只要实现这个Error接口就可以了</li>
+<li>errors.New</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、协程与并发"><a href="#二、协程与并发" class="headerlink" title="二、协程与并发"></a>二、协程与并发</h2><ul>
+<li>Go 协程在相同的地址空间中运行，因此在访问共享的内存时必须进行同步。sync 包提供了这种能力，不过在 Go 中并不经常用到<ul>
+<li>go f(x, y, z) f, x, y 和 z 的求值发生在当前的 Go 程中，而 f 的执行发生在新的 Go 程中。</li>
+</ul>
+</li>
+<li>ch &lt;- v // 将 v 发送至信道 ch。 v := &lt;-ch // 从 ch 接收值并赋予 v。 v, ok := &lt;-ch //从ch接收值，如果已被关闭，ok会为false</li>
+<li>select - case 语句使一个 Go 程可以等待多个通信操作。<ul>
+<li>select - case - default 当 select 中的其它分支都没有准备好时，default 分支就会执行。 为了在尝试发送或者接收时不发生阻塞，可使用 default 分支</li>
+</ul>
+</li>
+<li>sync.Mutex</li>
+<li>.Lock()</li>
+<li>.Unlock()</li>
+</ul>
+<h2 id="三、Go语言关键特性"><a href="#三、Go语言关键特性" class="headerlink" title="三、Go语言关键特性"></a>三、Go语言关键特性</h2><ol>
+<li><p>并发与协程</p>
+<ul>
+<li>一个关键字go就可以启动协程</li>
+</ul>
+</li>
+<li><p>基于消息传递的通信方式</p>
+<ul>
+<li>传统的是基于共享内存，go用消息管道channel，关键字chan 类型</li>
+</ul>
+</li>
+<li><p>丰富的内置数据类型</p>
+<ul>
+<li>slice</li>
+<li>channel</li>
+<li>rune == int32表示一个unicode码点</li>
+<li>uintptr 存储指针的uint32或者uint64</li>
+<li>struct + interface + function 没有 class</li>
+</ul>
+</li>
+<li><p>函数多返回值</p>
+</li>
+<li><p>defer机制</p>
+</li>
+<li><p>反射</p>
+</li>
+<li><p>高性能HTTP Server</p>
+<ul>
+<li>自带HTTP/TCP/UDP高性能服务器，基于协程并发</li>
+</ul>
+</li>
+<li><p>工程管理</p>
+<ul>
+<li>完全用目录结构和包名来推导工程结构和构建顺序<ul>
+<li>同一个目录下面只允许一个包, 就算定义在不同的文件里，相当于同一个文件 package中的名称最好与目录名一样</li>
+</ul>
+</li>
+<li>编译不需要任何依赖<ul>
+<li>编译生成后的二进制文件运行起来无环境依赖</li>
+</ul>
+</li>
+<li>编译速度快</li>
+</ul>
+</li>
+<li><p>编程规范</p>
+<ul>
+<li>自动统一的code style格式化</li>
+</ul>
+</li>
+<li><p>Error 处理</p>
+<ul>
+<li>error</li>
+<li>panic &amp; recover</li>
+</ul>
+</li>
+<li><p>面向接口的oop，没有对象与继承，强调组合，以类似于duck-typing的方式编写面向对象</p>
+<ul>
+<li>当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子。我们并不关心对象是什么类型，到底是不是鸭子，只关心行为。</li>
+<li>没有类、继承、构造方法、泛型、注解，理解代码变得更容易</li>
+</ul>
+</li>
+</ol>
+<h2 id="四、Go语言的特点"><a href="#四、Go语言的特点" class="headerlink" title="四、Go语言的特点"></a>四、Go语言的特点</h2><ol>
+<li><p>开发效率高</p>
+<ul>
+<li>语言简单，容易上手<ul>
+<li>仅25个关键字</li>
+</ul>
+</li>
+<li>编译快</li>
+<li>部署运维简单<ul>
+<li>不需要额外安装像java的jdk或者js的node这样的运行环境</li>
+<li>构建好后只需一个可执行文件即可</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>高并发</p>
+<ul>
+<li>Gorountine 协程机制<ul>
+<li>轻量级 比线程更轻量级<ul>
+<li>协程与线程主要区别是它将不再被内核调度，而是交给了程序自己而线程是将自己交给内核调度，所以也不难理解golang中调度器的存在。</li>
+<li>进程是系统分配资源的最小单位 线程是CPU调度的最小单位（共享进程的内存地址空间） 协没有线程的上下文切换消耗。协程的调度切换是用户(程序员)手动切换的,因此更加灵活,因此又叫用户空间线程.有原子操作性</li>
+</ul>
+</li>
+<li>可以产生大量协程</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>高性能</p>
+<ul>
+<li>运算性能是JAVA的1.5倍左右，运行空间是JAVA的几十分之一，启动时间是JAVA的几十分之一，并发量是JAVA的上千倍</li>
+<li>从性能上不如C语言，但是语法上比C要更加“现代化”一些。C语言是纯过程性语言，申请内存，分配内存都需要手工处理，而GO语言支持简单的自动化GC。</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、其他信息"><a href="#五、其他信息" class="headerlink" title="五、其他信息"></a>五、其他信息</h2><ol>
+<li><p>国内并发需求很大，对Go的需求一直在上升</p>
+</li>
+<li><p>Go语言的核心理念</p>
+<ul>
+<li>简单<ul>
+<li>比如及其简单但完备的面向对象设计，面向接口，没有继承只有组合</li>
+</ul>
+</li>
+<li>正交性<ul>
+<li>每个模块之间互相不影响，或者说互相不知道。改了一个不会影响另外一个<ul>
+<li>Go语言最有价值的地方是对现有OOP的改进，现在无论什么语言只要支持OOP就一定会有一个庞大的继承树，但是无论这个树设计的多庞大多精巧它仍然是一个静态的结构，一旦和实际问题不匹配就要写一堆Adapter。 而Go语言采用完全不用的方法，类之间不存在静态的继承或者实现关系，这种关系直到使用它的时候才确定</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>工具</p>
+<ul>
+<li>GoFmt自动格式化工具</li>
+</ul>
+</li>
+</ol>
+<p>六、常用方法</p>
+<ol>
+<li><p>fmt.Printf</p>
+<ul>
+<li>%T 数据类型</li>
+<li>%v 按默认方式打印</li>
+<li>int<ul>
+<li>%+d 带符号的</li>
+<li>%q带引号</li>
+<li>%o %x八进制十六进制</li>
+<li>%u unicode</li>
+<li>%b 二进制</li>
+<li>%5d %-5d %05d</li>
+</ul>
+</li>
+<li>float<ul>
+<li>%f == %.6f</li>
+<li>%e == %.6e</li>
+<li>%g 用最少的数字来表示</li>
+<li>%.3g最多三个数字来表示</li>
+</ul>
+</li>
+<li>string<ul>
+<li>%s正常输出</li>
+<li>%q 带双引号</li>
+<li>%x %X 16进制</li>
+<li>%5s %-5s %.5s %5.7s %05s</li>
+</ul>
+</li>
+<li>bool<ul>
+<li>%t true or false</li>
+</ul>
+</li>
+<li>pointer<ul>
+<li>%p 带0x的指针</li>
+<li>%#p 不带0x的指针</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>fmt.Stringer</p>
+<ul>
+<li>最常用的interface, 定义了 String() string 类似于java的toString 方法</li>
+</ul>
+</li>
+<li><p>time</p>
+<ul>
+<li>time.Saturday</li>
+<li>time.Now() 是time.Time类型的一个实例<ul>
+<li>time.Now().Weekday()</li>
+<li>time.Now().Hour()</li>
+</ul>
+</li>
+<li>time.Sleep(1 * time.Second)</li>
+<li>time.After 相当于js里的setTimeout time.Tick 返回一个时间类型的channel. 相当于js 里的setInterval 每隔一段时间执行送入channel</li>
+</ul>
+</li>
+<li><p>runtime</p>
+<ul>
+<li>runtime.GOOS os信息</li>
+</ul>
+</li>
+<li><p>strings</p>
+<ul>
+<li>strings.Join(arr, “,”)</li>
+<li>strings.NewReader(str) 产生io.Reader对象 数据流</li>
+</ul>
+</li>
+<li><p>strconv</p>
+<ul>
+<li>AtoI, Itoa FormatInt, ParseInt FormatFloat, ParseFloat, FormatUint</li>
+</ul>
+</li>
+</ol>
+<h2 id="六、尾巴"><a href="#六、尾巴" class="headerlink" title="六、尾巴"></a>六、尾巴</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/GO/953521">Go（计算机编程语言）_百度百科</a></li>
+<li><a target="_blank" rel="noopener" href="http://c.biancheng.net/golang/">Go语言入门教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/go/go-tutorial.html">Go 语言教程 | 菜鸟教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.processon.com/view/link/5ecb3925f346fb6907154970#map">Go语言入门知识点总结 _在线思维导图</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Go%E8%AF%AD%E8%A8%80%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">一、Go语言基本语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8C%85"><span class="toc-number">1.1.</span> <span class="toc-text">1.包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">2.函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-var%E5%8F%98%E9%87%8F"><span class="toc-number">1.3.</span> <span class="toc-text">3.var变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-const%E5%B8%B8%E9%87%8F"><span class="toc-number">1.4.</span> <span class="toc-text">4.const常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.</span> <span class="toc-text">5.类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">1.6.</span> <span class="toc-text">6.流程控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%9B%B4%E5%A4%9A%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.7.</span> <span class="toc-text">7.更多类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8D%8F%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91"><span class="toc-number">2.</span> <span class="toc-text">二、协程与并发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Go%E8%AF%AD%E8%A8%80%E5%85%B3%E9%94%AE%E7%89%B9%E6%80%A7"><span class="toc-number">3.</span> <span class="toc-text">三、Go语言关键特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Go%E8%AF%AD%E8%A8%80%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text">四、Go语言的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%85%B6%E4%BB%96%E4%BF%A1%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">五、其他信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%B0%BE%E5%B7%B4"><span class="toc-number">6.</span> <span class="toc-text">六、尾巴</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/2101e458.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/2101e458.html&text=Go笔记归档"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/2101e458.html&title=Go笔记归档"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/2101e458.html&is_video=false&description=Go笔记归档"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Go笔记归档&body=Check out this article: http://example.com/posts/2101e458.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/2101e458.html&title=Go笔记归档"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/2101e458.html&title=Go笔记归档"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/2101e458.html&title=Go笔记归档"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/2101e458.html&title=Go笔记归档"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/2101e458.html&name=Go笔记归档&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/2101e458.html&t=Go笔记归档"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2022
+    Giesen
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?816b9aa62faaa826317c7a6ab717a247";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
