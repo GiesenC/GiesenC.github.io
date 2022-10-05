@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="1.Web 1.0 阅读时代像一个单向系统，在 1980 年到 2000 年的第一个 Web 1.0 中，网页创建者编写内容，而其他用户仅获取信息并阅读。活动非常有限且静态。典型的代表就是当年的互联网大哥大雅虎以及国内的网易、新浪、搜狐这些门户网站。 2.Web 2.0 读与写随着互联网的发展，在 Web 2.0 中，出现了 Facebook、YouTube、Twitter 、微博、轻博客等各种">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈Web3.0">
+<meta property="og:url" content="http://example.com/posts/c4e9bc91.html">
+<meta property="og:site_name" content="Giesen × Blog">
+<meta property="og:description" content="1.Web 1.0 阅读时代像一个单向系统，在 1980 年到 2000 年的第一个 Web 1.0 中，网页创建者编写内容，而其他用户仅获取信息并阅读。活动非常有限且静态。典型的代表就是当年的互联网大哥大雅虎以及国内的网易、新浪、搜狐这些门户网站。 2.Web 2.0 读与写随着互联网的发展，在 Web 2.0 中，出现了 Facebook、YouTube、Twitter 、微博、轻博客等各种">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/10/06/7SvpeZ5PJsH48Qy.png">
+<meta property="og:image" content="https://s2.loli.net/2022/10/06/xpyPWYzfV6jQO4v.png">
+<meta property="article:published_time" content="2022-10-06T02:50:24.000Z">
+<meta property="article:modified_time" content="2022-10-05T16:21:25.337Z">
+<meta property="article:author" content="Giesen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/10/06/7SvpeZ5PJsH48Qy.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/logo.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/logo-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-apple-180x180.png">
+        
+      
+    
+    <!-- title -->
+    <title>浅谈Web3.0</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/posts/9b44950b.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/c4e9bc91.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/c4e9bc91.html&text=浅谈Web3.0"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/c4e9bc91.html&title=浅谈Web3.0"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/c4e9bc91.html&is_video=false&description=浅谈Web3.0"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=浅谈Web3.0&body=Check out this article: http://example.com/posts/c4e9bc91.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/c4e9bc91.html&title=浅谈Web3.0"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/c4e9bc91.html&title=浅谈Web3.0"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/c4e9bc91.html&title=浅谈Web3.0"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/c4e9bc91.html&title=浅谈Web3.0"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/c4e9bc91.html&name=浅谈Web3.0&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/c4e9bc91.html&t=浅谈Web3.0"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Web-1-0-%E9%98%85%E8%AF%BB%E6%97%B6%E4%BB%A3"><span class="toc-number">1.</span> <span class="toc-text">1.Web 1.0 阅读时代</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Web-2-0-%E8%AF%BB%E4%B8%8E%E5%86%99"><span class="toc-number">2.</span> <span class="toc-text">2.Web 2.0 读与写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Web-3-0-%E8%AF%BB%E3%80%81%E5%86%99%E3%80%81%E6%8B%A5%E6%9C%89"><span class="toc-number">3.</span> <span class="toc-text">3.Web 3.0 读、写、拥有</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-DYOR"><span class="toc-number">4.</span> <span class="toc-text">4.DYOR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%B0%BE%E5%B7%B4"><span class="toc-number">5.</span> <span class="toc-text">5.尾巴</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        浅谈Web3.0
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Giesen</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-10-06T02:50:24.000Z" itemprop="datePublished">2022-10-06</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><img src="https://s2.loli.net/2022/10/06/7SvpeZ5PJsH48Qy.png"></p>
+<h3 id="1-Web-1-0-阅读时代"><a href="#1-Web-1-0-阅读时代" class="headerlink" title="1.Web 1.0 阅读时代"></a>1.Web 1.0 阅读时代</h3><p>像一个单向系统，在 1980 年到 2000 年的第一个 Web 1.0 中，网页创建者编写内容，而其他用户仅获取信息并阅读。活动非常有限且静态。典型的代表就是当年的互联网大哥大雅虎以及国内的网易、新浪、搜狐这些门户网站。</p>
+<h3 id="2-Web-2-0-读与写"><a href="#2-Web-2-0-读与写" class="headerlink" title="2.Web 2.0 读与写"></a>2.Web 2.0 读与写</h3><p>随着互联网的发展，在 Web 2.0 中，出现了 Facebook、YouTube、Twitter 、微博、轻博客等各种社交媒体，并成为用户之间进行交互、交换信息的一种形式。创建了以用户为中心的服务和平台，内容创建者和消费者可以在其中见面和交流。而数据主要存储集中存储。</p>
+<h3 id="3-Web-3-0-读、写、拥有"><a href="#3-Web-3-0-读、写、拥有" class="headerlink" title="3.Web 3.0 读、写、拥有"></a>3.Web 3.0 读、写、拥有</h3><p><img src="https://s2.loli.net/2022/10/06/xpyPWYzfV6jQO4v.png"></p>
+<p>即将到来的 Web 3.0 中，人工智能、区块链、AR、VR 等新技术将模糊现实世界与数字世界的界限，人们在数字世界中花费的时间将比现在更多。随着 Web 3.0 应用程序变得更加开放和互操作，每个用户的参与和权限变得比特定平台的权限更重要。个人数字资产所有权和数据主权的重要性也在增长，比如说 NFT——创作者可以画一幅画放在链上供别人欣赏，但是创作者拥有它的所有权，只有他能够对这幅画进行一些链上的操作。而数据将以去中心化的方式连接存储。</p>
+<p>Web 3.0 是一系列协议和支持的集成平台，使这些应用程序、服务和货币成为可能。在 Web 3.0 中，用户还可以通过使用人工智能和机器学习技术与数据进行交互。Web 3.0 是由纽约时报的 John Markoff 创建的，即所谓的第 3 代基于 Internet 的服务。</p>
+<p>Apple 的 Siri 或 Alexa 是 Web 3.0 应用程序的一个示例，它可以拥有大量信息，并将其转化为对人有用的知识和行为。</p>
+<p>Web 3.0 是一个数字世界，可以像拥有笔记本电脑或汽车一样拥有自己的数字数据，这是一个可以完全控制的地方。在以太坊的上下文中，Web 3.0 是指在区块链上运行的去中心化应用程序。Web 3.0 是区块链吗？ 这是一个容易犯的错误，Web 3.0 不是区块链，是由区块链驱动的最新一代互联网应用程序和服务。这取决于机器学习和人工智能 (AI) 的使用。</p>
+<p>而 Web 3.0 的新浪潮就是元宇宙<a target="_blank" rel="noopener" href="https://giesen.top/posts/9e856764.html">Metaverse</a>的概念的出现。元宇宙将从根本上改变我们与数字世界互动的方式。它试图创建更开放、连接和智能的网站和 Web 应用程序，重点是使用基于机器的更好地理解数据。</p>
+<p>Web 3.0 将提供一个分散的网络并基于公共区块链。在 Web 3.0 中，数据为去中心化的，不归集中的公司或政府所有，而是由所有人共享。Web 3.0 可以提高数据的安全性、隐私性和可扩展性，这在 Web 2.0 平台上是不可能的。Web 3.0 主要基于区块链技术，例如各种加密货币和不可替代的代币（NFT）。</p>
+<h3 id="4-DYOR"><a href="#4-DYOR" class="headerlink" title="4.DYOR"></a>4.DYOR</h3><ul>
+<li>保持理性</li>
+<li><strong>Do Your Own Research</strong></li>
+</ul>
+<h3 id="5-尾巴"><a href="#5-尾巴" class="headerlink" title="5.尾巴"></a>5.尾巴</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Web3">Web3 - 维基百科，自由的百科全书</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/341559382/answer/795552308">web3.0 指的是什么？未来将有怎样的发展？ - 知乎</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=YdWP-wJh9jA&feature=youtu.be">Web3.0到底是怎么回事儿？ - YouTube</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Web-1-0-%E9%98%85%E8%AF%BB%E6%97%B6%E4%BB%A3"><span class="toc-number">1.</span> <span class="toc-text">1.Web 1.0 阅读时代</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Web-2-0-%E8%AF%BB%E4%B8%8E%E5%86%99"><span class="toc-number">2.</span> <span class="toc-text">2.Web 2.0 读与写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Web-3-0-%E8%AF%BB%E3%80%81%E5%86%99%E3%80%81%E6%8B%A5%E6%9C%89"><span class="toc-number">3.</span> <span class="toc-text">3.Web 3.0 读、写、拥有</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-DYOR"><span class="toc-number">4.</span> <span class="toc-text">4.DYOR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%B0%BE%E5%B7%B4"><span class="toc-number">5.</span> <span class="toc-text">5.尾巴</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/c4e9bc91.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/c4e9bc91.html&text=浅谈Web3.0"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/c4e9bc91.html&title=浅谈Web3.0"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/c4e9bc91.html&is_video=false&description=浅谈Web3.0"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=浅谈Web3.0&body=Check out this article: http://example.com/posts/c4e9bc91.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/c4e9bc91.html&title=浅谈Web3.0"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/c4e9bc91.html&title=浅谈Web3.0"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/c4e9bc91.html&title=浅谈Web3.0"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/c4e9bc91.html&title=浅谈Web3.0"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/c4e9bc91.html&name=浅谈Web3.0&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/c4e9bc91.html&t=浅谈Web3.0"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2022
+    Giesen
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?816b9aa62faaa826317c7a6ab717a247";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
