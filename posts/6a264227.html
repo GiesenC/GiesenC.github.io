@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="基于Scala常规客户信息管理系统实现Customer.scala12345678910111213141516171819202122232425262728293031323334package giesen.Model    class Customer &amp;#123;    &#x2F;&#x2F; 属性    var id: Int &#x3D; _    var name: String &#x3D; _    var gen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scala版客户信息管理系统">
+<meta property="og:url" content="http://example.com/posts/6a264227.html">
+<meta property="og:site_name" content="Giesen × Blog">
+<meta property="og:description" content="基于Scala常规客户信息管理系统实现Customer.scala12345678910111213141516171819202122232425262728293031323334package giesen.Model    class Customer &amp;#123;    &#x2F;&#x2F; 属性    var id: Int &#x3D; _    var name: String &#x3D; _    var gen">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-10T09:48:49.000Z">
+<meta property="article:modified_time" content="2022-11-10T09:49:36.734Z">
+<meta property="article:author" content="Giesen">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/logo.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/logo-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-apple-180x180.png">
+        
+      
+    
+    <!-- title -->
+    <title>Scala版客户信息管理系统</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/posts/450295e5.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/6a264227.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/6a264227.html&text=Scala版客户信息管理系统"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/6a264227.html&title=Scala版客户信息管理系统"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/6a264227.html&is_video=false&description=Scala版客户信息管理系统"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Scala版客户信息管理系统&body=Check out this article: http://example.com/posts/6a264227.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/6a264227.html&title=Scala版客户信息管理系统"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/6a264227.html&title=Scala版客户信息管理系统"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/6a264227.html&title=Scala版客户信息管理系统"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/6a264227.html&title=Scala版客户信息管理系统"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/6a264227.html&name=Scala版客户信息管理系统&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/6a264227.html&t=Scala版客户信息管理系统"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EScala%E5%B8%B8%E8%A7%84%E5%AE%A2%E6%88%B7%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text">基于Scala常规客户信息管理系统实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Customer-scala"><span class="toc-number">1.1.</span> <span class="toc-text">Customer.scala</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CustomerService-scala"><span class="toc-number">1.2.</span> <span class="toc-text">CustomerService.scala</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CustomerView-scala"><span class="toc-number">1.3.</span> <span class="toc-text">CustomerView.scala</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CustomerCrm-scala"><span class="toc-number">1.4.</span> <span class="toc-text">CustomerCrm.scala</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%BE%E5%B7%B4"><span class="toc-number">2.</span> <span class="toc-text">尾巴</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Scala版客户信息管理系统
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Giesen</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-11-10T09:48:49.000Z" itemprop="datePublished">2022-11-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="基于Scala常规客户信息管理系统实现"><a href="#基于Scala常规客户信息管理系统实现" class="headerlink" title="基于Scala常规客户信息管理系统实现"></a>基于Scala常规客户信息管理系统实现</h2><h3 id="Customer-scala"><a href="#Customer-scala" class="headerlink" title="Customer.scala"></a>Customer.scala</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> giesen.<span class="type">Model</span>  </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;  </span><br><span class="line">  <span class="comment">// 属性  </span></span><br><span class="line">  <span class="keyword">var</span> id: <span class="type">Int</span> = _  </span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span> = _  </span><br><span class="line">  <span class="keyword">var</span> gender: <span class="type">Char</span> = _  </span><br><span class="line">  <span class="keyword">var</span> age: <span class="type">Short</span> = _  </span><br><span class="line">  <span class="keyword">var</span> tel: <span class="type">String</span> = _  </span><br><span class="line">  <span class="keyword">var</span> email: <span class="type">String</span> = _  </span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 设计一个辅助构造器  </span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">this</span></span>(id: <span class="type">Int</span>, name: <span class="type">String</span>, gender: <span class="type">Char</span>, age: <span class="type">Short</span>, tel: <span class="type">String</span>, email: <span class="type">String</span>) &#123;  </span><br><span class="line">    <span class="keyword">this</span>  </span><br><span class="line">    <span class="keyword">this</span>.id = id  </span><br><span class="line">    <span class="keyword">this</span>.name = name  </span><br><span class="line">    <span class="keyword">this</span>.gender = gender  </span><br><span class="line">    <span class="keyword">this</span>.age = age  </span><br><span class="line">    <span class="keyword">this</span>.tel = tel  </span><br><span class="line">    <span class="keyword">this</span>.email = email  </span><br><span class="line">  &#125;  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">this</span></span>(name: <span class="type">String</span>, gender: <span class="type">Char</span>, age: <span class="type">Short</span>, tel: <span class="type">String</span>, email: <span class="type">String</span>) &#123;  </span><br><span class="line">    <span class="keyword">this</span>  </span><br><span class="line">    <span class="keyword">this</span>.name = name  </span><br><span class="line">    <span class="keyword">this</span>.gender = gender  </span><br><span class="line">    <span class="keyword">this</span>.age = age  </span><br><span class="line">    <span class="keyword">this</span>.tel = tel  </span><br><span class="line">    <span class="keyword">this</span>.email = email  </span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">toString</span></span>: <span class="type">String</span> = &#123;  </span><br><span class="line">    <span class="keyword">this</span>.id + <span class="string">&quot;\t\t&quot;</span> + <span class="keyword">this</span>.name + <span class="string">&quot;\t\t&quot;</span> + <span class="keyword">this</span>.gender + <span class="string">&quot;\t\t&quot;</span> + <span class="keyword">this</span>.age + <span class="string">&quot;\t\t&quot;</span> + <span class="keyword">this</span>.tel + <span class="string">&quot;\t\t&quot;</span> + <span class="keyword">this</span>.email  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="CustomerService-scala"><a href="#CustomerService-scala" class="headerlink" title="CustomerService.scala"></a>CustomerService.scala</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> giesen.<span class="type">Business</span>  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> giesen.<span class="type">Model</span>.<span class="type">Customer</span>  </span><br><span class="line"><span class="keyword">import</span> scala.collection.mutable.<span class="type">ArrayBuffer</span>  </span><br><span class="line"><span class="keyword">import</span> scala.util.control.<span class="type">Breaks</span>.&#123;<span class="keyword">break</span>, breakable&#125;  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomerService</span> </span>&#123;  </span><br><span class="line">  <span class="keyword">var</span> customerNum = <span class="number">1</span>  </span><br><span class="line">  <span class="comment">// customers是存放客户的，这里先初始化  </span></span><br><span class="line">  <span class="keyword">val</span> customers: <span class="type">ArrayBuffer</span>[<span class="type">Customer</span>] =  </span><br><span class="line">    <span class="type">ArrayBuffer</span>(<span class="keyword">new</span> <span class="type">Customer</span>(<span class="number">1</span>, <span class="string">&quot;张三&quot;</span>, &#x27;男&#x27;, <span class="number">20</span>, <span class="string">&quot;10000000000&quot;</span>, <span class="string">&quot;test@qq.com&quot;</span>))  </span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">list</span></span>(): <span class="type">ArrayBuffer</span>[<span class="type">Customer</span>] = &#123;  </span><br><span class="line">    <span class="keyword">this</span>.customers  </span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(customer: <span class="type">Customer</span>): <span class="type">Boolean</span> = &#123;  </span><br><span class="line">    <span class="comment">// 设置id  </span></span><br><span class="line">    customerNum += <span class="number">1</span>  </span><br><span class="line">    customer.id = customerNum  </span><br><span class="line">    <span class="comment">// 加入到customers  </span></span><br><span class="line">    customers += customer  </span><br><span class="line">    <span class="literal">true</span>  </span><br><span class="line">  &#125;  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">delete</span></span>(id: <span class="type">Int</span>) :<span class="type">Boolean</span> = &#123;  </span><br><span class="line">    <span class="keyword">val</span> index = findIndexById(id)  </span><br><span class="line">    <span class="keyword">if</span>(index != <span class="number">-1</span>)&#123;  </span><br><span class="line">      <span class="comment">// 去删除  </span></span><br><span class="line">      customers.remove(index)  </span><br><span class="line">      <span class="literal">true</span>  </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">      <span class="literal">false</span>  </span><br><span class="line">    &#125;  </span><br><span class="line">  &#125;  </span><br><span class="line">  <span class="comment">// 根据id找到index  </span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">findIndexById</span></span>(id: <span class="type">Int</span>): <span class="type">Int</span> = &#123;  </span><br><span class="line">    <span class="comment">// 默认-1 找到就改成对应的,找不到就返回-1  </span></span><br><span class="line">    <span class="keyword">var</span> index = <span class="number">-1</span>  </span><br><span class="line">    <span class="comment">// 遍历ArrayBuffer  </span></span><br><span class="line">    breakable&#123;  </span><br><span class="line">      <span class="keyword">for</span> (i &lt;- customers.indices) &#123;  </span><br><span class="line">        <span class="keyword">if</span>(customers(i).id == id)&#123;  </span><br><span class="line">          index = i  </span><br><span class="line">          <span class="keyword">break</span>()  </span><br><span class="line">        &#125;  </span><br><span class="line">      &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    index  </span><br><span class="line">  &#125;  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">findCustomerById</span></span>(id:<span class="type">Int</span>):<span class="type">Any</span> = &#123;  </span><br><span class="line">    <span class="keyword">val</span> index = findIndexById(id)  </span><br><span class="line">    <span class="keyword">if</span>(index != <span class="number">-1</span>)&#123;  </span><br><span class="line">      <span class="keyword">return</span> customers(index)  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="literal">false</span>  </span><br><span class="line">  &#125;  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">update</span></span>(id:<span class="type">Int</span>,customer: <span class="type">Customer</span>):<span class="type">Boolean</span> =&#123;  </span><br><span class="line">    <span class="keyword">val</span> index = findIndexById(id)  </span><br><span class="line">    <span class="keyword">if</span>(index != <span class="number">-1</span>)&#123;  </span><br><span class="line">      <span class="keyword">val</span> customerFromArray = customers(index)  </span><br><span class="line">      <span class="keyword">if</span>(customer.name != <span class="literal">null</span> &amp;&amp; customer.name != <span class="string">&quot;&quot;</span>)&#123;  </span><br><span class="line">        customerFromArray.name = customer.name  </span><br><span class="line">      &#125;  </span><br><span class="line">      <span class="keyword">if</span> (customer.gender == &#x27;男&#x27;  || customer.gender == &#x27;女&#x27;) &#123;  </span><br><span class="line">        customerFromArray.gender = customer.gender  </span><br><span class="line">      &#125;  </span><br><span class="line">      <span class="keyword">if</span> (customer.age &gt;= <span class="number">0</span>) &#123;  </span><br><span class="line">        customerFromArray.age = customer.age  </span><br><span class="line">      &#125;  </span><br><span class="line">      <span class="keyword">if</span> (customer.tel != <span class="literal">null</span> &amp;&amp; customer.tel != <span class="string">&quot;&quot;</span>) &#123;  </span><br><span class="line">        customerFromArray.tel = customer.tel  </span><br><span class="line">      &#125;  </span><br><span class="line">      <span class="keyword">if</span> (customer.email != <span class="literal">null</span> &amp;&amp; customer.email != <span class="string">&quot;&quot;</span>) &#123;  </span><br><span class="line">        customerFromArray.email = customer.email  </span><br><span class="line">      &#125;  </span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="literal">false</span>  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="CustomerView-scala"><a href="#CustomerView-scala" class="headerlink" title="CustomerView.scala"></a>CustomerView.scala</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> giesen.<span class="type">Interface</span>  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> giesen.<span class="type">Business</span>.<span class="type">CustomerService</span>  </span><br><span class="line"><span class="keyword">import</span> giesen.<span class="type">Model</span>.<span class="type">Customer</span>  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> scala.io.<span class="type">StdIn</span>  </span><br><span class="line"><span class="keyword">import</span> scala.util.control.<span class="type">Breaks</span>.&#123;<span class="keyword">break</span>, breakable&#125;  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomerView</span> </span>&#123;  </span><br><span class="line">  <span class="comment">// 定义一个循环变量，控制是否退出while  </span></span><br><span class="line">  <span class="keyword">var</span> loop = <span class="literal">true</span>  </span><br><span class="line">  <span class="comment">// 定义一个key,用于接收用户输入的选项  </span></span><br><span class="line">  <span class="keyword">var</span> key = &#x27; &#x27;  </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> customerService = <span class="keyword">new</span> <span class="type">CustomerService</span>()  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mainMenu</span></span>(): <span class="type">Unit</span> = &#123;  </span><br><span class="line">    do &#123;  </span><br><span class="line">      println(<span class="string">&quot;-----------------Game customer information management software-----------------&quot;</span>)  </span><br><span class="line">      println(<span class="string">&quot;1 Add a game play guest&quot;</span>)  </span><br><span class="line">      println(<span class="string">&quot;2 Repair and change tour play guest&quot;</span>)  </span><br><span class="line">      println(<span class="string">&quot;3 Delete the game user account&quot;</span>)  </span><br><span class="line">      println(<span class="string">&quot;4 Play guest list&quot;</span>)  </span><br><span class="line">      println(<span class="string">&quot;5 Back out&quot;</span>)  </span><br><span class="line">      println(<span class="string">&quot;Please select (1-5)：&quot;</span>)  </span><br><span class="line">      key = <span class="type">StdIn</span>.readChar()  </span><br><span class="line">      key <span class="keyword">match</span> &#123;  </span><br><span class="line">        <span class="keyword">case</span> &#x27;<span class="number">1</span>&#x27; =&gt; <span class="keyword">this</span>.add()  </span><br><span class="line">        <span class="keyword">case</span> &#x27;<span class="number">2</span>&#x27; =&gt; <span class="keyword">this</span>.update()  </span><br><span class="line">        <span class="keyword">case</span> &#x27;<span class="number">3</span>&#x27; =&gt; <span class="keyword">this</span>.delete()  </span><br><span class="line">        <span class="keyword">case</span> &#x27;<span class="number">4</span>&#x27; =&gt; <span class="keyword">this</span>.list()  </span><br><span class="line">        <span class="keyword">case</span> &#x27;<span class="number">5</span>&#x27; =&gt; <span class="keyword">this</span>.quit()  </span><br><span class="line">        <span class="keyword">case</span> _ =&gt; println(<span class="string">&quot;Please choose again!&quot;</span>)  </span><br><span class="line">      &#125;  </span><br><span class="line">    &#125; <span class="keyword">while</span> (loop)  </span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">quit</span></span>(): <span class="type">Unit</span> = &#123;  </span><br><span class="line">    println(<span class="string">&quot;Confirm whether to exit (Y/N)：&quot;</span>)  </span><br><span class="line">    <span class="keyword">var</span> choice = &#x27; &#x27;  </span><br><span class="line">    breakable &#123;  </span><br><span class="line">      <span class="keyword">while</span> (<span class="literal">true</span>) &#123;  </span><br><span class="line">  </span><br><span class="line">        choice = <span class="type">StdIn</span>.readChar().toLower  </span><br><span class="line">        <span class="keyword">if</span> (choice != &#x27;y&#x27; || choice != &#x27;n&#x27;) &#123;  </span><br><span class="line">          println(<span class="string">&quot;Confirm whether to exit (Y/N)：&quot;</span>)  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">if</span> (choice == &#x27;n&#x27;) &#123;  </span><br><span class="line">          <span class="keyword">break</span>()  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">if</span> (choice == &#x27;y&#x27;) &#123;  </span><br><span class="line">          <span class="keyword">this</span>.loop = <span class="literal">false</span>  </span><br><span class="line">          <span class="keyword">break</span>()  </span><br><span class="line">        &#125;  </span><br><span class="line">      &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">list</span></span>(): <span class="type">Unit</span> = &#123;  </span><br><span class="line">    println()  </span><br><span class="line">    println(<span class="string">&quot;---------------------------Game Client List---------------------------&quot;</span>)  </span><br><span class="line">    println(<span class="string">&quot;Number\tName\tGender\t\tAge\t\tTelephone\t\tMail&quot;</span>)  </span><br><span class="line">    <span class="comment">// for循环遍历  </span></span><br><span class="line">    <span class="comment">// 获取customers  </span></span><br><span class="line">    <span class="keyword">val</span> customers = customerService.list()  </span><br><span class="line">    <span class="keyword">for</span> (customer &lt;- customers) &#123;  </span><br><span class="line">      <span class="comment">// 重写customer的toString方法  </span></span><br><span class="line">      println(customer)  </span><br><span class="line">    &#125;  </span><br><span class="line">    println(<span class="string">&quot;-------------------------The game client list is complete-------------------------&quot;</span>)  </span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(): <span class="type">Unit</span> = &#123;  </span><br><span class="line">    println(<span class="string">&quot;&quot;</span>)  </span><br><span class="line">    println(<span class="string">&quot;---------------------Add game customers---------------------&quot;</span>)  </span><br><span class="line">    println(<span class="string">&quot;Name：&quot;</span>)  </span><br><span class="line">    <span class="keyword">val</span> name = <span class="type">StdIn</span>.readLine()  </span><br><span class="line">    println(<span class="string">&quot;Gender：&quot;</span>)  </span><br><span class="line">    <span class="keyword">val</span> gender = <span class="type">StdIn</span>.readChar()  </span><br><span class="line">    println(<span class="string">&quot;Age：&quot;</span>)  </span><br><span class="line">    <span class="keyword">val</span> age = <span class="type">StdIn</span>.readShort()  </span><br><span class="line">    println(<span class="string">&quot;Telephone：&quot;</span>)  </span><br><span class="line">    <span class="keyword">val</span> tel = <span class="type">StdIn</span>.readLine()  </span><br><span class="line">    println(<span class="string">&quot;Mail：&quot;</span>)  </span><br><span class="line">    <span class="keyword">val</span> email = <span class="type">StdIn</span>.readLine()  </span><br><span class="line">    <span class="comment">// 构建对象  </span></span><br><span class="line">    <span class="keyword">val</span> customer = <span class="keyword">new</span> <span class="type">Customer</span>(name, gender, age, tel, email)  </span><br><span class="line">    customerService.add(customer)  </span><br><span class="line">    println(<span class="string">&quot;---------------------Add to complete---------------------&quot;</span>)  </span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">delete</span></span>(): <span class="type">Unit</span> = &#123;  </span><br><span class="line">    println(<span class="string">&quot;&quot;</span>)  </span><br><span class="line">    println(<span class="string">&quot;---------------------Deleting Game Clients---------------------&quot;</span>)  </span><br><span class="line">    println(<span class="string">&quot;Select the customer number of the game to be deleted (-1 Exit)：&quot;</span>)  </span><br><span class="line">    <span class="keyword">val</span> id = <span class="type">StdIn</span>.readInt()  </span><br><span class="line">    <span class="keyword">if</span> (id == <span class="number">-1</span>) &#123;  </span><br><span class="line">      println(<span class="string">&quot;---------------------Delete failed---------------------&quot;</span>)  </span><br><span class="line">      <span class="keyword">return</span>  </span><br><span class="line">    &#125;  </span><br><span class="line">    println(<span class="string">&quot;Confirm whether to delete (Y/N)：&quot;</span>)  </span><br><span class="line">    <span class="keyword">var</span> choice = &#x27; &#x27;  </span><br><span class="line">    breakable &#123;  </span><br><span class="line">      do &#123;  </span><br><span class="line">        choice = <span class="type">StdIn</span>.readChar().toLower  </span><br><span class="line">        <span class="keyword">if</span> (choice == &#x27;y&#x27; || choice == &#x27;n&#x27;) &#123;  </span><br><span class="line">          <span class="keyword">break</span>()  </span><br><span class="line">        &#125;  </span><br><span class="line">        println(<span class="string">&quot;Confirm whether to delete (Y/N)：&quot;</span>)  </span><br><span class="line">      &#125; <span class="keyword">while</span> (<span class="literal">true</span>)  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">if</span> (choice == &#x27;y&#x27;) &#123;  </span><br><span class="line">      <span class="keyword">if</span> (customerService.delete(id)) &#123;  </span><br><span class="line">        println(<span class="string">&quot;---------------------Deleting completed---------------------&quot;</span>)  </span><br><span class="line">        <span class="keyword">return</span>  </span><br><span class="line">      &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    println(<span class="string">&quot;---------------------Delete failed---------------------&quot;</span>)  </span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">update</span></span>(): <span class="type">Unit</span> =&#123;  </span><br><span class="line">    println(<span class="string">&quot;&quot;</span>)  </span><br><span class="line">    println(<span class="string">&quot;---------------------Modifying Game Clients---------------------&quot;</span>)  </span><br><span class="line">    println(<span class="string">&quot;Select the customer ID of the game you want to modify (-1 Exit)：&quot;</span>)  </span><br><span class="line">    <span class="keyword">val</span> id = <span class="type">StdIn</span>.readInt()  </span><br><span class="line">    <span class="keyword">if</span>(id == <span class="number">-1</span>)&#123;  </span><br><span class="line">      println(<span class="string">&quot;---------------------Modify the failure---------------------&quot;</span>)  </span><br><span class="line">      <span class="keyword">return</span>  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">val</span> customerFromArray = customerService.findCustomerById(id)  </span><br><span class="line">    <span class="keyword">if</span>(customerFromArray.isInstanceOf[<span class="type">Boolean</span>])&#123;  </span><br><span class="line">      println(<span class="string">&quot;---------------------The user does not exist---------------------&quot;</span>)  </span><br><span class="line">      update()  </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">      <span class="keyword">val</span> customerFromService = customerFromArray.asInstanceOf[<span class="type">Customer</span>]  </span><br><span class="line">      <span class="keyword">var</span> name = <span class="string">&quot;&quot;</span>  </span><br><span class="line">      <span class="keyword">var</span> gender = &#x27; &#x27;  </span><br><span class="line">      <span class="keyword">var</span> age : <span class="type">Short</span> = <span class="number">-1</span>  </span><br><span class="line">      <span class="keyword">var</span> tel = <span class="string">&quot;&quot;</span>  </span><br><span class="line">      <span class="keyword">var</span> email = <span class="string">&quot;&quot;</span>  </span><br><span class="line">      println(<span class="string">s&quot;Name(<span class="subst">$&#123;customerFromService.name&#125;</span>)：&quot;</span>)  </span><br><span class="line">      name = <span class="type">StdIn</span>.readLine()  </span><br><span class="line">      println(<span class="string">s&quot;Gender：(<span class="subst">$&#123;customerFromService.gender&#125;</span>)：&quot;</span>)  </span><br><span class="line">      gender = <span class="type">StdIn</span>.readChar()  </span><br><span class="line">      println(<span class="string">s&quot;Age：(<span class="subst">$&#123;customerFromService.age&#125;</span>)：&quot;</span>)  </span><br><span class="line">      age = <span class="type">StdIn</span>.readShort()  </span><br><span class="line">      println(<span class="string">s&quot;Telephone：(<span class="subst">$&#123;customerFromService.tel&#125;</span>)：&quot;</span>)  </span><br><span class="line">      tel = <span class="type">StdIn</span>.readLine()  </span><br><span class="line">      println(<span class="string">s&quot;Mail：(<span class="subst">$&#123;customerFromService.email&#125;</span>)：&quot;</span>)  </span><br><span class="line">      email = <span class="type">StdIn</span>.readLine()  </span><br><span class="line">      <span class="comment">// 构建对象  </span></span><br><span class="line">      <span class="keyword">val</span> customer = <span class="keyword">new</span> <span class="type">Customer</span>(name, gender, age, tel, email)  </span><br><span class="line">      <span class="keyword">val</span> isUpdated = customerService.update(id, customer)  </span><br><span class="line">      <span class="keyword">if</span>(isUpdated)&#123;  </span><br><span class="line">        println(<span class="string">&quot;---------------------Modified to complete---------------------&quot;</span>)  </span><br><span class="line">        <span class="keyword">return</span>  </span><br><span class="line">      &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    println(<span class="string">&quot;---------------------Modify the failure---------------------&quot;</span>)  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="CustomerCrm-scala"><a href="#CustomerCrm-scala" class="headerlink" title="CustomerCrm.scala"></a>CustomerCrm.scala</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> giesen.<span class="type">Interface</span>.<span class="type">CustomerView</span>  </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">CustomerCrm</span> </span>&#123;  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;  </span><br><span class="line">    <span class="keyword">new</span> <span class="type">CustomerView</span>().mainMenu()  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="尾巴"><a href="#尾巴" class="headerlink" title="尾巴"></a>尾巴</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/">Learn Scala | Scala Documentation</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EScala%E5%B8%B8%E8%A7%84%E5%AE%A2%E6%88%B7%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text">基于Scala常规客户信息管理系统实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Customer-scala"><span class="toc-number">1.1.</span> <span class="toc-text">Customer.scala</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CustomerService-scala"><span class="toc-number">1.2.</span> <span class="toc-text">CustomerService.scala</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CustomerView-scala"><span class="toc-number">1.3.</span> <span class="toc-text">CustomerView.scala</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CustomerCrm-scala"><span class="toc-number">1.4.</span> <span class="toc-text">CustomerCrm.scala</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%BE%E5%B7%B4"><span class="toc-number">2.</span> <span class="toc-text">尾巴</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/6a264227.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/6a264227.html&text=Scala版客户信息管理系统"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/6a264227.html&title=Scala版客户信息管理系统"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/6a264227.html&is_video=false&description=Scala版客户信息管理系统"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Scala版客户信息管理系统&body=Check out this article: http://example.com/posts/6a264227.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/6a264227.html&title=Scala版客户信息管理系统"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/6a264227.html&title=Scala版客户信息管理系统"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/6a264227.html&title=Scala版客户信息管理系统"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/6a264227.html&title=Scala版客户信息管理系统"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/6a264227.html&name=Scala版客户信息管理系统&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/6a264227.html&t=Scala版客户信息管理系统"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2022
+    Giesen
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?816b9aa62faaa826317c7a6ab717a247";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
