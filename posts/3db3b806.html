@@ -13,16 +13,16 @@
 <meta property="og:site_name" content="Giesen × Blog">
 <meta property="og:description" content="数据库名&#x3D;demo；表名&#x3D;user；字符集&#x3D;utf8；  1.操作数据库1.1.数据库连接123mysql -u 用户名 -p 用户密码#mysql -u root -p    1.2.创建数据库1create database demo;    1.3.判断是否存在并创建1create database if not exists demo;    1.4.指定字符集创建1create dat">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://s2.loli.net/2022/02/18/7IeTZKaJq4RNsUx.png">
-<meta property="og:image" content="https://s2.loli.net/2022/02/18/YBxFn1vGhRbezCP.png">
-<meta property="og:image" content="https://s2.loli.net/2022/02/18/TdxjgNKCJ2p46Wn.png">
-<meta property="og:image" content="https://s2.loli.net/2022/02/18/mIMP9yXH5FbuwiC.png">
-<meta property="og:image" content="https://s2.loli.net/2022/02/18/sra7AS8yohbnDFq.png">
+<meta property="og:image" content="https://giesen-images.oss-cn-hongkong.aliyuncs.com/mysql%E7%B1%BB%E5%9E%8B.png">
+<meta property="og:image" content="https://giesen-images.oss-cn-hongkong.aliyuncs.com/mysql_inner.png">
+<meta property="og:image" content="https://giesen-images.oss-cn-hongkong.aliyuncs.com/mysql_left.png">
+<meta property="og:image" content="https://giesen-images.oss-cn-hongkong.aliyuncs.com/mysql_right.png">
+<meta property="og:image" content="https://giesen-images.oss-cn-hongkong.aliyuncs.com/password_sql.png">
 <meta property="article:published_time" content="2022-01-18T14:37:51.000Z">
-<meta property="article:modified_time" content="2022-02-18T14:39:19.553Z">
+<meta property="article:modified_time" content="2022-11-20T07:52:19.000Z">
 <meta property="article:author" content="Giesen">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s2.loli.net/2022/02/18/7IeTZKaJq4RNsUx.png">
+<meta name="twitter:image" content="https://giesen-images.oss-cn-hongkong.aliyuncs.com/mysql%E7%B1%BB%E5%9E%8B.png">
     
     
       
@@ -198,7 +198,7 @@
 <hr>
 <h3 id="2-操作表和列"><a href="#2-操作表和列" class="headerlink" title="2.操作表和列"></a>2.操作表和列</h3><h4 id="2-1-创建表"><a href="#2-1-创建表" class="headerlink" title="2.1.创建表"></a>2.1.创建表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">user</span> (  </span><br><span class="line">id <span class="type">int</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,  </span><br><span class="line">name <span class="type">varchar</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> comment ‘用户名’,  </span><br><span class="line">age <span class="type">int</span>(<span class="number">3</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> comment ‘年龄’,  </span><br><span class="line">createtime <span class="type">timestamp</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> <span class="keyword">ON</span> UPDATE <span class="built_in">CURRENT_TIMESTAMP</span> comment ‘创建时间’,  </span><br><span class="line"><span class="keyword">PRIMARY</span> KEY (id)  </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://s2.loli.net/2022/02/18/7IeTZKaJq4RNsUx.png"></p>
+<p><img src="https://giesen-images.oss-cn-hongkong.aliyuncs.com/mysql%E7%B1%BB%E5%9E%8B.png"></p>
 <h4 id="2-2-查看该数据库中所有表"><a href="#2-2-查看该数据库中所有表" class="headerlink" title="2.2.查看该数据库中所有表"></a>2.2.查看该数据库中所有表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> tables;</span><br></pre></td></tr></table></figure>
 
 
@@ -428,13 +428,13 @@
 <hr>
 <h3 id="10-连接查询"><a href="#10-连接查询" class="headerlink" title="10.连接查询"></a>10.连接查询</h3><h4 id="10-1-内连接查询"><a href="#10-1-内连接查询" class="headerlink" title="10.1.内连接查询"></a>10.1.内连接查询</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> user1 <span class="keyword">inner</span> <span class="keyword">join</span> user2 <span class="keyword">on</span> user1.id <span class="operator">=</span> user2.id;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://s2.loli.net/2022/02/18/YBxFn1vGhRbezCP.png"></p>
+<p><img src="https://giesen-images.oss-cn-hongkong.aliyuncs.com/mysql_inner.png"></p>
 <h4 id="10-2-左连接查询"><a href="#10-2-左连接查询" class="headerlink" title="10.2.左连接查询"></a>10.2.左连接查询</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> user1 <span class="keyword">left</span> <span class="keyword">join</span> user2 <span class="keyword">on</span> user1.id <span class="operator">=</span> user2.id;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://s2.loli.net/2022/02/18/TdxjgNKCJ2p46Wn.png"></p>
+<p><img src="https://giesen-images.oss-cn-hongkong.aliyuncs.com/mysql_left.png"></p>
 <h4 id="10-3-右连接查询"><a href="#10-3-右连接查询" class="headerlink" title="10.3.右连接查询"></a>10.3.右连接查询</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> user1 <span class="keyword">right</span> <span class="keyword">join</span> user2 <span class="keyword">on</span> user1.id <span class="operator">=</span> user2.id;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://s2.loli.net/2022/02/18/mIMP9yXH5FbuwiC.png"></p>
+<p><img src="https://giesen-images.oss-cn-hongkong.aliyuncs.com/mysql_right.png"></p>
 <h4 id="10-4-全连接"><a href="#10-4-全连接" class="headerlink" title="10.4.全连接"></a>10.4.全连接</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">select</span> colum1,colum2…<span class="keyword">columN</span> <span class="keyword">from</span> user1) <span class="keyword">union</span> (<span class="keyword">select</span> colum1,colum2…<span class="keyword">columN</span> <span class="keyword">from</span> user2)</span><br></pre></td></tr></table></figure>
 
 
@@ -446,7 +446,7 @@
 <hr>
 <h3 id="11-修改数据库密码"><a href="#11-修改数据库密码" class="headerlink" title="11.修改数据库密码"></a>11.修改数据库密码</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin <span class="operator">-</span>u root <span class="operator">-</span>p password <span class="number">654321</span></span><br><span class="line">#回车后输入原密码确认身份</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://s2.loli.net/2022/02/18/sra7AS8yohbnDFq.png"></p>
+<p><img src="https://giesen-images.oss-cn-hongkong.aliyuncs.com/password_sql.png"></p>
 <h3 id="12-尾巴"><a href="#12-尾巴" class="headerlink" title="12.尾巴"></a>12.尾巴</h3><ul>
 <li><p><a target="_blank" rel="noopener" href="https://www.runoob.com/mysql/mysql-tutorial.html">MySQL 教程 | 菜鸟教程</a></p>
 </li>

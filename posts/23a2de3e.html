@@ -13,14 +13,14 @@
 <meta property="og:site_name" content="Giesen × Blog">
 <meta property="og:description" content="1.快捷别名12345678910111213&#96;st&#96;就表示&#96;status&#96;&#96;co&#96;表示&#96;checkout&#96;&#96;ci&#96;表示&#96;commit&#96;&#96;br&#96;表示&#96;branch&#96;&#96;aborting commit dur to emptu commit message unstage name&#96;表示&#96;git reset HEAD name&#96;&#96;git last&#96;表示&#96;git config --global alia">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://s2.loli.net/2022/01/06/ICjHkhaJlEmXNwW.png">
-<meta property="og:image" content="https://s2.loli.net/2022/01/06/wk5sDubxaigXqRH.png">
-<meta property="og:image" content="https://s2.loli.net/2022/01/06/9MpT5gQnRXyULaq.jpg">
+<meta property="og:image" content="https://giesen-images.oss-cn-hongkong.aliyuncs.com/git_lg.png">
+<meta property="og:image" content="https://giesen-images.oss-cn-hongkong.aliyuncs.com/git_team.png">
+<meta property="og:image" content="https://giesen-images.oss-cn-hongkong.aliyuncs.com/git_Common_Commands.jpg">
 <meta property="article:published_time" content="2021-11-26T13:16:16.000Z">
-<meta property="article:modified_time" content="2022-01-06T13:55:17.872Z">
+<meta property="article:modified_time" content="2022-11-20T07:35:25.000Z">
 <meta property="article:author" content="Giesen">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s2.loli.net/2022/01/06/ICjHkhaJlEmXNwW.png">
+<meta name="twitter:image" content="https://giesen-images.oss-cn-hongkong.aliyuncs.com/git_lg.png">
     
     
       
@@ -153,8 +153,9 @@
     <h3 id="1-快捷别名"><a href="#1-快捷别名" class="headerlink" title="1.快捷别名"></a>1.快捷别名</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">`st`就表示`status`</span><br><span class="line"></span><br><span class="line">`co`表示`checkout`</span><br><span class="line"></span><br><span class="line">`ci`表示`commit`</span><br><span class="line"></span><br><span class="line">`br`表示`branch`</span><br><span class="line"></span><br><span class="line">`aborting commit dur to emptu commit message unstage name`表示`git reset HEAD name`</span><br><span class="line"></span><br><span class="line">`git last`表示`git config --global alias.last &#x27;log -1&#x27;`显示最近一次的提交</span><br><span class="line"></span><br><span class="line">`git lg`表示`git config --global alias.lg &quot;log --color --graph --pretty=format:&#x27;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#x27; --abbrev-commit&quot;`</span><br></pre></td></tr></table></figure>
 
 <p>如图：</p>
-<p><img src="https://s2.loli.net/2022/01/06/ICjHkhaJlEmXNwW.png"></p>
-<h3 id="2-时光机穿梭"><a href="#2-时光机穿梭" class="headerlink" title="2.时光机穿梭"></a>2.时光机穿梭</h3><h4 id="2-1-版本回退"><a href="#2-1-版本回退" class="headerlink" title="2.1.版本回退"></a>2.1.版本回退</h4><p>要随时掌控工作区状态，使用<code>git status</code>命令</p>
+<p><img src="https://giesen-images.oss-cn-hongkong.aliyuncs.com/git_lg.png"></p>
+<h3 id="2-时光机穿梭"><a href="#2-时光机穿梭" class="headerlink" title="2.时光机穿梭"></a>2.时光机穿梭</h3><p>​    </p>
+<h4 id="2-1-版本回退"><a href="#2-1-版本回退" class="headerlink" title="2.1.版本回退"></a>2.1.版本回退</h4><p>要随时掌控工作区状态，使用<code>git status</code>命令</p>
 <p>如果有文件被修改过用<code>git diff</code>可以查看修改内容</p>
 <p><code>HEAD</code>指向的版本就是当前版本，使用命令<code>git reset --hard commit_id</code>id号一般是前七位</p>
 <p>回退用<code>git log</code>查看提交历史</p>
@@ -182,7 +183,8 @@
 <p> 2.如果你用的是<code>git rm</code>删除文件，那就相当于不仅删除了文件，而且还添加到了暂存区，需要先<code>git reset HEAD &lt;file&gt;</code>，然后再<code>git checkout -- &lt;file&gt;</code> </p>
 <p>3.如果你想彻底把版本库的删除掉，先<code>git rm</code>，再<code>git commit </code>就可以了</p>
 <h6 id="2-5-1-不存在不能恢复-除非把版本记录打乱"><a href="#2-5-1-不存在不能恢复-除非把版本记录打乱" class="headerlink" title="2.5.1.不存在不能恢复 除非把版本记录打乱"></a>2.5.1.不存在不能恢复 除非把版本记录打乱</h6><p><code>git rm file</code>并且<code>git commit</code>并不是删除了版本库里的某个版本号，而是对工作目录下的删除操作进行了一个记录，会在仓库里生成一个新的版本号，在该版本下没有该文件。但是可以用<code>git reset --hard commit_id</code>进行版本回退，回退到有这个文件的版本号。而<code>git checkout commit_id file</code>命令是从含有该文件的旧版本号里把该文件拿出来，放到现版本里，版本号不改变。</p>
-<h3 id="3-远程仓库"><a href="#3-远程仓库" class="headerlink" title="3.远程仓库"></a>3.远程仓库</h3><h4 id="3-1-添加到远程库"><a href="#3-1-添加到远程库" class="headerlink" title="3.1.添加到远程库"></a>3.1.添加到远程库</h4><p>要关联一个远程库，使用命令<code>git remote add origin git@server-name:path/repo-name.git</code></p>
+<h3 id="3-远程仓库"><a href="#3-远程仓库" class="headerlink" title="3.远程仓库"></a>3.远程仓库</h3><p>​    </p>
+<h4 id="3-1-添加到远程库"><a href="#3-1-添加到远程库" class="headerlink" title="3.1.添加到远程库"></a>3.1.添加到远程库</h4><p>要关联一个远程库，使用命令<code>git remote add origin git@server-name:path/repo-name.git</code></p>
 <p>关联后，使用命令<code>git push -u origin master</code>第一次推送master分支的所有内容</p>
 <p>此后，每次本地提交后，只要有必要，就可以使用命令<code>git push origin master</code>推送最新修改</p>
 <p>若出现==fatal: not a git repository (or any of the parent directories): .git==</p>
@@ -193,7 +195,8 @@
 <p>即可添加</p>
 <h4 id="3-2-从远程库克隆"><a href="#3-2-从远程库克隆" class="headerlink" title="3.2.从远程库克隆"></a>3.2.从远程库克隆</h4><p>要克隆一个仓库，首先必须知道仓库的地址，然后使用<code>git clone name</code>命令克隆</p>
 <p>Git支持多种协议，包括<code>https</code>，但<code>ssh</code>协议速度最快</p>
-<h3 id="4-分支管理"><a href="#4-分支管理" class="headerlink" title="4.分支管理"></a>4.分支管理</h3><h4 id="4-1-创建与合并分支"><a href="#4-1-创建与合并分支" class="headerlink" title="4.1.创建与合并分支"></a>4.1.创建与合并分支</h4><p>查看分支：<code>git branch</code></p>
+<h3 id="4-分支管理"><a href="#4-分支管理" class="headerlink" title="4.分支管理"></a>4.分支管理</h3><p>​    </p>
+<h4 id="4-1-创建与合并分支"><a href="#4-1-创建与合并分支" class="headerlink" title="4.1.创建与合并分支"></a>4.1.创建与合并分支</h4><p>查看分支：<code>git branch</code></p>
 <p>创建分支：<code>git branch &lt;name&gt;</code></p>
 <p>切换分支：<code>git checkout &lt;name&gt;</code>或者<code>git switch &lt;name&gt;</code></p>
 <p>创建+切换分支：<code>git checkout -b &lt;name&gt;</code>或者<code>git switch -c &lt;name&gt;</code></p>
@@ -206,7 +209,7 @@
 <p>那在哪干活呢？干活都在<code>dev</code>分支上，也就是说，<code>dev</code>分支是不稳定的，到某个时候，比如1.0版本发布时，再把<code>dev</code>分支合并到<code>master</code>上，在<code>master</code>分支发布1.0版本</p>
 <p>你和你的小伙伴们每个人都在<code>dev</code>分支上干活，每个人都有自己的分支，时不时地往<code>dev</code>分支上合并就可以了</p>
 <p>所以，团队合作的分支看起来就像这样：</p>
-<p><img src="https://s2.loli.net/2022/01/06/wk5sDubxaigXqRH.png"></p>
+<p><img src="https://giesen-images.oss-cn-hongkong.aliyuncs.com/git_team.png"></p>
 <p>合并分支时，加上<code>--no-ff</code>参数就可以用普通模式合并例如<code>git merge --no-ff -m &quot;xxx&quot; dev</code>，合并后的历史有分支，能看出来曾经做过合并，而<code>fast forward</code>合并就看不出来曾经做过合并</p>
 <h4 id="4-4-BUG分支"><a href="#4-4-BUG分支" class="headerlink" title="4.4.BUG分支"></a>4.4.BUG分支</h4><p>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；</p>
 <p>当手头工作没有完成时，先把工作现场<code>git stash</code>一下，然后去修复bug，修复后，一是用<code>git stash apply</code>恢复，但是恢复后，stash内容并不删除，你需要用<code>git stash drop</code>来删除；</p>
@@ -225,7 +228,8 @@
 </ul>
 <h4 id="4-7-Rebase"><a href="#4-7-Rebase" class="headerlink" title="4.7.Rebase"></a>4.7.Rebase</h4><p><code>git rebase</code>操作可以把本地未push的分叉提交历史整理成==直线==</p>
 <p><code>rebase</code>的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比</p>
-<h3 id="5-标签管理"><a href="#5-标签管理" class="headerlink" title="5.标签管理"></a>5.标签管理</h3><h4 id="5-1-创建标签"><a href="#5-1-创建标签" class="headerlink" title="5.1.创建标签"></a>5.1.创建标签</h4><ul>
+<h3 id="5-标签管理"><a href="#5-标签管理" class="headerlink" title="5.标签管理"></a>5.标签管理</h3><p>​    </p>
+<h4 id="5-1-创建标签"><a href="#5-1-创建标签" class="headerlink" title="5.1.创建标签"></a>5.1.创建标签</h4><ul>
 <li>命令<code>git tag &lt;tagname&gt;</code>用于新建一个标签，默认为<code>HEAD</code>，也可以指定一个commit id</li>
 <li>命令<code>git tag -a &lt;tagname&gt; -m &quot;blablabla...&quot;</code>可以指定标签信息</li>
 <li>命令<code>git tag</code>可以查看所有标签</li>
@@ -275,7 +279,8 @@
 <h4 id="7-1-忽略特殊文件"><a href="#7-1-忽略特殊文件" class="headerlink" title="7.1.忽略特殊文件"></a>7.1.忽略特殊文件</h4><ul>
 <li> <a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/900004590234208">忽略特殊文件 - 廖雪峰的官方网站</a></li>
 </ul>
-<h3 id="8-配置别名"><a href="#8-配置别名" class="headerlink" title="8.配置别名"></a>8.配置别名</h3><h4 id="8-1-配置文件"><a href="#8-1-配置文件" class="headerlink" title="8.1.配置文件"></a>8.1.配置文件</h4><p>配置Git的时候，加上<code>--global</code>是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用。</p>
+<h3 id="8-配置别名"><a href="#8-配置别名" class="headerlink" title="8.配置别名"></a>8.配置别名</h3><p>​    </p>
+<h4 id="8-1-配置文件"><a href="#8-1-配置文件" class="headerlink" title="8.1.配置文件"></a>8.1.配置文件</h4><p>配置Git的时候，加上<code>--global</code>是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用。</p>
 <p>配置文件放哪了？每个仓库的Git配置文件都放在<code>.git/config</code>文件中：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat .git/config</span> </span><br><span class="line">[core]</span><br><span class="line">    repositoryformatversion = 0</span><br><span class="line">    filemode = true</span><br><span class="line">    bare = false</span><br><span class="line">    logallrefupdates = true</span><br><span class="line">    ignorecase = true</span><br><span class="line">    precomposeunicode = true</span><br><span class="line">[remote &quot;origin&quot;]</span><br><span class="line">    url = git@github.com:michaelliao/learngit.git</span><br><span class="line">    fetch = +refs/heads/*:refs/remotes/origin/*</span><br><span class="line">[branch &quot;master&quot;]</span><br><span class="line">    remote = origin</span><br><span class="line">    merge = refs/heads/master</span><br><span class="line">[alias]</span><br><span class="line">    last = log -1</span><br></pre></td></tr></table></figure>
 
@@ -287,7 +292,7 @@
 <h3 id="9-搭建Git服务器"><a href="#9-搭建Git服务器" class="headerlink" title="9.搭建Git服务器"></a>9.搭建Git服务器</h3><ul>
 <li><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/899998870925664">搭建Git服务器 - 廖雪峰的官方网站</a></li>
 </ul>
-<h3 id="10-常用命令总结"><a href="#10-常用命令总结" class="headerlink" title="10.常用命令总结"></a>10.常用命令总结</h3><p><img src="https://s2.loli.net/2022/01/06/9MpT5gQnRXyULaq.jpg"></p>
+<h3 id="10-常用命令总结"><a href="#10-常用命令总结" class="headerlink" title="10.常用命令总结"></a>10.常用命令总结</h3><p><img src="https://giesen-images.oss-cn-hongkong.aliyuncs.com/git_Common_Commands.jpg"></p>
 <ul>
 <li><p><a target="_blank" rel="noopener" href="https://gitee.com/liaoxuefeng/learn-java/raw/master/teach/git-cheatsheet.pdf">Gitaborting commit due to empty commit message (pdf)</a></p>
 </li>

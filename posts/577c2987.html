@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="1.简介量化交易平台 TrendingView  (opens new window)是一个支持多种资产的投资平台，很多人在上面分享对于股票，外汇，数据货币等资产的投资观点，难得的是在上面能找到很多人的交易策略。 TrendingView 使用的是自己开发的Pine 语言作为脚本，这一点和MT4 开发的mql4 很像。用户可以自己编写脚本和策略，并与其他人分享。Pine 直观给我的印象比Mql4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pine Script笔记归档">
+<meta property="og:url" content="http://example.com/posts/577c2987.html">
+<meta property="og:site_name" content="Giesen × Blog">
+<meta property="og:description" content="1.简介量化交易平台 TrendingView  (opens new window)是一个支持多种资产的投资平台，很多人在上面分享对于股票，外汇，数据货币等资产的投资观点，难得的是在上面能找到很多人的交易策略。 TrendingView 使用的是自己开发的Pine 语言作为脚本，这一点和MT4 开发的mql4 很像。用户可以自己编写脚本和策略，并与其他人分享。Pine 直观给我的印象比Mql4">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-20T09:38:35.000Z">
+<meta property="article:modified_time" content="2022-11-20T09:41:06.442Z">
+<meta property="article:author" content="Giesen">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/logo.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/logo-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-apple-180x180.png">
+        
+      
+    
+    <!-- title -->
+    <title>Pine Script笔记归档</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/posts/6a264227.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/577c2987.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/577c2987.html&text=Pine Script笔记归档"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/577c2987.html&title=Pine Script笔记归档"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/577c2987.html&is_video=false&description=Pine Script笔记归档"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Pine Script笔记归档&body=Check out this article: http://example.com/posts/577c2987.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/577c2987.html&title=Pine Script笔记归档"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/577c2987.html&title=Pine Script笔记归档"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/577c2987.html&title=Pine Script笔记归档"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/577c2987.html&title=Pine Script笔记归档"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/577c2987.html&name=Pine Script笔记归档&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/577c2987.html&t=Pine Script笔记归档"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">1.简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%84%9A%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">2.脚本结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8D%A2%E8%A1%8C"><span class="toc-number">3.</span> <span class="toc-text">3.换行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">4.</span> <span class="toc-text">4.运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%87%BD%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">5.函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E5%87%BD%E6%95%B0%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">5.1.</span> <span class="toc-text">5.1.函数的注意事项</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E-amp-%E8%AF%AD%E5%8F%A5statement"><span class="toc-number">6.</span> <span class="toc-text">6.变量声明&amp;语句statement</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-var"><span class="toc-number">6.1.</span> <span class="toc-text">6.1.var</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-if%E8%AF%AD%E5%8F%A5"><span class="toc-number">6.2.</span> <span class="toc-text">6.2.if语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-for%E8%AF%AD%E5%8F%A5"><span class="toc-number">6.3.</span> <span class="toc-text">6.3.for语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%89%A7%E8%A1%8C%E6%A8%A1%E5%9E%8B"><span class="toc-number">7.</span> <span class="toc-text">7.执行模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">8.</span> <span class="toc-text">8.实时数据的计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-Context-switching-and-the-security-function"><span class="toc-number">9.</span> <span class="toc-text">9.Context switching and the security function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-bar-state-%E5%8F%98%E9%87%8F"><span class="toc-number">10.</span> <span class="toc-text">10.bar state.* 变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E4%BC%9A%E8%AF%9D%E5%92%8C%E6%97%B6%E9%97%B4%E4%BF%A1%E6%81%AF"><span class="toc-number">11.</span> <span class="toc-text">11.会话和时间信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E7%AD%96%E7%95%A5%E7%BC%96%E5%86%99"><span class="toc-number">12.</span> <span class="toc-text">12.策略编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#12-1backtesting-amp-forwardtesting"><span class="toc-number">12.1.</span> <span class="toc-text">12.1backtesting &amp; forwardtesting</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-2-%E7%BB%8F%E7%BA%AA%E5%95%86%E6%A8%A1%E6%8B%9F"><span class="toc-number">12.2.</span> <span class="toc-text">12.2.经纪商模拟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-3-%E8%AE%A2%E5%8D%95%E7%94%9F%E6%88%90%E5%91%BD%E4%BB%A4"><span class="toc-number">12.3.</span> <span class="toc-text">12.3.订单生成命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#12-3-1-strategy-entry-%E8%AE%A2%E5%8D%95%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0"><span class="toc-number">12.3.1.</span> <span class="toc-text">12.3.1.strategy.entry 订单生成函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#12-3-2-strategy-exit-%E8%AE%A2%E5%8D%95%E9%80%80%E5%87%BA%E5%87%BD%E6%95%B0"><span class="toc-number">12.3.2.</span> <span class="toc-text">12.3.2.strategy.exit 订单退出函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#12-3-3-strategy-order"><span class="toc-number">12.3.3.</span> <span class="toc-text">12.3.3.strategy.order</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-4-%E9%A3%8E%E9%99%A9%E7%AE%A1%E7%90%86"><span class="toc-number">12.4.</span> <span class="toc-text">12.4.风险管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E6%8C%87%E6%A0%87%E9%87%8D%E7%BB%98"><span class="toc-number">13.</span> <span class="toc-text">13.指标重绘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-%E7%BB%98%E5%9B%BE"><span class="toc-number">14.</span> <span class="toc-text">14.绘图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#14-1-label"><span class="toc-number">14.1.</span> <span class="toc-text">14.1.label</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-2-line"><span class="toc-number">14.2.</span> <span class="toc-text">14.2.line</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-%E5%B0%BE%E5%B7%B4"><span class="toc-number">15.</span> <span class="toc-text">15.尾巴</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Pine Script笔记归档
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Giesen</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-11-20T09:38:35.000Z" itemprop="datePublished">2022-11-20</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>量化交易平台 <a target="_blank" rel="noopener" href="https://www.tradingview.com/">TrendingView  (opens new window)</a>是一个支持多种资产的投资平台，很多人在上面分享对于股票，外汇，数据货币等资产的投资观点，难得的是在上面能找到很多人的交易策略。</p>
+<p>TrendingView 使用的是自己开发的Pine 语言作为脚本，这一点和MT4 开发的mql4 很像。用户可以自己编写脚本和策略，并与其他人分享。Pine 直观给我的印象比Mql4 更加简单，更加关注于策略本身，而不是编程技巧。</p>
+<p>此外，Pine语言编辑器没有那么强大的debug 功能，这对于一开始上手练习来说，不是那么方便。不过它一直在更新，发展的很快。</p>
+<p>TrendingView 对接了很多经纪商，使得它支持的交易品种很丰富，而且它的图表功能很强大。</p>
+<h3 id="2-脚本结构"><a href="#2-脚本结构" class="headerlink" title="2.脚本结构"></a>2.脚本结构</h3><p>指明用的Pine 脚本版本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//@version=4  </span><br></pre></td></tr></table></figure>
+
+<p>Pine 可以分为study脚本 和 strategy 脚本（指标&amp;策略） study 脚本必须包含 plot,plotshape,barcolor,line.new 等输出 strategy 脚本包含 strategy.* 即交易函数</p>
+<h3 id="3-换行"><a href="#3-换行" class="headerlink" title="3.换行"></a>3.换行</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例子1 换行需要空格</span></span><br><span class="line">a = open+</span><br><span class="line">      high+</span><br><span class="line">        low</span><br><span class="line"><span class="comment">// 例子2 换行中不能有注释</span></span><br><span class="line">a = open+</span><br><span class="line">       high <span class="comment">// 此处加注释会出问题</span></span><br><span class="line"><span class="comment">// 例子3 函数内换行，空行必须要超过一个Tab（或者4个空格）</span></span><br><span class="line">label.new(bar_index, na, yloc=yloc.abovebar, text=t,</span><br><span class="line">     color=hist ? color.green : color.red)</span><br><span class="line"><span class="comment">// 这里空格必须超过4个</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-运算符"><a href="#4-运算符" class="headerlink" title="4.运算符"></a>4.运算符</h3><ul>
+<li><p>算术： + - * / %</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>/<span class="number">2</span> = <span class="number">0</span> <span class="number">1</span>/<span class="number">2.0</span> = <span class="number">0.5</span></span><br></pre></td></tr></table></figure></li>
+<li><p>比较: == !=</p>
+</li>
+<li><p>逻辑: not and or</p>
+</li>
+<li><p>三元运算符：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">condition ? result1 : result2</span><br><span class="line">iff(condition, result1, result2)</span><br><span class="line"><span class="comment">//有房？嫁:有车？: 嫁:帅？嫁: 不嫁</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>[] 运算符(History reference operator) close 代表最新的价格，close[1]代表了历史价格。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">close = close[<span class="number">0</span>] <span class="comment">//显示的是最新的收盘价</span></span><br></pre></td></tr></table></figure>
+
+<p>除此之外，Pine脚本里面还有一个变量 bar_index，记录着bar的数目，编号自左向右，从0开始。bar_index = (bar数量)N-1。</p>
+<h3 id="5-函数"><a href="#5-函数" class="headerlink" title="5.函数"></a>5.函数</h3><p>Pine 脚本中包含了大量的自建函数，用户还可以自定义函数、</p>
+<ul>
+<li><p>单行函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f(x,y) =&gt; x+y</span><br></pre></td></tr></table></figure>
+<p>Pine Script 的函数不支持<strong>递归</strong><br>即，不允许在函数中再次调用自己本身</p>
+</li>
+<li><p>多行函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">geom_average(x, y) =&gt;</span><br><span class="line">    a = x*x</span><br><span class="line">    b = y*y</span><br><span class="line">    sqrt(a + b)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Pine Script 需要（一个Tab 或者4空格，TrendingView 会自动用4个空格来替换掉Tab）来划定函数的范围</li>
+<li>最后一行的表达式或 变量作为函数的输出结果</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-1-函数的注意事项"><a href="#5-1-函数的注意事项" class="headerlink" title="5.1.函数的注意事项"></a>5.1.函数的注意事项</h4><p>当在函数块中使用函数或者历史数据信息的时候要注意。因为所使用的历史信息是每一次连续调用生成的。</p>
+<p>如果函数并不是在每一根柱线上都调用，那么数据生成就会出现错误。</p>
+<h3 id="6-变量声明-amp-语句statement"><a href="#6-变量声明-amp-语句statement" class="headerlink" title="6.变量声明&amp;语句statement"></a>6.变量声明&amp;语句statement</h3><h4 id="6-1-var"><a href="#6-1-var" class="headerlink" title="6.1.var"></a>6.1.var</h4><ul>
+<li><p>Pine 语言中变量定义的方式有两种： = 和 var</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span> <span class="comment">// a为整形</span></span><br><span class="line">float a = <span class="number">1</span> <span class="comment">// a为浮点型</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">0</span></span><br><span class="line"><span class="keyword">var</span> int a = <span class="number">0</span></span><br><span class="line">b = na <span class="comment">//出错</span></span><br></pre></td></tr></table></figure>
+<p>变量定义的时候，需要指明变量的类型(或者 等式右侧表达式能指明类型亦可)<br>na 没有特定的类型，所以赋值时会出错</p>
+</li>
+<li><p>var 关键词<br>var 是用于分配和一次性初始化变量的关键词。</p>
+</li>
+</ul>
+<p>不含var 关键词的变量在每次数据更新的时候都会覆盖变量的值。使用了var 关键词的变量，在数据更新中，可以“保持状态”。 举例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@version=4</span></span><br><span class="line">study(<span class="string">&quot;Var keyword example&quot;</span>)</span><br><span class="line"><span class="keyword">var</span> a = close</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">0.0</span></span><br><span class="line"><span class="keyword">var</span> c = <span class="number">0.0</span></span><br><span class="line"><span class="keyword">var</span> green_bars_count = <span class="number">0</span></span><br><span class="line"><span class="keyword">if</span> close &gt; open</span><br><span class="line">	<span class="keyword">var</span> x = close</span><br><span class="line">	<span class="attr">b</span> := x</span><br><span class="line">	<span class="attr">green_bars_count</span> := green_bars_count + <span class="number">1</span></span><br><span class="line">	<span class="keyword">if</span> green_bars_count &gt;= <span class="number">10</span></span><br><span class="line">		<span class="keyword">var</span> y = close</span><br><span class="line">		<span class="attr">c</span> := y</span><br><span class="line">plot(a)</span><br><span class="line">plot(b)</span><br><span class="line">plot(c)</span><br></pre></td></tr></table></figure>
+<p>变量 ‘a’ 保持系列中每个柱线的第一根柱线的收盘价。</p>
+<p>变量 ‘b’保持系列中第一个“绿色”价格棒的收盘价。</p>
+<p>变量 ‘c’保持系列中第十个“绿色”条的收盘价。</p>
+<p>即a,b,c 都是一个常数。</p>
+<p>去除var 的话，a,b,c 会随着价格变化而变化</p>
+<h4 id="6-2-if语句"><a href="#6-2-if语句" class="headerlink" title="6.2.if语句"></a>6.2.if语句</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This code compiles</span></span><br><span class="line">x = <span class="keyword">if</span> close &gt; open</span><br><span class="line">    close</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    open</span><br><span class="line"><span class="comment">// This code doesn&#x27;t compile</span></span><br><span class="line">x = <span class="keyword">if</span> close &gt; open</span><br><span class="line">    close</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="string">&quot;open&quot;</span></span><br></pre></td></tr></table></figure>
+<p>需要注意的是，与python不同，Pine要求，then 和 else语句返回的值的类型是相同的。在上面的第二个例子中，close 和 “open” 一个是float Series，另一个是string，不同类型的话，编译会出错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  x = <span class="keyword">if</span> close &gt; open</span><br><span class="line">    close</span><br><span class="line"><span class="comment">// If current close &gt; current open, then x = close.</span></span><br><span class="line"><span class="comment">// Otherwise the x = na.</span></span><br></pre></td></tr></table></figure>
+<p>if 语句中可以忽略else，但是系统会默认赋值（na,false,””）</p>
+<h4 id="6-3-for语句"><a href="#6-3-for语句" class="headerlink" title="6.3.for语句"></a>6.3.for语句</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">1</span> to length-<span class="number">1</span></span><br><span class="line">     <span class="attr">sum</span> := sum + price[i]</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="7-执行模型"><a href="#7-执行模型" class="headerlink" title="7.执行模型"></a>7.执行模型</h3><p>Pine代码是根据价格信息计算的。但是价格信息并不是完整加载的，用户可以一直向左滑动图表，直到最早的一根柱子（Pro 用户可以在图表上加载10000左右，免费用户可以加载5000根柱子）</p>
+<h3 id="8-实时数据的计算"><a href="#8-实时数据的计算" class="headerlink" title="8.实时数据的计算"></a>8.实时数据的计算</h3><p>Pine指标计算实时数据的时候和计算历史数据略有不同，因为实时数据会有addtional commit(?)和rollback action(?)</p>
+<p>在实时数据的处理过程中，柱线的每一次变动都会引起Pine 指标的计算</p>
+<p>rollback : 在每一根柱线更新时发生<br>commit : 在每一根柱线关闭时发生<br>对于判断柱线的状态，Pine中有一系列的自建函数 barstate.* 来显示当前柱线的状态。</p>
+<h3 id="9-Context-switching-and-the-security-function"><a href="#9-Context-switching-and-the-security-function" class="headerlink" title="9.Context switching and the security function"></a>9.Context switching and the security function</h3><p>security 函数可以用于按照特定要求请求数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@version=4</span></span><br><span class="line">study(<span class="string">&quot;Example security 1&quot;</span>, overlay=<span class="literal">true</span>)</span><br><span class="line">ibm_15 = security(<span class="string">&quot;NYSE:IBM&quot;</span>, <span class="string">&quot;15&quot;</span>, close)</span><br><span class="line">plot(ibm_15)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>symbol (string)商品代码。</li>
+</ul>
+<p>商品代码可以包含数据提供商信息，也可以不含</p>
+<p>如 “NYSE:IBM”,”BATS:IBM”,”IBM”(如不提供，默认使用BATS)</p>
+<p><a target="_blank" rel="noopener" href="https://www.tradingview.com/pine-script-reference/v4/#var_syminfo%7Bdot%7Dticker">syminfo.ticker (opens new window)</a>and <a target="_blank" rel="noopener" href="https://www.tradingview.com/pine-script-reference/v4/#var_syminfo%7Bdot%7Dtickerid">syminfo.tickerid (opens new window)</a>是表示当前图标上的商品代码，syminfo.ticker是不含数据供应商信息，syminfo.tickerid是包含供应商信息。Pine教程建议使用后者，为了避免数据的模糊性</p>
+<ul>
+<li><p>resolution (string)分辨率/timeframe时间周期</p>
+<ul>
+<li>分钟级：1，5，10，21，60，120，等等</li>
+<li>日级: D,1D,2D 等等</li>
+<li>周级：W，1W，2W</li>
+<li>月级：M，1M，2M</li>
+<li>timeframe.period 记录当前图标时间周期</li>
+</ul>
+</li>
+<li><p>expression (series)计数并从 <a target="_blank" rel="noopener" href="https://cn.tradingview.com/pine-script-reference/v3/#fun_security">security (opens new window)</a>调用返回的表达式。</p>
+</li>
+</ul>
+<p>如果仅仅是获取收盘价数据，我们可以用<code>security(&#39;EURUSD&#39;,&#39;D&#39;,close)</code></p>
+<p>但是，expression能给我们提供更加丰富的操作，比如，我们需要知道，EURUSD相对于GBPUSD 上涨的幅度</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@version=4</span></span><br><span class="line">study(title = <span class="string">&quot;Advance Decline Ratio&quot;</span>, shorttitle=<span class="string">&quot;ADR&quot;</span>)</span><br><span class="line">ratio(t1, t2, source) =&gt;</span><br><span class="line">    s1 = security(t1, timeframe.period, source)</span><br><span class="line">    s2 = security(t2, timeframe.period, source)</span><br><span class="line">    s1 / s2</span><br><span class="line">plot(ratio(<span class="string">&quot;GBPUSD&quot;</span>, <span class="string">&quot;EURUSD&quot;</span>, close-open))</span><br></pre></td></tr></table></figure>
+
+<p>在security数据应用到当前图表上的时候，有两个控制，一个是gaps，另一个是lookahead</p>
+<ul>
+<li><p>gaps (const bool)默认值为<a target="_blank" rel="noopener" href="https://cn.tradingview.com/pine-script-reference/v3/#var_barmerge%7Bdot%7Dgaps_off">barmerge.gaps_off (opens new window)</a>。可以理解为数据平滑的操作，因为数据中会存在空值（na），在gaps_off的情况下，na会被离它最近的非空值所替代，也就不会出现间隔（gap）的情况</p>
+</li>
+<li><p>lookahead (const bool)默认值为<a target="_blank" rel="noopener" href="https://cn.tradingview.com/pine-script-reference/v3/#var_barmerge%7Bdot%7Dlookahead_off">barmerge.lookahead_off (opens new window)</a>。<br>  合并所请求数据位置的策略。 请求的条形图与当前的条形图按照k线开盘时间合并。 这种合并策略可能导致从“未来”获取数据计算历史的不良影响。 这在回溯测试策略中不被接受，但在指标中可使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@version=4</span></span><br><span class="line">study(<span class="string">&#x27;My Script&#x27;</span>, overlay=<span class="literal">true</span>)</span><br><span class="line">a = security(syminfo.tickerid, <span class="string">&#x27;60&#x27;</span>, low, lookahead=barmerge.lookahead_off)</span><br><span class="line">plot(a, color=color.red)</span><br><span class="line">b = security(syminfo.tickerid, <span class="string">&#x27;60&#x27;</span>, low, lookahead=barmerge.lookahead_on)</span><br><span class="line">plot(b, color=color.lime)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="10-bar-state-变量"><a href="#10-bar-state-变量" class="headerlink" title="10.bar state.* 变量"></a>10.bar state.* 变量</h3><ul>
+<li><p>barstate.isfirst 当前k线为k线组的第一条k线</p>
+</li>
+<li><p>barstate.islast 当前k线为k线组的最后一条k线</p>
+</li>
+<li><p>barstate.ishistory 当前k线为历史k线</p>
+</li>
+<li><p>batstate.isrealtime 当前k线为实时k线</p>
+</li>
+<li><p>barstate.isnew 新K线的第一次更新</p>
+</li>
+<li><p>batstate.isconfirmed =当前k线的最后(关闭)更新<br>  不建议在<a target="_blank" rel="noopener" href="https://cn.tradingview.com/pine-script-reference/v3/#fun_security">security (opens new window)</a>表达式中使用<a target="_blank" rel="noopener" href="https://cn.tradingview.com/pine-script-reference/v3/#var_barstate%7Bdot%7Disconfirmed">barstate.isconfirmed</a></p>
+</li>
+</ul>
+<p>所有的历史柱线都曾被认为是新的柱线，因为脚本是依次执行的。当柱线第一更开盘价生成的时候，认为此柱线是新的。</p>
+<h3 id="11-会话和时间信息"><a href="#11-会话和时间信息" class="headerlink" title="11.会话和时间信息"></a>11.会话和时间信息</h3><p>Pine 提供方法来生成 交易区间，时间和日期的信息。</p>
+<p>time(变量): 返回的是时间戳格式</p>
+<p>time(函数)：time(resolution, session) → series 返回的是按照session 格式返回的时间，如果不在session时间段的话便会返回na值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@version=4</span></span><br><span class="line">study(<span class="string">&quot;Time&quot;</span>, overlay=<span class="literal">true</span>)</span><br><span class="line">t1 = time(timeframe.period, <span class="string">&quot;0000-0000&quot;</span>)</span><br><span class="line">bgcolor(t1 ? color.blue : na)</span><br></pre></td></tr></table></figure>
+
+<p>交易区间的格式有：</p>
+<ul>
+<li>0000-0000:1234567 24小时交易，时间从午夜0点开始</li>
+<li>0000-0000:23456 工作日24小时交易</li>
+<li>1700-1700：24小时交易，时间从17点开始</li>
+<li>0930-1700:146 交易时间为09:30~17:00，交易时间在周日（1），周三（4），周五（6）</li>
+<li>24x7 等价于 0000-0000:1234567<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断是否为30min的新柱线</span></span><br><span class="line"><span class="comment">//@version=4</span></span><br><span class="line">study(<span class="string">&quot;new 30 min bar&quot;</span>)</span><br><span class="line">is_newbar(res) =&gt;</span><br><span class="line">    t = time(res)</span><br><span class="line">    not na(t) and (na(t[<span class="number">1</span>]) or t &gt; t[<span class="number">1</span>])</span><br><span class="line">plot(is_newbar(<span class="string">&quot;30&quot;</span>) ? <span class="number">1</span> : <span class="number">0</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>用到的函数变量和类型：</p>
+<ul>
+<li>time：UNIX格式的当前k线时间</li>
+<li>timenow：UNIX格式的当前时间</li>
+<li>syminfo.timezone：时区</li>
+</ul>
+<p>当前K线用到的变量：</p>
+<ul>
+<li>year/month/weekofyear</li>
+<li>dayofmonth</li>
+<li>dayofweek（sunday,monday 等）</li>
+<li>hour/minute/secondzh</li>
+</ul>
+<p>创建时间：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.tradingview.com/pine-script-reference/v4/#fun_timestamp">timestamp(year, month, day, hour, minute)</a></li>
+</ul>
+<h3 id="12-策略编写"><a href="#12-策略编写" class="headerlink" title="12.策略编写"></a>12.策略编写</h3><h4 id="12-1backtesting-amp-forwardtesting"><a href="#12-1backtesting-amp-forwardtesting" class="headerlink" title="12.1backtesting &amp; forwardtesting"></a>12.1backtesting &amp; forwardtesting</h4><p>strategy脚本是可以产生交易订单的Pine 脚本。利用strategy 可以做策略回测（backtesting）和 模拟交易（forwardtesting）</p>
+<p>无论backtesting 还是forwardtesting，计算都是<strong>默认</strong>发生在K线收盘的时候，但是在forwardtesting 的时候，可以选择在每一个tick发生的时候，都运行一次。</p>
+<p>做法一是调整strategy的 Setting/Properties，或者修改代码，添加<code>strategy(... ,calc_on_every_tick=true )</code> ，此外还可以选择在每笔订单完成之后计算<code>strategy(... , calc_on_order_fills=true)</code></p>
+<h4 id="12-2-经纪商模拟"><a href="#12-2-经纪商模拟" class="headerlink" title="12.2.经纪商模拟"></a>12.2.经纪商模拟</h4><p>仅仅只有OHLC数据的话，K线内数据的生成有一套逻辑，如果最高价更接近开盘价，生成顺序是 open-&gt;high-&gt;low-&gt;close，此外还假设价格是没有gaps的</p>
+<h4 id="12-3-订单生成命令"><a href="#12-3-订单生成命令" class="headerlink" title="12.3.订单生成命令"></a>12.3.订单生成命令</h4><h5 id="12-3-1-strategy-entry-订单生成函数"><a href="#12-3-1-strategy-entry-订单生成函数" class="headerlink" title="12.3.1.strategy.entry 订单生成函数"></a>12.3.1.strategy.entry 订单生成函数</h5><p>这是进入市场的命令。 如果具有相同ID的订单已经挂起，则可修改订单。 如果没有指定ID的订单，则会发出新的订单。</p>
+<p>要取消/停用预挂单，应使用命令<a target="_blank" rel="noopener" href="https://cn.tradingview.com/pine-script-reference/v4/#fun_strategy%7Bdot%7Dcancel">strategy.cancel (opens new window)</a>或<a target="_blank" rel="noopener" href="https://cn.tradingview.com/pine-script-reference/v4/#fun_strategy%7Bdot%7Dcancel_all">strategy.cancel_all (opens new window)</a>。</p>
+<p>与函数<a target="_blank" rel="noopener" href="https://cn.tradingview.com/pine-script-reference/v4/#fun_strategy%7Bdot%7Dorder">strategy.order (opens new window)</a>相比，<a target="_blank" rel="noopener" href="https://cn.tradingview.com/pine-script-reference/v4/#fun_strategy%7Bdot%7Dentry">strategy.entry (opens new window)</a>功能受金字塔影响，可以正确反转市场位置。 如果“Limit”和“stop”参数均为“NaN”，则订单类型为市场订单。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strategy.entry(id, long, qty, limit, stop, oca_name, oca_type, comment, when) → <span class="keyword">void</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="12-3-2-strategy-exit-订单退出函数"><a href="#12-3-2-strategy-exit-订单退出函数" class="headerlink" title="12.3.2.strategy.exit 订单退出函数"></a>12.3.2.strategy.exit 订单退出函数</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strategy.exit(id, from_entry, qty, qty_percent, profit, limit, loss, stop, trail_price, trail_points, trail_offset, oca_name, comment, when) → <span class="keyword">void</span></span><br></pre></td></tr></table></figure>
+
+<p>这是一个退出指定进场或整个市场地位的命令，重点区分它和strategy.close 的不同</p>
+<ul>
+<li>id(string): 订单的标识符。</li>
+<li>from_entry(string): 这里填入要平仓的订单的标识符，默认为空。</li>
+<li>qty: 平仓手数(弄清楚合约的大小)</li>
+<li>qty_percent: 平台的比例</li>
+<li>profit: 获利点数(一定搞清楚单位是点还是步)</li>
+<li>limit: 与profit 相似，limit约定获利的价格</li>
+<li>loss:止损点数</li>
+<li>stop:与loss 相似，stop约定止损的价格</li>
+<li>tail.*: 指明跟踪指数</li>
+</ul>
+<h5 id="12-3-3-strategy-order"><a href="#12-3-3-strategy-order" class="headerlink" title="12.3.3.strategy.order"></a>12.3.3.strategy.order</h5><p>这条命令可以生成开仓也可以生成平仓命令，但是它不受金字塔影响。它的作用就是弥补strategy.entry 和 strategy.exit 函数的不灵活性。</p>
+<h4 id="12-4-风险管理"><a href="#12-4-风险管理" class="headerlink" title="12.4.风险管理"></a>12.4.风险管理</h4><p>strategy.risk.* 一系列函数，可以帮助进行风险管理。当风险管理规则被激活的时候，没有订单会生成。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@version=4</span></span><br><span class="line">strategy(<span class="string">&quot;multi risk demo&quot;</span>, overlay=<span class="literal">true</span>, pyramiding=<span class="number">10</span>, calc_on_order_fills = <span class="literal">true</span>)</span><br><span class="line"><span class="keyword">if</span> year &gt; <span class="number">2014</span></span><br><span class="line">    strategy.entry(<span class="string">&quot;LE&quot;</span>, strategy.long)</span><br><span class="line">strategy.risk.max_intraday_filled_orders(<span class="number">5</span>)</span><br><span class="line">strategy.risk.max_intraday_filled_orders(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>strategy.risk.max_intraday_filled_orders(2)<br>限制一天成交的最大的交易单数，一旦达到，所有未成交订单全部取消，成交订单关闭。并且一直关闭交易直到本交易日结束。</li>
+</ul>
+<h3 id="13-指标重绘"><a href="#13-指标重绘" class="headerlink" title="13.指标重绘"></a>13.指标重绘</h3><p>历史数据仅仅包含OHLC，不包含线内的运动。这会导致的问题是，历史数据上的回测和实时数据不一致的情况。</p>
+<p>另外一个担心是，未来函数的使用。这里尤其要关注security 函数，此函数可能会错误的引入未来的信息。</p>
+<h3 id="14-绘图"><a href="#14-绘图" class="headerlink" title="14.绘图"></a>14.绘图</h3><p>Pine V4 中存在两种绘图类型：label 和 line。</p>
+<blockquote>
+<p>注：用户的绘图和 编程绘图是不一样的，编程得到的绘图是不能用鼠标修改的。</p>
+</blockquote>
+<p>和指标绘图函数(plot,plotshape,plotchar) 不一样的是，绘图函数可以在图表右侧没有K线的地方。</p>
+<h4 id="14-1-label"><a href="#14-1-label" class="headerlink" title="14.1.label"></a>14.1.label</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">label.new(x, y, text, xloc, yloc, color, style, textcolor, size) → series[label]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@version=4</span></span><br><span class="line">study(<span class="string">&quot;My Script&quot;</span>, overlay=<span class="literal">true</span>)</span><br><span class="line">label.new(bar_index, high, style=label.style_none,</span><br><span class="line">          text=<span class="string">&quot;x=&quot;</span> + tostring(bar_index) + <span class="string">&quot;\ny=&quot;</span> + tostring(high))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>x的位置是用bar_index 标识的，此时xloc 的默认值为xloc.barindex</p>
+</li>
+<li><p>y的位置是最高价</p>
+</li>
+<li><p>xloc取值：xloc.bar_index(默认) 和 xloc.bar_time</p>
+</li>
+<li><p>yloc取值：</p>
+<ul>
+<li>yloc.price 传入此函数，需要输入y值</li>
+<li>yloc.abovebar,yloc.belowbar 启动时，y值会失效。标签在图表上部或者下部</li>
+</ul>
+</li>
+<li><p>style: 很多种，可能用到比较多的有label.style_none，无底色</p>
+</li>
+</ul>
+<h4 id="14-2-line"><a href="#14-2-line" class="headerlink" title="14.2.line"></a>14.2.line</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">line.new(x1, y1, x2, y2, xloc, extend, color, style, width) → series[line]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>extend: extend.none/extend.right/extend.left</li>
+</ul>
+<h3 id="15-尾巴"><a href="#15-尾巴" class="headerlink" title="15.尾巴"></a>15.尾巴</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.tradingview.com/pine-script-reference/v5/">Pine Script Language Reference Manual — TradingView</a></li>
+<li><a target="_blank" rel="noopener" href="https://zlq4863947.gitbook.io/tradingview/">TradingView 中文开发文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://cn.tradingview.com/">TradingView – 追踪所有市场</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">1.简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%84%9A%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">2.脚本结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8D%A2%E8%A1%8C"><span class="toc-number">3.</span> <span class="toc-text">3.换行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">4.</span> <span class="toc-text">4.运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%87%BD%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">5.函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E5%87%BD%E6%95%B0%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">5.1.</span> <span class="toc-text">5.1.函数的注意事项</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E-amp-%E8%AF%AD%E5%8F%A5statement"><span class="toc-number">6.</span> <span class="toc-text">6.变量声明&amp;语句statement</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-var"><span class="toc-number">6.1.</span> <span class="toc-text">6.1.var</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-if%E8%AF%AD%E5%8F%A5"><span class="toc-number">6.2.</span> <span class="toc-text">6.2.if语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-for%E8%AF%AD%E5%8F%A5"><span class="toc-number">6.3.</span> <span class="toc-text">6.3.for语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%89%A7%E8%A1%8C%E6%A8%A1%E5%9E%8B"><span class="toc-number">7.</span> <span class="toc-text">7.执行模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">8.</span> <span class="toc-text">8.实时数据的计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-Context-switching-and-the-security-function"><span class="toc-number">9.</span> <span class="toc-text">9.Context switching and the security function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-bar-state-%E5%8F%98%E9%87%8F"><span class="toc-number">10.</span> <span class="toc-text">10.bar state.* 变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E4%BC%9A%E8%AF%9D%E5%92%8C%E6%97%B6%E9%97%B4%E4%BF%A1%E6%81%AF"><span class="toc-number">11.</span> <span class="toc-text">11.会话和时间信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E7%AD%96%E7%95%A5%E7%BC%96%E5%86%99"><span class="toc-number">12.</span> <span class="toc-text">12.策略编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#12-1backtesting-amp-forwardtesting"><span class="toc-number">12.1.</span> <span class="toc-text">12.1backtesting &amp; forwardtesting</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-2-%E7%BB%8F%E7%BA%AA%E5%95%86%E6%A8%A1%E6%8B%9F"><span class="toc-number">12.2.</span> <span class="toc-text">12.2.经纪商模拟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-3-%E8%AE%A2%E5%8D%95%E7%94%9F%E6%88%90%E5%91%BD%E4%BB%A4"><span class="toc-number">12.3.</span> <span class="toc-text">12.3.订单生成命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#12-3-1-strategy-entry-%E8%AE%A2%E5%8D%95%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0"><span class="toc-number">12.3.1.</span> <span class="toc-text">12.3.1.strategy.entry 订单生成函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#12-3-2-strategy-exit-%E8%AE%A2%E5%8D%95%E9%80%80%E5%87%BA%E5%87%BD%E6%95%B0"><span class="toc-number">12.3.2.</span> <span class="toc-text">12.3.2.strategy.exit 订单退出函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#12-3-3-strategy-order"><span class="toc-number">12.3.3.</span> <span class="toc-text">12.3.3.strategy.order</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-4-%E9%A3%8E%E9%99%A9%E7%AE%A1%E7%90%86"><span class="toc-number">12.4.</span> <span class="toc-text">12.4.风险管理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E6%8C%87%E6%A0%87%E9%87%8D%E7%BB%98"><span class="toc-number">13.</span> <span class="toc-text">13.指标重绘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-%E7%BB%98%E5%9B%BE"><span class="toc-number">14.</span> <span class="toc-text">14.绘图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#14-1-label"><span class="toc-number">14.1.</span> <span class="toc-text">14.1.label</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-2-line"><span class="toc-number">14.2.</span> <span class="toc-text">14.2.line</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-%E5%B0%BE%E5%B7%B4"><span class="toc-number">15.</span> <span class="toc-text">15.尾巴</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/posts/577c2987.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/posts/577c2987.html&text=Pine Script笔记归档"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/posts/577c2987.html&title=Pine Script笔记归档"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/posts/577c2987.html&is_video=false&description=Pine Script笔记归档"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Pine Script笔记归档&body=Check out this article: http://example.com/posts/577c2987.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/posts/577c2987.html&title=Pine Script笔记归档"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/posts/577c2987.html&title=Pine Script笔记归档"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/posts/577c2987.html&title=Pine Script笔记归档"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/posts/577c2987.html&title=Pine Script笔记归档"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/posts/577c2987.html&name=Pine Script笔记归档&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/posts/577c2987.html&t=Pine Script笔记归档"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2022
+    Giesen
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Article</a></li>
+         
+          <li><a href="/categories/gallery">Gallery</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+  <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?816b9aa62faaa826317c7a6ab717a247";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
